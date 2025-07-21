@@ -1,0 +1,168 @@
+# API测试用例集合
+# 测试项目信息
+project:
+  name: "API接口测试"
+  version: "1.0.0"
+  description: "完整的API接口测试用例集合"
+
+# 全局变量
+globals:
+  base_url: "https://httpbin.org"  # 替换为实际API地址
+  api_version: "v1"
+  content_type: "application/json"
+  user_agent: "YH-API-Test-Framework/3.0"
+
+# 测试用例
+tests:
+  # 1. 基础GET请求测试
+  - name: "获取用户信息"
+    description: "测试获取用户基本信息接口"
+    method: "GET"
+    url: "${base_url}/get"  # 替换为: /api/v1/users/{user_id}
+    headers:
+      Content-Type: "${content_type}"
+      User-Agent: "${user_agent}"
+      # Authorization: "Bearer ${auth_token}"  # 取消注释并替换实际token
+    params:
+      user_id: "12345"  # 替换为实际参数
+      include_profile: true
+    assertions:
+      - type: "status_code"
+        expected: 200
+      - type: "response_time"
+        expected: 2000  # 毫秒
+      - type: "json_path"
+        path: "$.args.user_id"
+        expected: "12345"
+      # - type: "json_schema"  # 取消注释以验证响应结构
+      #   schema:
+      #     type: "object"
+      #     properties:
+      #       id: {type: "integer"}
+      #       name: {type: "string"}
+      #       email: {type: "string"}
+
+  # 2. POST请求测试
+  - name: "创建新用户"
+    description: "测试创建新用户接口"
+    method: "POST"
+    url: "${base_url}/post"  # 替换为: /api/v1/users
+    headers:
+      Content-Type: "${content_type}"
+      # Authorization: "Bearer ${auth_token}"
+    data:
+      name: "张三"
+      email: "zhangsan@example.com"
+      age: 25
+      department: "技术部"
+    assertions:
+      - type: "status_code"
+        expected: 200  # 替换为实际期望状态码，如201
+      - type: "json_path"
+        path: "$.json.name"
+        expected: "张三"
+      - type: "json_path"
+        path: "$.json.email"
+        expected: "zhangsan@example.com"
+
+  # 3. PUT请求测试
+  - name: "更新用户信息"
+    description: "测试更新用户信息接口"
+    method: "PUT"
+    url: "${base_url}/put"  # 替换为: /api/v1/users/{user_id}
+    headers:
+      Content-Type: "${content_type}"
+    data:
+      name: "张三（已更新）"
+      email: "zhangsan.updated@example.com"
+      age: 26
+    assertions:
+      - type: "status_code"
+        expected: 200
+      - type: "json_path"
+        path: "$.json.name"
+        expected: "张三（已更新）"
+
+  # 4. DELETE请求测试
+  - name: "删除用户"
+    description: "测试删除用户接口"
+    method: "DELETE"
+    url: "${base_url}/delete"  # 替换为: /api/v1/users/{user_id}
+    headers:
+      Content-Type: "${content_type}"
+    params:
+      user_id: "12345"
+    assertions:
+      - type: "status_code"
+        expected: 200  # 替换为实际期望状态码，如204
+
+  # 5. 文件上传测试
+  - name: "上传文件"
+    description: "测试文件上传接口"
+    method: "POST"
+    url: "${base_url}/post"  # 替换为: /api/v1/upload
+    headers:
+      # Content-Type会自动设置为multipart/form-data
+      pass
+    files:
+      file: "data/test_file.txt"  # 确保文件存在
+    data:
+      description: "测试文件上传"
+      category: "document"
+    assertions:
+      - type: "status_code"
+        expected: 200
+
+  # 6. 参数化测试
+  - name: "批量用户查询"
+    description: "测试批量查询用户信息"
+    method: "GET"
+    url: "${base_url}/get"  # 替换为实际接口
+    parameters:
+      - user_id: "001"
+        expected_name: "用户001"
+      - user_id: "002"
+        expected_name: "用户002"
+      - user_id: "003"
+        expected_name: "用户003"
+    headers:
+      Content-Type: "${content_type}"
+    params:
+      user_id: "${user_id}"
+    assertions:
+      - type: "status_code"
+        expected: 200
+      - type: "json_path"
+        path: "$.args.user_id"
+        expected: "${user_id}"
+
+  # 7. 依赖测试（使用前一个测试的结果）
+  - name: "获取创建的用户详情"
+    description: "获取之前创建的用户的详细信息"
+    method: "GET"
+    url: "${base_url}/get"  # 替换为: /api/v1/users/${created_user_id}
+    headers:
+      Content-Type: "${content_type}"
+    params:
+      user_id: "${created_user_id}"  # 从前面的测试中提取
+    depends_on: "创建新用户"  # 依赖的测试名称
+    extract:
+      - name: "created_user_id"
+        path: "$.json.id"  # 从响应中提取用户ID
+    assertions:
+      - type: "status_code"
+        expected: 200
+
+# 测试套件配置
+suites:
+  smoke_test:
+    description: "冒烟测试套件"
+    tests: ["获取用户信息", "创建新用户"]
+
+  full_test:
+    description: "完整测试套件"
+    tests: ["获取用户信息", "创建新用户", "更新用户信息", "删除用户"]
+
+  file_test:
+    description: "文件操作测试"
+    tests: ["上传文件"]

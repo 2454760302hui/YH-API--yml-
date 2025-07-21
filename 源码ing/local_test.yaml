@@ -1,0 +1,35 @@
+config:
+  name: "本地测试用例"
+  base_url: "http://localhost:8000"
+  timeout: 10
+  variables:
+    test_user: "admin"
+    test_pass: "123456"
+
+# 模拟测试用例（不需要真实网络连接）
+test_config_validation:
+  name: "配置验证测试"
+  description: "验证测试配置是否正确加载"
+  skip_request: true  # 跳过实际请求
+  validate:
+    - check: "config_loaded"
+      expected: true
+
+test_yaml_parsing:
+  name: "YAML解析测试"
+  description: "验证YAML文件解析功能"
+  skip_request: true
+  validate:
+    - check: "yaml_valid"
+      expected: true
+
+test_variable_substitution:
+  name: "变量替换测试"
+  description: "验证变量替换功能"
+  skip_request: true
+  variables:
+    username: "${test_user}"
+    password: "${test_pass}"
+  validate:
+    - check: "variables_loaded"
+      expected: true

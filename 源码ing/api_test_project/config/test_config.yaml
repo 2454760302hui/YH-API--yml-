@@ -1,0 +1,62 @@
+# API测试框架配置文件
+# 基础配置
+base:
+  name: "API测试项目"
+  version: "1.0.0"
+  description: "基于YH API测试框架的完整测试项目"
+
+# 服务器配置
+server:
+  base_url: "https://httpbin.org"  # 替换为实际API地址
+  timeout: 30
+  retry_count: 3
+  retry_delay: 1
+
+# 认证配置
+auth:
+  type: "bearer"  # bearer, basic, api_key
+  token: "your_api_token_here"  # 替换为实际token
+  username: "test_user"
+  password: "test_password"
+  api_key_header: "X-API-Key"
+  api_key_value: "your_api_key_here"
+
+# 数据库配置（可选）
+database:
+  enabled: false
+  host: "localhost"
+  port: 5432
+  name: "test_db"
+  username: "db_user"
+  password: "db_password"
+
+# 报告配置
+reporting:
+  enabled: true
+  formats: ["html", "json", "allure"]
+  output_dir: "reports"
+  include_screenshots: true
+
+# 通知配置
+notifications:
+  wechat:
+    enabled: false
+    webhook_url: "your_wechat_webhook_url"
+  email:
+    enabled: false
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    username: "your_email@gmail.com"
+    password: "your_email_password"
+    recipients: ["recipient@example.com"]
+
+# 并发配置
+concurrency:
+  max_workers: 5
+  batch_size: 10
+  delay_between_batches: 2
+
+# 环境配置
+environments:
+  default: "test"
+  available: ["dev", "test", "staging", "prod"]

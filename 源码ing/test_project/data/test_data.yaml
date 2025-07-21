@@ -1,0 +1,169 @@
+# 测试数据文件
+# 包含各种测试场景的数据
+
+# 用户测试数据
+users:
+  valid_user:
+    name: "张三"
+    email: "zhangsan@example.com"
+    age: 25
+    department: "技术部"
+    phone: "13800138000"
+    address: "北京市朝阳区"
+
+  invalid_user:
+    name: ""  # 空名称
+    email: "invalid-email"  # 无效邮箱
+    age: -1  # 无效年龄
+
+  admin_user:
+    name: "管理员"
+    email: "admin@example.com"
+    role: "admin"
+    permissions: ["read", "write", "delete"]
+
+# 产品测试数据
+products:
+  valid_product:
+    name: "测试产品"
+    description: "这是一个测试产品"
+    price: 99.99
+    category: "电子产品"
+    stock: 100
+    tags: ["测试", "产品", "电子"]
+
+  expensive_product:
+    name: "高端产品"
+    price: 9999.99
+    category: "奢侈品"
+
+  out_of_stock_product:
+    name: "缺货产品"
+    stock: 0
+
+# 订单测试数据
+orders:
+  simple_order:
+    user_id: 12345
+    products:
+      - product_id: 1
+        quantity: 2
+        price: 99.99
+      - product_id: 2
+        quantity: 1
+        price: 199.99
+    total_amount: 399.97
+    shipping_address: "北京市朝阳区测试地址"
+
+  bulk_order:
+    user_id: 12345
+    products:
+      - product_id: 1
+        quantity: 100
+        price: 99.99
+
+# 认证测试数据
+auth:
+  valid_credentials:
+    username: "testuser"
+    password: "testpass123"
+    email: "testuser@example.com"
+
+  invalid_credentials:
+    username: "wronguser"
+    password: "wrongpass"
+
+  expired_token: "expired.jwt.token.here"
+  valid_token: "valid.jwt.token.here"
+
+# 文件测试数据
+files:
+  valid_image:
+    filename: "test_image.jpg"
+    content_type: "image/jpeg"
+    size: 1024000  # 1MB
+
+  large_file:
+    filename: "large_file.zip"
+    content_type: "application/zip"
+    size: 10485760  # 10MB
+
+  invalid_file:
+    filename: "test.exe"
+    content_type: "application/x-executable"
+
+# 搜索测试数据
+search:
+  valid_queries:
+    - "测试"
+    - "产品"
+    - "用户"
+
+  invalid_queries:
+    - ""  # 空查询
+    - "a"  # 太短
+    - "x" * 1000  # 太长
+
+  special_queries:
+    - "测试 AND 产品"
+    - "用户 OR 客户"
+    - '"精确匹配"'
+
+# 分页测试数据
+pagination:
+  valid_params:
+    - page: 1
+      size: 10
+    - page: 2
+      size: 20
+    - page: 1
+      size: 50
+
+  invalid_params:
+    - page: 0
+      size: 10
+    - page: 1
+      size: 0
+    - page: -1
+      size: -1
+
+# 边界值测试数据
+boundary_values:
+  strings:
+    empty: ""
+    single_char: "a"
+    max_length: "a" * 255
+    unicode: "测试🏀🐍"
+
+  numbers:
+    zero: 0
+    negative: -1
+    max_int: 2147483647
+    min_int: -2147483648
+    decimal: 123.456
+
+  arrays:
+    empty: []
+    single_item: [1]
+    large_array: [1, 2, 3, 4, 5] * 100
+
+# 错误场景数据
+error_scenarios:
+  network_errors:
+    - timeout: 30000  # 超时场景
+    - connection_refused: true  # 连接拒绝
+
+  server_errors:
+    - status_code: 500
+      message: "内部服务器错误"
+    - status_code: 503
+      message: "服务不可用"
+
+  client_errors:
+    - status_code: 400
+      message: "请求❌ 参数格式错误
+💡 提示：请使用 help <命令> 查看正确用法"
+    - status_code: 401
+      message: "未授权访问"
+    - status_code: 404
+      message: "资源不存在"

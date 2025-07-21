@@ -1,0 +1,5 @@
+2025-07-06 21:58:26 [[31mERROR[0m] pytest-yaml:134 - 这是一条错误日志
+2025-07-07 16:31:00 [[31mERROR[0m] pytest-yaml:134 - API测试执行失败: Object of type timedelta is not JSON serializable
+2025-07-07 17:12:05 [[31mERROR[0m] pytest-yaml:134 - API测试执行失败: 400: 不支持的HTTP方法: STRING
+2025-07-07 17:22:13 [[31mERROR[0m] pytest-yaml:134 - API测试执行失败: 400: 不支持的HTTP方法: STRING
+2025-07-07 19:36:40 [[31mERROR[0m] pytest-yaml:134 - API测试执行失败: 400: 不支持的HTTP方法: STRING

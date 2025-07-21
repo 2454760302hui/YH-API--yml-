@@ -1,0 +1,317 @@
+# JSONPlaceholder API测试用例
+# 使用jsonplaceholder.typicode.com进行真实API测试
+
+config:
+  name: "JSONPlaceholder API测试"
+  description: "测试RESTful API的完整CRUD操作"
+  base_url: "https://jsonplaceholder.typicode.com"
+  
+  # 全局变量
+  variables:
+    user_id: 1
+    post_id: 1
+    new_post_title: "测试文章标题"
+    new_post_body: "这是一篇测试文章的内容"
+
+# 获取所有用户
+test_get_all_users:
+  name: "获取所有用户"
+  description: "测试获取用户列表API"
+  request:
+    method: GET
+    url: "/users"
+    headers:
+      Accept: "application/json"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: response.headers.Content-Type
+      expected: "application/json; charset=utf-8"
+    - check: len(response.json)
+      expected: 10
+    - check: response.json[0].id
+      expected: 1
+    - check: response.json[0].name
+      expected: "Leanne Graham"
+  
+  extract:
+    - total_users: len(response.json)
+    - first_user_id: response.json[0].id
+    - first_user_name: response.json[0].name
+    - first_user_email: response.json[0].email
+
+# 根据ID获取用户
+test_get_user_by_id:
+  name: "根据ID获取用户"
+  description: "测试根据用户ID获取单个用户信息"
+  request:
+    method: GET
+    url: "/users/{{ user_id }}"
+    headers:
+      Accept: "application/json"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: response.json.id
+      expected: "{{ user_id }}"
+    - check: response.json.name
+      expected: "Leanne Graham"
+    - check: response.json.email
+      expected: "Sincere@april.biz"
+    - check: response.json.address.city
+      expected: "Gwenborough"
+  
+  extract:
+    - user_name: response.json.name
+    - user_email: response.json.email
+    - user_phone: response.json.phone
+    - user_website: response.json.website
+
+# 获取所有文章
+test_get_all_posts:
+  name: "获取所有文章"
+  description: "测试获取文章列表API"
+  request:
+    method: GET
+    url: "/posts"
+    headers:
+      Accept: "application/json"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: len(response.json)
+      expected: 100
+    - check: response.json[0].userId
+      expected: 1
+    - check: response.json[0].id
+      expected: 1
+  
+  extract:
+    - total_posts: len(response.json)
+    - first_post_title: response.json[0].title
+
+# 根据用户ID获取文章
+test_get_posts_by_user:
+  name: "根据用户ID获取文章"
+  description: "测试根据用户ID获取该用户的所有文章"
+  request:
+    method: GET
+    url: "/posts"
+    params:
+      userId: "{{ user_id }}"
+    headers:
+      Accept: "application/json"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: len(response.json)
+      expected: 10
+    - check: response.json[0].userId
+      expected: "{{ user_id }}"
+  
+  extract:
+    - user_posts_count: len(response.json)
+    - first_post_id: response.json[0].id
+
+# 创建新文章
+test_create_post:
+  name: "创建新文章"
+  description: "测试创建新文章的POST请求"
+  request:
+    method: POST
+    url: "/posts"
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+    json:
+      title: "{{ new_post_title }}"
+      body: "{{ new_post_body }}"
+      userId: "{{ user_id }}"
+  
+  validate:
+    - check: status_code
+      expected: 201
+    - check: response.json.title
+      expected: "{{ new_post_title }}"
+    - check: response.json.body
+      expected: "{{ new_post_body }}"
+    - check: response.json.userId
+      expected: "{{ user_id }}"
+    - check: response.json.id
+      expected: 101
+  
+  extract:
+    - created_post_id: response.json.id
+    - created_post_title: response.json.title
+
+# 更新文章
+test_update_post:
+  name: "更新文章"
+  description: "测试更新文章的PUT请求"
+  request:
+    method: PUT
+    url: "/posts/{{ post_id }}"
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+    json:
+      id: "{{ post_id }}"
+      title: "更新后的文章标题"
+      body: "更新后的文章内容"
+      userId: "{{ user_id }}"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: response.json.id
+      expected: "{{ post_id }}"
+    - check: response.json.title
+      expected: "更新后的文章标题"
+    - check: response.json.body
+      expected: "更新后的文章内容"
+    - check: response.json.userId
+      expected: "{{ user_id }}"
+
+# 部分更新文章
+test_patch_post:
+  name: "部分更新文章"
+  description: "测试部分更新文章的PATCH请求"
+  request:
+    method: PATCH
+    url: "/posts/{{ post_id }}"
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+    json:
+      title: "PATCH更新的标题"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: response.json.id
+      expected: "{{ post_id }}"
+    - check: response.json.title
+      expected: "PATCH更新的标题"
+    - check: response.json.userId
+      expected: 1
+
+# 删除文章
+test_delete_post:
+  name: "删除文章"
+  description: "测试删除文章的DELETE请求"
+  request:
+    method: DELETE
+    url: "/posts/{{ post_id }}"
+  
+  validate:
+    - check: status_code
+      expected: 200
+
+# 获取文章评论
+test_get_post_comments:
+  name: "获取文章评论"
+  description: "测试获取指定文章的评论"
+  request:
+    method: GET
+    url: "/posts/{{ post_id }}/comments"
+    headers:
+      Accept: "application/json"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: len(response.json)
+      expected: 5
+    - check: response.json[0].postId
+      expected: "{{ post_id }}"
+  
+  extract:
+    - comments_count: len(response.json)
+    - first_comment_email: response.json[0].email
+
+# 获取所有评论
+test_get_all_comments:
+  name: "获取所有评论"
+  description: "测试获取所有评论"
+  request:
+    method: GET
+    url: "/comments"
+    params:
+      _limit: 10
+    headers:
+      Accept: "application/json"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: len(response.json)
+      expected: 10
+  
+  extract:
+    - limited_comments_count: len(response.json)
+
+# 获取相册
+test_get_albums:
+  name: "获取相册列表"
+  description: "测试获取相册列表API"
+  request:
+    method: GET
+    url: "/albums"
+    params:
+      _limit: 5
+    headers:
+      Accept: "application/json"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: len(response.json)
+      expected: 5
+    - check: response.json[0].userId
+      expected: 1
+  
+  extract:
+    - albums_count: len(response.json)
+    - first_album_title: response.json[0].title
+
+# 获取照片
+test_get_photos:
+  name: "获取照片列表"
+  description: "测试获取照片列表API"
+  request:
+    method: GET
+    url: "/photos"
+    params:
+      _limit: 3
+    headers:
+      Accept: "application/json"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: len(response.json)
+      expected: 3
+    - check: response.json[0].albumId
+      expected: 1
+  
+  extract:
+    - photos_count: len(response.json)
+    - first_photo_url: response.json[0].url
+
+# 测试不存在的资源
+test_get_nonexistent_user:
+  name: "获取不存在的用户"
+  description: "测试404错误处理"
+  request:
+    method: GET
+    url: "/users/999"
+    headers:
+      Accept: "application/json"
+  
+  validate:
+    - check: status_code
+      expected: 404

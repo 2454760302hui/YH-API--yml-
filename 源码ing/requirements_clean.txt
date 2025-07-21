@@ -1,0 +1,72 @@
+# YH API Testing Framework Dependencies
+
+# Core Dependencies
+pytest>=7.0.0
+requests>=2.28.0
+PyYAML>=6.0
+jsonpath-ng>=1.5.3
+
+# Test Reporting
+allure-pytest>=2.12.0
+jinja2>=3.1.0
+
+# Data Processing
+faker>=19.0.0
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0
+
+# XML/HTML Processing
+lxml>=4.9.0
+
+# Web Framework
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.0.0
+
+# HTTP Clients
+httpx>=0.24.0
+aiohttp>=3.8.0
+
+# Database Support
+pymysql>=1.0.2
+redis>=4.5.0
+
+# Network and Protocols
+websockets>=11.0.0
+paramiko>=3.0.0
+
+# Security
+cryptography>=41.0.0
+
+# Task Scheduling
+schedule>=1.2.0
+
+# Configuration Management
+python-dotenv>=1.0.0
+
+# CLI Tools
+click>=8.1.0
+colorama>=0.4.6
+rich>=13.0.0
+
+# Optional Dependencies (commented out, install as needed)
+# Development Tools
+# pytest-cov>=4.0.0
+# black>=23.0.0
+# flake8>=6.0.0
+# mypy>=1.0.0
+
+# Enterprise Features
+# pymongo>=4.4.0
+# sqlalchemy>=2.0.0
+# celery>=5.3.0
+
+# Full Features
+# selenium>=4.0.0
+# playwright>=1.30.0
+# grpcio>=1.50.0
+# websocket-client>=1.5.0
+
+# Socket Features
+# scapy>=2.5.0

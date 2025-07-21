@@ -1,0 +1,233 @@
+# 默认测试文件 - API测试框架验证用例
+# Default test file for API Testing Framework validation
+
+config:
+  name: "API测试框架默认验证"
+  description: "用于验证框架基础功能的默认测试用例"
+  base_url: "https://httpbin.org"
+  timeout: 30
+  retry_count: 2
+
+# 基础HTTP方法测试
+tests:
+  - name: "GET请求测试"
+    description: "测试基础GET请求功能"
+    request:
+      method: GET
+      url: "/get"
+      params:
+        test_param: "framework_test"
+        timestamp: "{{current_timestamp}}"
+    validate:
+      - check: status_code
+        expected: 200
+      - check: response_time
+        operator: "<"
+        expected: 5000
+      - check: json_path
+        path: "args.test_param"
+        expected: "framework_test"
+
+  - name: "POST请求测试"
+    description: "测试POST请求和JSON数据发送"
+    request:
+      method: POST
+      url: "/post"
+      headers:
+        Content-Type: "application/json"
+        User-Agent: "API-Testing-Framework/1.0"
+      json:
+        username: "test_user"
+        password: "test_password"
+        test_data:
+          framework: "yh_api_test"
+          version: "1.0"
+    validate:
+      - check: status_code
+        expected: 200
+      - check: json_path
+        path: "json.username"
+        expected: "test_user"
+      - check: json_path
+        path: "json.test_data.framework"
+        expected: "yh_api_test"
+
+  - name: "PUT请求测试"
+    description: "测试PUT请求更新数据"
+    request:
+      method: PUT
+      url: "/put"
+      json:
+        id: 1
+        name: "Updated Test"
+        status: "active"
+    validate:
+      - check: status_code
+        expected: 200
+      - check: json_path
+        path: "json.id"
+        expected: 1
+
+  - name: "DELETE请求测试"
+    description: "测试DELETE请求"
+    request:
+      method: DELETE
+      url: "/delete"
+      params:
+        id: 123
+    validate:
+      - check: status_code
+        expected: 200
+      - check: json_path
+        path: "args.id"
+        expected: "123"
+
+  - name: "请求头测试"
+    description: "测试自定义请求头"
+    request:
+      method: GET
+      url: "/headers"
+      headers:
+        X-Test-Header: "framework-test"
+        X-Custom-Value: "yh-api-testing"
+    validate:
+      - check: status_code
+        expected: 200
+      - check: json_path
+        path: "headers.X-Test-Header"
+        expected: "framework-test"
+
+  - name: "状态码测试"
+    description: "测试不同HTTP状态码"
+    request:
+      method: GET
+      url: "/status/201"
+    validate:
+      - check: status_code
+        expected: 201
+
+  - name: "响应时间测试"
+    description: "测试响应时间验证"
+    request:
+      method: GET
+      url: "/delay/1"
+    validate:
+      - check: status_code
+        expected: 200
+      - check: response_time
+        operator: ">"
+        expected: 1000
+      - check: response_time
+        operator: "<"
+        expected: 3000
+
+  - name: "JSON响应验证"
+    description: "测试复杂JSON响应验证"
+    request:
+      method: GET
+      url: "/json"
+    validate:
+      - check: status_code
+        expected: 200
+      - check: json_path
+        path: "slideshow.title"
+        expected: "Sample Slide Show"
+      - check: json_path
+        path: "slideshow.slides[0].title"
+        expected: "Wake up to WonderWidgets!"
+
+# 错误处理测试
+error_tests:
+  - name: "404错误测试"
+    description: "测试404错误处理"
+    request:
+      method: GET
+      url: "/status/404"
+    validate:
+      - check: status_code
+        expected: 404
+
+  - name: "500错误测试"
+    description: "测试500错误处理"
+    request:
+      method: GET
+      url: "/status/500"
+    validate:
+      - check: status_code
+        expected: 500
+
+# 并发测试配置
+concurrent_tests:
+  - name: "并发GET测试"
+    description: "测试并发请求处理"
+    request:
+      method: GET
+      url: "/get"
+      params:
+        concurrent_test: "true"
+    concurrent:
+      threads: 5
+      requests_per_thread: 3
+    validate:
+      - check: status_code
+        expected: 200
+      - check: response_time
+        operator: "<"
+        expected: 10000
+
+# 数据驱动测试
+data_driven_tests:
+  - name: "用户数据测试"
+    description: "使用不同用户数据进行测试"
+    request:
+      method: POST
+      url: "/post"
+      json:
+        username: "{{username}}"
+        email: "{{email}}"
+        age: "{{age}}"
+    data:
+      - username: "alice"
+        email: "alice@example.com"
+        age: 25
+      - username: "bob"
+        email: "bob@example.com"
+        age: 30
+      - username: "charlie"
+        email: "charlie@example.com"
+        age: 35
+    validate:
+      - check: status_code
+        expected: 200
+      - check: json_path
+        path: "json.username"
+        expected: "{{username}}"
+
+# 链式测试（依赖测试）
+chain_tests:
+  - name: "获取测试数据"
+    description: "获取后续测试需要的数据"
+    request:
+      method: GET
+      url: "/uuid"
+    validate:
+      - check: status_code
+        expected: 200
+    extract:
+      - name: "test_uuid"
+        json_path: "uuid"
+
+  - name: "使用提取的数据"
+    description: "使用前一个测试提取的数据"
+    request:
+      method: POST
+      url: "/post"
+      json:
+        uuid: "{{test_uuid}}"
+        test_type: "chain_test"
+    validate:
+      - check: status_code
+        expected: 200
+      - check: json_path
+        path: "json.uuid"
+        expected: "{{test_uuid}}"

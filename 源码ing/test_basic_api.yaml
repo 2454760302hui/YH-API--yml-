@@ -1,0 +1,206 @@
+# 基础API测试用例
+# 使用httpbin.org进行真实API测试
+
+config:
+  name: "基础API功能测试"
+  description: "测试框架的基础HTTP请求功能"
+  base_url: "https://httpbin.org"
+
+# 测试GET请求
+test_get_request:
+  name: "测试GET请求"
+  description: "验证GET请求的基本功能"
+  request:
+    method: GET
+    url: "/get"
+    params:
+      param1: "value1"
+      param2: "value2"
+    headers:
+      User-Agent: "API-Test-Framework/1.0"
+      Accept: "application/json"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: response.json.args.param1
+      expected: "value1"
+    - check: response.json.args.param2
+      expected: "value2"
+    - check: response.json.headers.User-Agent
+      expected: "API-Test-Framework/1.0"
+  
+  extract:
+    - origin_ip: response.json.origin
+    - request_url: response.json.url
+
+# 测试POST请求
+test_post_request:
+  name: "测试POST请求"
+  description: "验证POST请求和JSON数据发送"
+  request:
+    method: POST
+    url: "/post"
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+    json:
+      username: "testuser"
+      password: "testpass"
+      email: "test@example.com"
+      age: 25
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: response.json.json.username
+      expected: "testuser"
+    - check: response.json.json.email
+      expected: "test@example.com"
+    - check: response.json.json.age
+      expected: 25
+    - check: response.headers.Content-Type
+      expected: "application/json"
+  
+  extract:
+    - posted_data: response.json.json
+    - content_length: response.headers.Content-Length
+
+# 测试PUT请求
+test_put_request:
+  name: "测试PUT请求"
+  description: "验证PUT请求功能"
+  request:
+    method: PUT
+    url: "/put"
+    headers:
+      Content-Type: "application/json"
+    json:
+      id: 123
+      name: "Updated Name"
+      status: "active"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: response.json.json.id
+      expected: 123
+    - check: response.json.json.name
+      expected: "Updated Name"
+    - check: response.json.json.status
+      expected: "active"
+
+# 测试DELETE请求
+test_delete_request:
+  name: "测试DELETE请求"
+  description: "验证DELETE请求功能"
+  request:
+    method: DELETE
+    url: "/delete"
+    headers:
+      Authorization: "Bearer test-token"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: response.json.headers.Authorization
+      expected: "Bearer test-token"
+
+# 测试状态码
+test_status_codes:
+  name: "测试不同状态码"
+  description: "验证不同HTTP状态码的处理"
+  request:
+    method: GET
+    url: "/status/404"
+  
+  validate:
+    - check: status_code
+      expected: 404
+
+# 测试响应延迟
+test_delay_response:
+  name: "测试响应延迟"
+  description: "验证延迟响应的处理"
+  request:
+    method: GET
+    url: "/delay/2"
+    timeout: 5
+  
+  validate:
+    - check: status_code
+      expected: 200
+
+# 测试重定向
+test_redirect:
+  name: "测试重定向"
+  description: "验证重定向处理"
+  request:
+    method: GET
+    url: "/redirect/3"
+  
+  validate:
+    - check: status_code
+      expected: 200
+
+# 测试基本认证
+test_basic_auth:
+  name: "测试基本认证"
+  description: "验证HTTP基本认证"
+  request:
+    method: GET
+    url: "/basic-auth/user/pass"
+    auth:
+      - "user"
+      - "pass"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: response.json.authenticated
+      expected: true
+    - check: response.json.user
+      expected: "user"
+
+# 测试Cookie
+test_cookies:
+  name: "测试Cookie处理"
+  description: "验证Cookie的设置和获取"
+  request:
+    method: GET
+    url: "/cookies/set/test_cookie/test_value"
+  
+  validate:
+    - check: status_code
+      expected: 200
+
+# 测试User-Agent
+test_user_agent:
+  name: "测试User-Agent"
+  description: "验证User-Agent头的处理"
+  request:
+    method: GET
+    url: "/user-agent"
+    headers:
+      User-Agent: "Custom-Test-Agent/2.0"
+  
+  validate:
+    - check: status_code
+      expected: 200
+    - check: response.json.user-agent
+      expected: "Custom-Test-Agent/2.0"
+
+# 测试IP地址获取
+test_ip_address:
+  name: "测试IP地址获取"
+  description: "验证IP地址信息获取"
+  request:
+    method: GET
+    url: "/ip"
+  
+  validate:
+    - check: status_code
+      expected: 200
+  
+  extract:
+    - client_ip: response.json.origin

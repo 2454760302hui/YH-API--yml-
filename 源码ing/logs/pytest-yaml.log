@@ -1,0 +1,374 @@
+2025-07-06 21:50:39 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 21:50:39 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 21:50:39 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 21:50:41 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.469s)
+2025-07-06 21:50:41 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 13:50:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 21:50:41 [[32mINFO[0m] pytest-yaml:126 - 发送请求: POST https://httpbin.org/post
+2025-07-06 21:50:41 [   DEBUG] pytest-yaml:122 - 请求参数: {'json': {'username': 'test', 'password': '123456'}, 'timeout': 30, 'verify': True}
+2025-07-06 21:50:41 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (0.344s)
+2025-07-06 21:50:41 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 13:50:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '553', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 21:50:41 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-06 21:50:41 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-06 21:50:41 [   DEBUG] pytest-yaml:122 - 设置变量 test_var=test_value (作用域: step)
+2025-07-06 21:55:21 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 21:55:21 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 21:55:21 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 21:55:23 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.574s)
+2025-07-06 21:55:23 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 13:55:23 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 21:55:23 [[32mINFO[0m] pytest-yaml:126 - 发送请求: POST https://httpbin.org/post
+2025-07-06 21:55:23 [   DEBUG] pytest-yaml:122 - 请求参数: {'json': {'username': 'test', 'password': '123456'}, 'timeout': 30, 'verify': True}
+2025-07-06 21:55:23 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (0.294s)
+2025-07-06 21:55:23 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 13:55:24 GMT', 'Content-Type': 'application/json', 'Content-Length': '553', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 21:55:23 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-06 21:55:23 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-06 21:55:23 [   DEBUG] pytest-yaml:122 - 设置变量 test_var=test_value (作用域: step)
+2025-07-06 21:55:48 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 21:55:48 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 21:55:48 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 21:55:49 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.895s)
+2025-07-06 21:55:49 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 13:55:50 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 21:55:49 [[32mINFO[0m] pytest-yaml:126 - 发送请求: POST https://httpbin.org/post
+2025-07-06 21:55:49 [   DEBUG] pytest-yaml:122 - 请求参数: {'json': {'username': 'test', 'password': '123456'}, 'timeout': 30, 'verify': True}
+2025-07-06 21:55:50 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (0.566s)
+2025-07-06 21:55:50 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 13:55:51 GMT', 'Content-Type': 'application/json', 'Content-Length': '553', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 21:55:50 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-06 21:55:50 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-06 21:55:50 [   DEBUG] pytest-yaml:122 - 设置变量 test_var=test_value (作用域: step)
+2025-07-06 21:56:17 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 21:56:17 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 21:56:17 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 21:56:18 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.276s)
+2025-07-06 21:56:18 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 13:56:19 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 21:56:18 [[32mINFO[0m] pytest-yaml:126 - 发送请求: POST https://httpbin.org/post
+2025-07-06 21:56:18 [   DEBUG] pytest-yaml:122 - 请求参数: {'json': {'username': 'test', 'password': '123456'}, 'timeout': 30, 'verify': True}
+2025-07-06 21:56:19 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (0.334s)
+2025-07-06 21:56:19 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 13:56:20 GMT', 'Content-Type': 'application/json', 'Content-Length': '553', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 21:56:19 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-06 21:56:19 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-06 21:56:19 [   DEBUG] pytest-yaml:122 - 设置变量 test_var=test_value (作用域: step)
+2025-07-06 21:58:24 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 21:58:24 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 21:58:24 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 21:58:26 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.363s)
+2025-07-06 21:58:26 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 13:58:26 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 21:58:26 [[32mINFO[0m] pytest-yaml:126 - 发送请求: POST https://httpbin.org/post
+2025-07-06 21:58:26 [   DEBUG] pytest-yaml:122 - 请求参数: {'json': {'username': 'test', 'password': '123456'}, 'timeout': 30, 'verify': True}
+2025-07-06 21:58:26 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (0.305s)
+2025-07-06 21:58:26 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 13:58:27 GMT', 'Content-Type': 'application/json', 'Content-Length': '553', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 21:58:26 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-06 21:58:26 [[32mINFO[0m] pytest-yaml:126 - 这是一条信息日志
+2025-07-06 21:58:26 [[33mWARNING[0m] pytest-yaml:130 - 这是一条警告日志
+2025-07-06 21:58:26 [[31mERROR[0m] pytest-yaml:134 - 这是一条错误日志
+2025-07-06 22:06:20 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 22:06:20 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 22:06:20 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:06:21 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.255s)
+2025-07-06 22:06:21 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:06:22 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:06:21 [[32mINFO[0m] pytest-yaml:126 - 发送请求: POST https://httpbin.org/post
+2025-07-06 22:06:21 [   DEBUG] pytest-yaml:122 - 请求参数: {'json': {'username': 'test', 'password': '123456'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:06:23 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.691s)
+2025-07-06 22:06:23 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:06:24 GMT', 'Content-Type': 'application/json', 'Content-Length': '553', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:06:23 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-06 22:06:23 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-06 22:06:23 [   DEBUG] pytest-yaml:122 - 设置变量 test_var=test_value (作用域: step)
+2025-07-06 22:14:13 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 22:14:13 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 22:14:13 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:14:15 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.706s)
+2025-07-06 22:14:15 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:14:16 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:14:15 [[32mINFO[0m] pytest-yaml:126 - 发送请求: POST https://httpbin.org/post
+2025-07-06 22:14:15 [   DEBUG] pytest-yaml:122 - 请求参数: {'json': {'username': 'test', 'password': '123456'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:14:15 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (0.338s)
+2025-07-06 22:14:15 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:14:16 GMT', 'Content-Type': 'application/json', 'Content-Length': '553', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:14:15 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-06 22:14:15 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-06 22:14:15 [   DEBUG] pytest-yaml:122 - 设置变量 test_var=test_value (作用域: step)
+2025-07-06 22:17:21 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-06 22:17:44 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8081
+2025-07-06 22:24:41 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 22:24:41 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 22:24:41 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:24:43 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.255s)
+2025-07-06 22:24:43 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:24:44 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:24:43 [[32mINFO[0m] pytest-yaml:126 - 发送请求: POST https://httpbin.org/post
+2025-07-06 22:24:43 [   DEBUG] pytest-yaml:122 - 请求参数: {'json': {'username': 'test', 'password': '123456'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:24:43 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (0.284s)
+2025-07-06 22:24:43 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:24:44 GMT', 'Content-Type': 'application/json', 'Content-Length': '553', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:24:43 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-06 22:24:43 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-06 22:24:43 [   DEBUG] pytest-yaml:122 - 设置变量 test_var=test_value (作用域: step)
+2025-07-06 22:31:07 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 22:31:07 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 22:31:07 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:31:09 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (2.320s)
+2025-07-06 22:31:09 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:31:10 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:31:42 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 22:31:42 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 22:31:42 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:31:43 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.208s)
+2025-07-06 22:31:43 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:31:44 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:32:11 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 22:32:11 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 22:32:11 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:32:12 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.220s)
+2025-07-06 22:32:12 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:32:13 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:32:27 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 22:32:27 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 22:32:27 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:32:28 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.258s)
+2025-07-06 22:32:28 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:32:29 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:32:28 [[32mINFO[0m] pytest-yaml:126 - 发送请求: POST https://httpbin.org/post
+2025-07-06 22:32:28 [   DEBUG] pytest-yaml:122 - 请求参数: {'json': {'username': 'test', 'password': '123456'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:32:28 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (0.314s)
+2025-07-06 22:32:28 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:32:29 GMT', 'Content-Type': 'application/json', 'Content-Length': '553', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:32:28 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-06 22:32:28 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-06 22:32:28 [   DEBUG] pytest-yaml:122 - 设置变量 test_var=test_value (作用域: step)
+2025-07-06 22:32:59 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 22:32:59 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 22:32:59 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:33:00 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.302s)
+2025-07-06 22:33:00 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:33:01 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:33:31 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-06 22:33:31 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 22:33:31 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-06 22:33:33 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.444s)
+2025-07-06 22:33:33 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:33:34 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:46:38 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=None, timeout=30
+2025-07-06 22:46:38 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-06 22:46:38 [   DEBUG] pytest-yaml:122 - 请求参数: {'timeout': 10, 'verify': True}
+2025-07-06 22:46:39 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.536s)
+2025-07-06 22:46:39 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 14:46:40 GMT', 'Content-Type': 'application/json', 'Content-Length': '318', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-06 22:48:59 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=None, timeout=30
+2025-07-07 06:27:59 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=None, timeout=30
+2025-07-07 06:27:59 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-07 06:27:59 [   DEBUG] pytest-yaml:122 - 请求参数: {'timeout': 10, 'verify': True}
+2025-07-07 06:28:00 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.146s)
+2025-07-07 06:28:00 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Sun, 06 Jul 2025 22:28:01 GMT', 'Content-Type': 'application/json', 'Content-Length': '318', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-07 06:29:55 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=None, timeout=30
+2025-07-07 10:13:09 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-07 10:13:09 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-07 10:13:09 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-07 10:13:10 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.154s)
+2025-07-07 10:13:10 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Mon, 07 Jul 2025 02:13:11 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-07 10:17:05 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-07 10:17:05 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-07 10:17:05 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-07 10:17:06 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.154s)
+2025-07-07 10:17:06 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Mon, 07 Jul 2025 02:17:08 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-07 11:04:45 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-07 11:04:45 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-07 11:04:45 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-07 11:04:46 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.188s)
+2025-07-07 11:04:46 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Mon, 07 Jul 2025 03:04:48 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-07 11:14:30 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=https://httpbin.org, timeout=30
+2025-07-07 11:14:30 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-07 11:14:30 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'timeout': 30, 'verify': True}
+2025-07-07 11:14:31 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.335s)
+2025-07-07 11:14:31 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Mon, 07 Jul 2025 03:14:32 GMT', 'Content-Type': 'application/json', 'Content-Length': '352', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-07 13:50:11 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:55:11 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:55:11 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:55:11 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:55:11 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:55:11 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:55:11 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:55:11 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:55:11 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:55:11 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:55:11 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:09 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:09 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:09 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:09 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:09 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:09 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:09 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:09 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:09 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:09 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:41 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:41 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:41 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:41 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:41 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:41 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:41 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:41 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:41 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 13:57:41 [   DEBUG] pytest-yaml:122 - 创建测试上下文: default
+2025-07-07 16:00:30 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 16:30:25 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 16:30:58 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=None, timeout=30
+2025-07-07 16:30:58 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-07 16:30:58 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'headers': {'User-Agent': 'YH-API-Test'}, 'timeout': 30, 'verify': True}
+2025-07-07 16:31:00 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.148s)
+2025-07-07 16:31:00 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Mon, 07 Jul 2025 08:31:02 GMT', 'Content-Type': 'application/json', 'Content-Length': '341', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-07 16:31:00 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-07 16:31:00 [[31mERROR[0m] pytest-yaml:134 - API测试执行失败: Object of type timedelta is not JSON serializable
+2025-07-07 16:35:02 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 16:35:31 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8081
+2025-07-07 16:41:07 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 16:41:17 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=None, timeout=30
+2025-07-07 16:41:17 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-07 16:41:17 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'headers': {'User-Agent': 'YH-API-Test'}, 'timeout': 30, 'verify': True}
+2025-07-07 16:41:18 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.205s)
+2025-07-07 16:41:18 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Mon, 07 Jul 2025 08:41:20 GMT', 'Content-Type': 'application/json', 'Content-Length': '341', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-07 16:41:18 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-07 16:41:22 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=None, timeout=30
+2025-07-07 16:41:22 [[32mINFO[0m] pytest-yaml:126 - 发送请求: POST https://httpbin.org/get
+2025-07-07 16:41:22 [   DEBUG] pytest-yaml:122 - 请求参数: {'data': {}, 'headers': {'User-Agent': 'YH-API-Test'}, 'timeout': 30, 'verify': True}
+2025-07-07 16:41:23 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 405 (1.132s)
+2025-07-07 16:41:23 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Mon, 07 Jul 2025 08:41:26 GMT', 'Content-Type': 'text/html', 'Content-Length': '178', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Allow': 'GET, OPTIONS, HEAD', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-07 16:41:23 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-07 16:41:31 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=None, timeout=30
+2025-07-07 16:41:31 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-07 16:41:31 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'headers': {'User-Agent': 'YH-API-Test'}, 'timeout': 30, 'verify': True}
+2025-07-07 16:41:33 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (2.226s)
+2025-07-07 16:41:33 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Mon, 07 Jul 2025 08:41:36 GMT', 'Content-Type': 'application/json', 'Content-Length': '341', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-07 16:41:33 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-07 16:41:33 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=None, timeout=30
+2025-07-07 16:41:33 [[32mINFO[0m] pytest-yaml:126 - 发送请求: GET https://httpbin.org/get
+2025-07-07 16:41:33 [   DEBUG] pytest-yaml:122 - 请求参数: {'params': {'test': 'value'}, 'headers': {'User-Agent': 'YH-API-Test'}, 'timeout': 30, 'verify': True}
+2025-07-07 16:41:35 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 200 (1.156s)
+2025-07-07 16:41:35 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Mon, 07 Jul 2025 08:41:37 GMT', 'Content-Type': 'application/json', 'Content-Length': '341', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-07 16:41:35 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-07 16:41:39 [   DEBUG] pytest-yaml:122 - 创建HTTP客户端: base_url=None, timeout=30
+2025-07-07 16:41:39 [[32mINFO[0m] pytest-yaml:126 - 发送请求: POST https://httpbin.org/get
+2025-07-07 16:41:39 [   DEBUG] pytest-yaml:122 - 请求参数: {'data': {}, 'headers': {'User-Agent': 'YH-API-Test'}, 'timeout': 30, 'verify': True}
+2025-07-07 16:41:40 [[32mINFO[0m] pytest-yaml:126 - 收到响应: 405 (1.433s)
+2025-07-07 16:41:40 [   DEBUG] pytest-yaml:122 - 响应头: {'Date': 'Mon, 07 Jul 2025 08:41:42 GMT', 'Content-Type': 'text/html', 'Content-Length': '178', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Allow': 'HEAD, GET, OPTIONS', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-07-07 16:41:40 [   DEBUG] pytest-yaml:122 - 关闭HTTP会话
+2025-07-07 16:44:52 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8082
+2025-07-07 16:48:50 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 16:57:18 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8083
+2025-07-07 17:02:04 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 17:03:53 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8083
+2025-07-07 17:11:32 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 17:12:05 [[31mERROR[0m] pytest-yaml:134 - API测试执行失败: 400: 不支持的HTTP方法: STRING
+2025-07-07 17:17:26 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8083
+2025-07-07 17:21:13 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 17:22:13 [[31mERROR[0m] pytest-yaml:134 - API测试执行失败: 400: 不支持的HTTP方法: STRING
+2025-07-07 17:29:38 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8083
+2025-07-07 17:33:53 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 17:47:20 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 17:47:40 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8083
+2025-07-07 19:17:24 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 19:20:30 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8083
+2025-07-07 19:22:27 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8083
+2025-07-07 19:23:18 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8083
+2025-07-07 19:23:44 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8084
+2025-07-07 19:29:47 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8086
+2025-07-07 19:29:47 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-07 19:34:21 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 19:34:21 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-07 19:36:40 [[31mERROR[0m] pytest-yaml:134 - API测试执行失败: 400: 不支持的HTTP方法: STRING
+2025-07-07 19:45:12 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 19:45:12 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-07 19:45:25 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 19:45:25 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-07 19:47:50 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 19:47:50 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-07 19:48:13 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-07 19:48:13 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-07 19:48:38 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8087
+2025-07-07 19:48:38 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-08 10:02:12 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-08 10:02:12 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-08 10:09:34 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8088
+2025-07-08 10:09:34 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 10:36:47 [[33mWARNING[0m] pytest-yaml:130 - FastAPI相关模块导入失败: No module named 'fastapi'
+2025-07-15 10:42:27 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8090
+2025-07-15 10:42:27 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 11:45:02 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-15 11:45:02 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 11:49:06 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8092
+2025-07-15 11:49:06 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 14:19:49 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-15 14:19:49 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 14:22:39 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-15 14:22:39 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 14:24:16 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8093
+2025-07-15 14:24:16 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 14:27:23 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8095
+2025-07-15 14:27:23 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 15:15:24 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-15 15:15:24 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 17:50:13 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8096
+2025-07-15 17:50:13 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 18:41:53 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8097
+2025-07-15 18:41:53 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 18:58:12 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-15 18:58:12 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:05:54 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8098
+2025-07-15 19:05:54 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:10:52 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8099
+2025-07-15 19:10:52 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:12:50 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8100
+2025-07-15 19:12:50 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:16:52 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-15 19:16:52 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:20:56 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8101
+2025-07-15 19:20:56 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:25:33 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-15 19:25:33 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:30:00 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8095
+2025-07-15 19:30:00 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:33:17 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8096
+2025-07-15 19:33:17 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:37:07 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-15 19:37:07 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:43:05 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8097
+2025-07-15 19:43:05 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:47:24 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-15 19:47:24 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-15 19:51:33 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8098
+2025-07-15 19:51:33 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 10:21:58 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-16 10:21:58 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 10:34:58 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8099
+2025-07-16 10:34:58 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 10:36:51 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8100
+2025-07-16 10:36:51 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 10:41:05 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-16 10:41:05 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 11:34:49 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-16 11:34:49 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 11:36:19 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8101
+2025-07-16 11:36:19 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 11:38:00 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8102
+2025-07-16 11:38:00 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 11:43:21 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-16 11:43:21 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 11:45:32 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8103
+2025-07-16 11:45:32 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 11:48:27 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-16 11:48:27 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 11:54:06 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8104
+2025-07-16 11:54:06 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 14:11:34 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-16 14:11:34 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 14:15:29 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8105
+2025-07-16 14:15:29 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 15:13:10 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-16 15:13:10 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 16:15:46 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8106
+2025-07-16 16:15:46 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 16:33:16 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-16 16:33:16 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-16 17:46:49 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8107
+2025-07-16 17:46:49 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-17 14:59:14 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-17 14:59:14 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-17 15:10:05 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8108
+2025-07-17 15:10:05 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-17 15:27:27 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-17 15:27:27 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-17 15:39:55 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8109
+2025-07-17 15:39:55 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-17 15:55:48 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-17 15:55:48 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-17 17:21:18 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-17 17:21:18 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2
+2025-07-21 17:24:48 [[32mINFO[0m] pytest-yaml:126 - 启动YH API测试框架文档服务器: http://127.0.0.1:8080
+2025-07-21 17:24:48 [[32mINFO[0m] pytest-yaml:126 - OpenAPI版本: 3.0.2

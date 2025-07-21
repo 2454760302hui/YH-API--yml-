@@ -1,0 +1,23 @@
+[
+  {
+    "name": "API错误",
+    "matchedStatuses": [
+      "failed"
+    ],
+    "messageRegex": ".*API.*"
+  },
+  {
+    "name": "超时错误",
+    "matchedStatuses": [
+      "failed"
+    ],
+    "messageRegex": ".*timeout.*"
+  },
+  {
+    "name": "断言错误",
+    "matchedStatuses": [
+      "failed"
+    ],
+    "messageRegex": ".*assert.*"
+  }
+]

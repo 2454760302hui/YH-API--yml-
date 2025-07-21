@@ -1,0 +1,1107 @@
+#!/usr/bin/env python3
+"""
+YH API测试框架 - FastAPI文档服务器
+基于FastAPI的在线文档和API测试界面
+"""
+
+import os
+import sys
+import json
+import yaml
+from pathlib import Path
+from typing import Dict, Any, List, Optional
+import logging
+from logging_config import get_logger
+
+# 延迟导入重型库以提高启动性能
+def _lazy_import_fastapi():
+    """延迟导入FastAPI相关模块"""
+    try:
+        from fastapi import FastAPI, HTTPException, Request, Form, File, UploadFile
+        from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
+        from fastapi.staticfiles import StaticFiles
+        from fastapi.templating import Jinja2Templates
+        from pydantic import BaseModel
+        import uvicorn
+        return {
+            'FastAPI': FastAPI,
+            'HTTPException': HTTPException,
+            'Request': Request,
+            'Form': Form,
+            'File': File,
+            'UploadFile': UploadFile,
+            'HTMLResponse': HTMLResponse,
+            'JSONResponse': JSONResponse,
+            'FileResponse': FileResponse,
+            'StaticFiles': StaticFiles,
+            'Jinja2Templates': Jinja2Templates,
+            'BaseModel': BaseModel,
+            'uvicorn': uvicorn
+        }
+    except ImportError as e:
+        logger.warning(f"FastAPI相关模块导入失败: {e}")
+        return None
+
+# 获取日志器
+logger = get_logger()
+
+class SwaggerDocsServer:
+    """YH API测试框架文档服务器"""
+
+    def __init__(self, port: int = 8080, host: str = "127.0.0.1"):
+        self.port = port
+        self.host = host
+        self.app = None
+        self.fastapi_modules = None
+        self._initialized = False
+
+    def _ensure_initialized(self):
+        """确保FastAPI模块已初始化"""
+        if not self._initialized:
+            self.fastapi_modules = _lazy_import_fastapi()
+            if self.fastapi_modules is None:
+                raise ImportError("无法导入FastAPI相关模块，请确保已安装FastAPI")
+
+            # 创建FastAPI应用
+            FastAPI = self.fastapi_modules['FastAPI']
+
+            # 详细的API文档描述
+            description = """
+# YH API测试框架 - 企业级API测试解决方案
+
+🎯 **专业的API接口测试工具** - 智能、高效、企业级
+
+---
+
+## 📚 框架完整使用指南
+
+### 📋 1. 测试用例配置 (YAML格式)
+**完整的测试用例配置示例**
+
+```yaml
+# test_config.yaml - 完整配置示例
+globals:
+  base_url: "https://api.example.com"
+  username: "testuser"
+  password: "123456"
+  timeout: 30
+
+test_cases:
+  # 用户登录测试
+  - name: "用户登录测试"
+    method: "POST"
+    url: "${base_url}/login"
+    headers:
+      Content-Type: "application/json"
+      User-Agent: "YH-API-Test/2.0"
+    json_data:
+      username: "${username}"  # 全局变量引用
+      password: "${password}"
+    extract:  # 参数提取
+      token: "$.data.token"           # JSONPath提取
+      user_id: "$.data.user.id"
+      session: "Set-Cookie: session=([^;]+)"  # 正则提取
+    assert:   # 断言验证
+      status_code: 200
+      response_contains: "success"
+      json_path:
+        "$.code": 0
+        "$.data.token": "not_empty"
+      response_time_ms: 3000  # 性能断言
+
+  # 获取用户信息测试
+  - name: "获取用户信息"
+    method: "GET"
+    url: "${base_url}/user/${user_id}"  # 使用上一步提取的参数
+    headers:
+      Authorization: "Bearer ${token}"
+    assert:
+      status_code: 200
+      json_path:
+        "$.data.username": "${username}"
+```
+
+### 🔗 2. 参数引用与提取详解
+
+#### 全局变量定义
+```yaml
+globals:
+  # 基础配置
+  base_url: "https://api.example.com"
+  api_version: "v1"
+  timeout: 30
+
+  # 认证信息
+  username: "testuser"
+  password: "123456"
+  api_key: "your-api-key"
+
+  # 环境配置
+  env: "test"
+  debug: true
+```
+
+#### 参数引用语法
+```yaml
+# 使用 ${variable_name} 语法引用变量
+test_cases:
+  - name: "API测试"
+    url: "${base_url}/${api_version}/users"  # URL中引用
+    headers:
+      Authorization: "Bearer ${api_key}"      # 请求头中引用
+    json_data:
+      username: "${username}"                 # 请求体中引用
+      env: "${env}"
+```
+
+#### 参数提取方法
+```yaml
+extract:
+  # JSONPath提取（推荐）
+  token: "$.data.access_token"              # 提取访问令牌
+  user_id: "$.data.user.id"                 # 提取用户ID
+  total_count: "$.pagination.total"         # 提取总数
+
+  # 正则表达式提取
+  session_id: "sessionId=([^;]+)"           # 从Cookie提取会话ID
+  csrf_token: 'name="csrf_token" value="([^"]+)"'  # 从HTML提取CSRF令牌
+
+  # 响应头提取
+  location: "header:Location"               # 提取Location头
+  content_type: "header:Content-Type"       # 提取Content-Type头
+```
+
+### ✅ 3. 断言验证详解
+
+#### 基础断言
+```yaml
+assert:
+  # 状态码断言
+  status_code: 200                    # 期望状态码为200
+  status_code_in: [200, 201, 202]     # 状态码在指定范围内
+
+  # 响应内容断言
+  response_contains: ["success", "data"]      # 响应包含指定文本
+  response_not_contains: ["error", "fail"]    # 响应不包含指定文本
+  response_regex: "user_id.*\\d+"             # 响应匹配正则表达式
+```
+
+#### JSON断言
+```yaml
+assert:
+  # JSON路径断言
+  json_path:
+    "$.code": 0                       # 返回码为0
+    "$.message": "success"            # 消息为success
+    "$.data.user.name": "not_empty"   # 用户名不为空
+    "$.data.list": "is_list"          # 数据是列表类型
+    "$.data.count": "is_number"       # 计数是数字类型
+
+  # JSON Schema验证
+  json_schema:
+    type: "object"
+    properties:
+      code: { type: "integer" }
+      data: { type: "object" }
+    required: ["code", "data"]
+```
+
+#### 性能断言
+```yaml
+assert:
+  # 响应时间断言
+  response_time_ms: 3000              # 响应时间小于3秒
+  response_time_range: [100, 5000]    # 响应时间在100ms-5s之间
+
+  # 响应大小断言
+  response_size_bytes: 10240          # 响应大小小于10KB
+  response_size_range: [100, 1048576] # 响应大小在100B-1MB之间
+```
+
+### ⚡ 4. 并发测试配置
+
+#### 基础并发配置
+```yaml
+concurrent:
+  threads: 10        # 并发线程数
+  duration: 60       # 持续时间(秒)
+  ramp_up: 10        # 启动时间(秒)
+  think_time: 1      # 思考时间(秒)
+
+test_cases:
+  - name: "并发登录测试"
+    concurrent: true
+    repeat: 100      # 重复执行次数
+    method: "POST"
+    url: "${base_url}/login"
+    json_data:
+      username: "user_${thread_id}"  # 使用线程ID区分用户
+      password: "123456"
+```
+
+#### 压力测试配置
+```yaml
+# 阶梯式压力测试
+load_test:
+  stages:
+    - duration: 60    # 第一阶段：60秒
+      threads: 5      # 5个并发用户
+    - duration: 120   # 第二阶段：120秒
+      threads: 10     # 10个并发用户
+    - duration: 60    # 第三阶段：60秒
+      threads: 20     # 20个并发用户
+
+# 峰值测试配置
+spike_test:
+  normal_load: 5     # 正常负载
+  spike_load: 50     # 峰值负载
+  spike_duration: 30 # 峰值持续时间
+```
+
+### 📊 5. 报告生成与推送
+
+#### Allure报告配置
+```yaml
+report:
+  allure:
+    enabled: true
+    output_dir: "./reports/allure"     # 报告输出目录
+    auto_open: true                    # 自动打开报告
+    clean_history: false               # 保留历史记录
+    categories:                        # 自定义分类
+      - name: "API错误"
+        matchedStatuses: ["failed"]
+        messageRegex: ".*API.*"
+      - name: "超时错误"
+        matchedStatuses: ["broken"]
+        messageRegex: ".*timeout.*"
+
+    # 环境信息
+    environment:
+      测试环境: "${env}"
+      API版本: "${api_version}"
+      测试人员: "YH团队"
+      测试时间: "${timestamp}"
+```
+
+#### 企业微信通知配置
+```yaml
+notification:
+  wechat:
+    webhook: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxx"
+    enabled: true
+
+    # 成功通知模板
+    success_template: |
+      ✅ **API测试完成**
+      📊 **测试结果**: ${total_tests}个用例，成功${success_count}个
+      📈 **成功率**: ${success_rate}%
+      ⏱️ **执行时间**: ${duration}秒
+      🔗 **报告链接**: ${report_url}
+
+    # 失败通知模板
+    failure_template: |
+      ❌ **API测试失败**
+      📊 **测试结果**: ${total_tests}个用例，失败${failure_count}个
+      📉 **成功率**: ${success_rate}%
+      🔍 **失败原因**: ${failure_summary}
+      🔗 **报告链接**: ${report_url}
+```
+
+### 🤖 6. AI智能测试功能
+
+#### AI测试用例生成
+```yaml
+ai_config:
+  enabled: true
+  model: "gpt-3.5-turbo"
+  api_key: "${openai_api_key}"
+
+  features:
+    # 自动生成测试用例
+    auto_generate_cases:
+      enabled: true
+      based_on: "swagger_spec"    # 基于Swagger规范生成
+      coverage: "full"            # 覆盖度：basic/full/custom
+
+    # 智能断言生成
+    smart_assertions:
+      enabled: true
+      types: ["status", "schema", "business"]  # 断言类型
+
+    # 数据验证建议
+    data_validation:
+      enabled: true
+      auto_boundary_test: true    # 自动边界值测试
+      invalid_data_test: true     # 无效数据测试
+
+    # 性能分析
+    performance_analysis:
+      enabled: true
+      auto_baseline: true         # 自动建立性能基线
+      anomaly_detection: true     # 异常检测
+```
+
+#### AI辅助调试
+```yaml
+ai_debug:
+  # 错误分析
+  error_analysis:
+    enabled: true
+    analyze_logs: true          # 分析日志
+    suggest_solutions: true     # 建议解决方案
+
+  # 测试优化建议
+  optimization:
+    enabled: true
+    suggest_improvements: true  # 建议改进
+    code_review: true          # 代码审查
+```
+
+## 📋 支持的HTTP方法
+- **GET**: 获取数据，支持URL参数和查询字符串
+- **POST**: 提交数据，支持JSON、表单和文件上传
+- **PUT**: 更新数据，完整资源替换
+- **DELETE**: 删除数据，支持批量删除
+- **PATCH**: 部分更新，增量修改
+- **HEAD**: 获取响应头信息
+- **OPTIONS**: 获取支持的方法
+
+## 🖥️ Shell命令模式
+
+### 基础命令
+```bash
+# 启动框架
+python run.py
+
+# 启动Web界面
+python run.py --web --port 8083
+
+# 执行测试用例
+python run.py --config test_config.yaml
+
+# 生成测试项目
+python run.py --generate-project --output ./my_test_project
+```
+
+### 高级命令
+```bash
+# 并发测试
+python run.py --config test_config.yaml --concurrent --threads 10
+
+# 生成Allure报告
+python run.py --config test_config.yaml --allure --auto-open
+
+# AI辅助测试
+python run.py --config test_config.yaml --ai --auto-generate
+
+# 企业微信通知
+python run.py --config test_config.yaml --notify wechat
+
+# 完整测试流程
+python run.py --config test_config.yaml --concurrent --allure --notify wechat --ai
+```
+
+## 🛠️ 高级功能特性
+- 🤖 **AI智能测试**: 自动生成测试用例、断言和数据验证
+- 📊 **Allure报告**: 专业的HTML测试报告，支持历史趋势和自动打开
+- 🔔 **企业微信通知**: 测试结果实时推送到企业微信群，支持自定义模板
+- ⚡ **并发测试**: 多线程性能测试，支持压力测试和负载测试
+- 🛠️ **Shell接口**: 完整的命令行界面，支持一键启动和CI/CD集成
+- 🔗 **参数关联**: 上下文参数传递，支持复杂业务流程测试
+- 📝 **数据驱动**: YAML配置文件，支持参数化和模板化测试
+- 🔍 **实时监控**: 测试执行状态实时监控和详细日志记录
+- 🌐 **多协议支持**: HTTP/HTTPS、WebSocket、自定义协议
+- 📱 **Web界面**: 美观的Web管理界面，支持在线测试和文档查看
+
+## 💡 最佳实践建议
+
+### 测试策略
+- **环境隔离**: 为不同环境配置独立的测试用例
+- **参数化测试**: 使用全局变量和参数引用提高用例复用性
+- **断言策略**: 结合状态码、响应内容和性能断言确保全面验证
+- **并发测试**: 根据系统承载能力合理设置并发参数
+- **持续集成**: 集成到CI/CD流水线，实现自动化测试
+
+### 项目结构建议
+```
+my_api_test/
+├── configs/          # 配置文件目录
+│   ├── dev.yaml     # 开发环境
+│   ├── test.yaml    # 测试环境
+│   └── prod.yaml    # 生产环境
+├── data/            # 测试数据目录
+├── reports/         # 报告输出目录
+└── run.py          # 启动脚本
+```
+
+## 📞 技术支持与联系方式
+
+### 🆘 获取帮助
+- **QQ技术支持**: 2677989813
+- **GitHub仓库**: https://github.com/YH-API-Test/api-test-framework
+- **在线文档**: 本API文档提供完整的接口说明和使用示例
+- **问题反馈**: 通过GitHub Issues提交问题和建议
+
+### 🎯 快速体验
+```bash
+# 1分钟快速开始
+git clone https://github.com/YH-API-Test/api-test-framework.git
+pip install -r requirements.txt
+python run.py --web
+# 访问 http://localhost:8083 开始测试
+
+# 5分钟完整体验
+python run.py --generate-project --output ./demo_test
+cd demo_test
+python run.py --config demo.yaml --concurrent --allure --ai
+```
+
+---
+
+**🚀 YH API测试框架 - 让API测试更简单、更智能、更高效！**
+
+*专业的企业级API测试解决方案，助力团队提升测试效率和质量*
+            """
+
+            self.app = FastAPI(
+                title="YH API测试框架",
+                description=description,
+                version="2.0.0",
+                docs_url=None,  # 禁用默认文档页面
+                redoc_url=None,  # 禁用默认ReDoc页面
+                contact={
+                    "name": "YH团队",
+                    "email": "support@yh-api.com",
+                },
+                license_info={
+                    "name": "MIT License",
+                    "url": "https://opensource.org/licenses/MIT",
+                },
+                servers=[
+                    {
+                        "url": f"http://{self.host}:{self.port}",
+                        "description": "YH API测试框架服务器"
+                    }
+                ]
+            )
+
+            # 强制设置OpenAPI版本为3.0.2以确保Swagger UI兼容性
+            def custom_openapi():
+                if self.app.openapi_schema:
+                    return self.app.openapi_schema
+
+                from fastapi.openapi.utils import get_openapi
+                openapi_schema = get_openapi(
+                    title=self.app.title,
+                    version=self.app.version,
+                    description=self.app.description,
+                    routes=self.app.routes,
+                    servers=self.app.servers,
+                )
+                # 强制设置为OpenAPI 3.0.2
+                openapi_schema["openapi"] = "3.0.2"
+                self.app.openapi_schema = openapi_schema
+                return self.app.openapi_schema
+
+            self.app.openapi = custom_openapi
+
+            # 添加CORS中间件
+            try:
+                from fastapi.middleware.cors import CORSMiddleware
+                self.app.add_middleware(
+                    CORSMiddleware,
+                    allow_origins=["*"],
+                    allow_credentials=True,
+                    allow_methods=["*"],
+                    allow_headers=["*"],
+                )
+            except ImportError:
+                logger.warning("无法导入CORSMiddleware，跨域请求可能失败")
+
+            self.setup_routes()
+            self._initialized = True
+        
+    def setup_routes(self):
+        """设置路由"""
+        if not self.fastapi_modules:
+            return
+
+        HTMLResponse = self.fastapi_modules['HTMLResponse']
+        JSONResponse = self.fastapi_modules['JSONResponse']
+        HTTPException = self.fastapi_modules['HTTPException']
+        Request = self.fastapi_modules['Request']
+        BaseModel = self.fastapi_modules['BaseModel']
+
+        # 定义请求模型
+        class APITestRequest(BaseModel):
+            """API测试请求模型"""
+            method: str
+            url: str
+            headers: Optional[Dict[str, str]] = {}
+            params: Optional[Dict[str, str]] = {}
+            json_data: Optional[Dict[str, Any]] = {}
+            form_data: Optional[Dict[str, str]] = {}
+
+        @self.app.get("/", response_class=HTMLResponse)
+        async def home(request: Request):
+            """主页"""
+            return self.get_home_html()
+
+        @self.app.get("/docs", response_class=HTMLResponse)
+        async def custom_swagger_ui_html():
+            """自定义Swagger UI文档页面"""
+            return self.get_custom_docs_html()
+
+        @self.app.get("/redoc", response_class=HTMLResponse)
+        async def custom_redoc_html():
+            """自定义ReDoc文档页面"""
+            return self.get_custom_redoc_html()
+
+
+
+
+
+
+        
+
+        
+        @self.app.get(
+            "/health",
+            summary="💚 服务健康检查",
+            description="""
+# 检查YH API测试框架服务状态
+
+## 🎯 功能说明
+提供服务健康状态检查，用于监控和运维管理。
+
+## 📋 使用场景
+- **服务监控**: 定期检查服务运行状态
+- **负载均衡**: 负载均衡器健康检查端点
+- **部署验证**: 部署后验证服务可用性
+- **运维监控**: 集成到监控系统中
+- **CI/CD**: 持续集成流水线中的服务验证
+
+## 📊 响应示例
+```json
+{
+  "status": "healthy",
+  "framework": "YH API测试框架",
+  "version": "2.0.0",
+  "timestamp": "2024-01-01T12:00:00Z",
+  "server_info": {
+    "host": "127.0.0.1",
+    "port": 8083
+  }
+}
+```
+
+## 🔍 状态说明
+- **healthy**: 服务正常运行，所有功能可用
+- **degraded**: 服务部分功能受限，但核心功能正常
+- **unhealthy**: 服务异常，需要立即处理
+
+## 💡 使用建议
+1. **监控频率**: 建议每30秒检查一次
+2. **超时设置**: 设置5秒超时时间
+3. **告警策略**: 连续3次失败时触发告警
+
+## 🔧 集成示例
+```bash
+# curl命令
+curl -X GET "http://localhost:8083/health"
+
+# 监控脚本
+#!/bin/bash
+RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8083/health)
+if [ $RESPONSE -eq 200 ]; then
+    echo "Service is healthy"
+else
+    echo "Service is unhealthy"
+fi
+```
+            """,
+            response_description="详细的服务健康状态信息，包含版本和服务器信息",
+            tags=["🔧 系统监控"]
+        )
+        async def health_check():
+            """服务健康检查"""
+            import datetime
+
+            return {
+                "status": "healthy",
+                "framework": "YH API测试框架",
+                "version": "2.0.0",
+                "timestamp": datetime.datetime.now().isoformat(),
+                "server_info": {
+                    "host": self.host,
+                    "port": self.port
+                }
+            }
+
+    def get_custom_docs_html(self) -> str:
+        """获取自定义Swagger UI文档页面HTML"""
+        return """
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YH API测试框架 - API文档</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui.css" />
+    <style>
+        .custom-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .custom-header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+            transition: all 0.2s ease;
+        }
+        .copy-btn:hover {
+            background: #218838;
+        }
+        .copy-btn.copied {
+            background: #17a2b8;
+        }
+        .code-block-header {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            opacity: 0.7;
+            z-index: 10;
+        }
+        /* 隐藏Swagger UI中的下载URL相关元素 */
+        .download-url-wrapper,
+        .download-url-input,
+        .download-url-button,
+        .servers-wrapper,
+        .topbar-wrapper,
+        .swagger-ui .topbar,
+        .swagger-ui .info .title small,
+        .swagger-ui .info .title small pre {
+            display: none !important;
+        }
+
+        /* 隐藏顶部栏中的链接 */
+        .swagger-ui .topbar .download-url-wrapper {
+            display: none !important;
+        }
+
+        /* 确保复制按钮不重复 */
+        .copy-btn {
+            position: absolute !important;
+            top: 5px !important;
+            right: 5px !important;
+            z-index: 1000 !important;
+        }
+
+        /* 隐藏可能显示openapi.json的元素 */
+        .swagger-ui .info .title small,
+        .swagger-ui .info hgroup.main small,
+        .swagger-ui .info hgroup.main small pre {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-header">
+        <h1>📚 YH API测试框架 - API文档</h1>
+        <a href="/" class="back-btn">← 返回主页</a>
+    </div>
+    <div id="swagger-ui"></div>
+
+    <script src="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui-standalone-preset.js"></script>
+    <script>
+        window.onload = function() {
+            const ui = SwaggerUIBundle({
+                url: '/openapi.json',
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+                // 隐藏搜索框中的/openapi.json
+                filter: true,
+                // 自定义配置
+                configUrl: null,
+                // 隐藏顶部栏
+                displayOperationId: false,
+                displayRequestDuration: true,
+                // 完全隐藏顶部栏
+                layout: "BaseLayout",
+                // 自定义样式
+                onComplete: function() {
+                    // 隐藏所有可能显示openapi.json的元素
+                    const elementsToHide = [
+                        '.download-url-input',
+                        '.download-url-button',
+                        '.download-url-wrapper',
+                        '.topbar-wrapper',
+                        '.swagger-ui .topbar',
+                        '.swagger-ui .info .title small',
+                        '.swagger-ui .info hgroup.main small'
+                    ];
+
+                    elementsToHide.forEach(selector => {
+                        const elements = document.querySelectorAll(selector);
+                        elements.forEach(el => {
+                            if (el) el.style.display = 'none';
+                        });
+                    });
+
+                    // 移除可能包含openapi.json文本的元素
+                    const textElements = document.querySelectorAll('*');
+                    textElements.forEach(el => {
+                        if (el.textContent && el.textContent.includes('/openapi.json')) {
+                            el.style.display = 'none';
+                        }
+                    });
+                }
+            });
+
+            // 添加一键复制功能 - 只执行一次
+            setTimeout(function() {
+                addCopyButtons();
+            }, 3000);
+
+            // 监听DOM变化，但防止重复添加
+            const observer = new MutationObserver(function(mutations) {
+                let shouldAddButtons = false;
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes.length > 0) {
+                        shouldAddButtons = true;
+                    }
+                });
+                if (shouldAddButtons && !document.querySelector('.copy-btn')) {
+                    setTimeout(addCopyButtons, 1000);
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        };
+
+        let copyButtonsAdded = false; // 全局标记
+
+        function addCopyButtons() {
+            // 防止重复执行
+            if (copyButtonsAdded) return;
+
+            const codeBlocks = document.querySelectorAll('.swagger-ui pre code, .swagger-ui pre');
+            if (codeBlocks.length === 0) return;
+
+            let buttonsAdded = 0;
+            codeBlocks.forEach(function(block, index) {
+                // 多重检查确保不重复添加
+                if (block.parentElement.querySelector('.copy-btn') ||
+                    block.querySelector('.copy-btn') ||
+                    block.hasAttribute('data-copy-added')) return;
+
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '复制';
+                copyBtn.setAttribute('data-index', index);
+
+                // 标记已处理
+                block.setAttribute('data-copy-added', 'true');
+
+                copyBtn.onclick = function() {
+                    const text = block.textContent || block.innerText;
+                    navigator.clipboard.writeText(text).then(function() {
+                        copyBtn.textContent = '已复制';
+                        copyBtn.classList.add('copied');
+                        setTimeout(function() {
+                            copyBtn.textContent = '复制';
+                            copyBtn.classList.remove('copied');
+                        }, 2000);
+                    }).catch(function() {
+                        const textArea = document.createElement('textarea');
+                        textArea.value = text;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        copyBtn.textContent = '已复制';
+                        copyBtn.classList.add('copied');
+                        setTimeout(function() {
+                            copyBtn.textContent = '复制';
+                            copyBtn.classList.remove('copied');
+                        }, 2000);
+                    });
+                };
+
+                const header = document.createElement('div');
+                header.className = 'code-block-header';
+                header.appendChild(copyBtn);
+
+                if (block.parentElement.tagName === 'PRE') {
+                    block.parentElement.style.position = 'relative';
+                    block.parentElement.appendChild(header);
+                } else {
+                    block.style.position = 'relative';
+                    block.appendChild(header);
+                }
+
+                buttonsAdded++;
+            });
+
+            // 标记已完成
+            if (buttonsAdded > 0) {
+                copyButtonsAdded = true;
+                console.log('复制按钮添加完成，共添加:', buttonsAdded);
+            }
+        }
+    </script>
+</body>
+</html>
+        """
+
+    def get_custom_redoc_html(self) -> str:
+        """获取自定义ReDoc文档页面HTML"""
+        return """
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YH API测试框架 - API文档 (ReDoc)</title>
+    <style>
+        body { margin: 0; padding: 0; }
+        .custom-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            position: relative;
+        }
+        .custom-header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+        #redoc-container {
+            height: calc(100vh - 70px);
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-header">
+        <h1>📚 YH API测试框架 - API文档 (ReDoc)</h1>
+        <a href="/" class="back-btn">← 返回主页</a>
+    </div>
+    <div id="redoc-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/redoc@2.0.0/bundles/redoc.standalone.js"></script>
+    <script>
+        Redoc.init('/openapi.json', {
+            scrollYOffset: 70,
+            theme: {
+                colors: {
+                    primary: {
+                        main: '#667eea'
+                    }
+                }
+            }
+        }, document.getElementById('redoc-container'));
+    </script>
+</body>
+</html>
+        """
+
+    def get_home_html(self) -> str:
+        """获取主页HTML"""
+        return """
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YH API测试框架 - 在线文档</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; color: white; margin-bottom: 40px; }
+        .header h1 { font-size: 3em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { color: #333; margin-bottom: 15px; font-size: 1.5em; }
+        .card p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .btn { display: inline-block; padding: 12px 24px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 25px; transition: all 0.3s ease; }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .features { background: white; border-radius: 15px; padding: 30px; margin-bottom: 20px; }
+        .features h2 { color: #333; margin-bottom: 20px; text-align: center; }
+        .feature-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .feature-item { padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea; }
+        .footer { text-align: center; color: white; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 YH API测试框架</h1>
+            <p>专业的API接口测试工具 - 智能、高效、企业级</p>
+        </div>
+        
+        <div class="cards">
+            <div class="card">
+                <h3>📖 框架使用说明</h3>
+                <p><strong>快速上手YH API测试框架</strong> - 支持测试用例配置、参数引用、参数提取、断言验证、报告生成、并发测试、AI智能测试等企业级功能。</p>
+
+                <div style="margin: 15px 0; padding: 10px; background: #f8f9fa; border-radius: 5px; font-size: 14px; line-height: 1.6;">
+                    <strong>🚀 核心功能使用示例：</strong><br>
+                    • <strong>测试用例配置</strong>：YAML格式配置，支持多场景测试<br>
+                    • <strong>参数引用</strong>：${variable} 语法引用全局变量<br>
+                    • <strong>参数提取</strong>：JSONPath/正则提取响应数据<br>
+                    • <strong>断言验证</strong>：状态码、响应内容、性能断言<br>
+                    • <strong>发送报告</strong>：企业微信/邮件自动推送测试报告<br>
+                    • <strong>并发测试</strong>：多线程并发执行，性能压测<br>
+                    • <strong>AI智能测试</strong>：自动生成测试用例和验证逻辑
+                </div>
+
+                <a href="/docs" class="btn">查看详细文档</a>
+                <a href="https://github.com/YH-API-Test/api-test-framework" class="btn" target="_blank">GitHub示例</a>
+            </div>
+
+
+        </div>
+        
+        <div class="features">
+            <h2>🌟 核心特性</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>🎯 智能测试</strong><br>
+                    AI驱动的测试用例生成和验证
+                </div>
+                <div class="feature-item">
+                    <strong>🚀 高性能</strong><br>
+                    并发执行，连接池优化
+                </div>
+                <div class="feature-item">
+                    <strong>📊 丰富报告</strong><br>
+                    Allure报告，实时监控
+                </div>
+                <div class="feature-item">
+                    <strong>🔧 灵活配置</strong><br>
+                    YAML配置，环境管理
+                </div>
+                <div class="feature-item">
+                    <strong>📱 通知集成</strong><br>
+                    企业微信，邮件通知
+                </div>
+                <div class="feature-item">
+                    <strong>🌐 多协议支持</strong><br>
+                    HTTP/HTTPS，WebSocket，Socket
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 YH API测试框架 | 持续改进，追求卓越！</p>
+            <p>联系QQ: 2677989813</p>
+        </div>
+    </div>
+</body>
+</html>
+        """
+
+    def run(self):
+        """启动服务器"""
+        self._ensure_initialized()
+        if not self.fastapi_modules:
+            raise ImportError("无法启动服务器，FastAPI模块导入失败")
+
+        uvicorn = self.fastapi_modules['uvicorn']
+        print(f"启动YH API测试框架文档服务器: http://{self.host}:{self.port}")
+        logger.info(f"启动YH API测试框架文档服务器: http://{self.host}:{self.port}")
+
+        # 验证OpenAPI规范
+        try:
+            openapi_spec = self.app.openapi()
+            print(f"OpenAPI版本: {openapi_spec.get('openapi', 'NOT SET')}")
+            logger.info(f"OpenAPI版本: {openapi_spec.get('openapi', 'NOT SET')}")
+        except Exception as e:
+            print(f"OpenAPI规范生成失败: {e}")
+            logger.error(f"OpenAPI规范生成失败: {e}")
+
+        uvicorn.run(self.app, host=self.host, port=self.port, log_level="info")
+
+def main():
+    """主函数"""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="YH API测试框架文档服务器")
+    parser.add_argument("--port", type=int, default=8080, help="服务器端口")
+    parser.add_argument("--host", type=str, default="127.0.0.1", help="服务器地址")
+    
+    args = parser.parse_args()
+    
+    server = SwaggerDocsServer(port=args.port, host=args.host)
+    server.run()
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+

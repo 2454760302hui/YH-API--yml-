@@ -1,0 +1,294 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "YH API测试框架",
+    "description": "\n# YH API测试框架 - 企业级API测试解决方案\n\n🎯 **专业的API接口测试工具** - 智能、高效、企业级\n\n---\n\n## 📚 框架完整使用指南\n\n### 🔧 1. 基础API测试\n**支持所有HTTP方法**：GET、POST、PUT、DELETE、PATCH、HEAD、OPTIONS\n\n#### GET请求示例\n```bash\ncurl -X POST \"http://localhost:8083/api/execute\" \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n       \"method\": \"GET\",\n       \"url\": \"https://httpbin.org/get\",\n       \"headers\": {\"User-Agent\": \"YH-API-Test\"},\n       \"params\": {\"test\": \"value\", \"page\": \"1\"}\n     }'\n```\n\n#### POST请求示例（JSON数据）\n```bash\ncurl -X POST \"http://localhost:8083/api/execute\" \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n       \"method\": \"POST\",\n       \"url\": \"https://httpbin.org/post\",\n       \"headers\": {\"Content-Type\": \"application/json\"},\n       \"json_data\": {\n         \"username\": \"testuser\",\n         \"password\": \"123456\",\n         \"email\": \"test@example.com\"\n       }\n     }'\n```\n\n#### POST请求示例（表单数据）\n```bash\ncurl -X POST \"http://localhost:8083/api/execute\" \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n       \"method\": \"POST\",\n       \"url\": \"https://httpbin.org/post\",\n       \"headers\": {\"Content-Type\": \"application/x-www-form-urlencoded\"},\n       \"form_data\": {\n         \"name\": \"YH测试\",\n         \"type\": \"API测试框架\"\n       }\n     }'\n```\n\n### 📋 2. 测试用例配置 (YAML格式)\n**完整的测试用例配置示例**\n\n```yaml\n# test_config.yaml - 完整配置示例\nglobals:\n  base_url: \"https://api.example.com\"\n  username: \"testuser\"\n  password: \"123456\"\n  timeout: 30\n\ntest_cases:\n  # 用户登录测试\n  - name: \"用户登录测试\"\n    method: \"POST\"\n    url: \"${base_url}/login\"\n    headers:\n      Content-Type: \"application/json\"\n      User-Agent: \"YH-API-Test/2.0\"\n    json_data:\n      username: \"${username}\"  # 全局变量引用\n      password: \"${password}\"\n    extract:  # 参数提取\n      token: \"$.data.token\"           # JSONPath提取\n      user_id: \"$.data.user.id\"\n      session: \"Set-Cookie: session=([^;]+)\"  # 正则提取\n    assert:   # 断言验证\n      status_code: 200\n      response_contains: \"success\"\n      json_path:\n        \"$.code\": 0\n        \"$.data.token\": \"not_empty\"\n      response_time_ms: 3000  # 性能断言\n\n  # 获取用户信息测试\n  - name: \"获取用户信息\"\n    method: \"GET\"\n    url: \"${base_url}/user/${user_id}\"  # 使用上一步提取的参数\n    headers:\n      Authorization: \"Bearer ${token}\"\n    assert:\n      status_code: 200\n      json_path:\n        \"$.data.username\": \"${username}\"\n```\n\n### 🔗 3. 参数引用与提取详解\n\n#### 全局变量定义\n```yaml\nglobals:\n  # 基础配置\n  base_url: \"https://api.example.com\"\n  api_version: \"v1\"\n  timeout: 30\n\n  # 认证信息\n  username: \"testuser\"\n  password: \"123456\"\n  api_key: \"your-api-key\"\n\n  # 环境配置\n  env: \"test\"\n  debug: true\n```\n\n#### 参数引用语法\n```yaml\n# 使用 ${variable_name} 语法引用变量\ntest_cases:\n  - name: \"API测试\"\n    url: \"${base_url}/${api_version}/users\"  # URL中引用\n    headers:\n      Authorization: \"Bearer ${api_key}\"      # 请求头中引用\n    json_data:\n      username: \"${username}\"                 # 请求体中引用\n      env: \"${env}\"\n```\n\n#### 参数提取方法\n```yaml\nextract:\n  # JSONPath提取（推荐）\n  token: \"$.data.access_token\"              # 提取访问令牌\n  user_id: \"$.data.user.id\"                 # 提取用户ID\n  total_count: \"$.pagination.total\"         # 提取总数\n\n  # 正则表达式提取\n  session_id: \"sessionId=([^;]+)\"           # 从Cookie提取会话ID\n  csrf_token: 'name=\"csrf_token\" value=\"([^\"]+)\"'  # 从HTML提取CSRF令牌\n\n  # 响应头提取\n  location: \"header:Location\"               # 提取Location头\n  content_type: \"header:Content-Type\"       # 提取Content-Type头\n```\n\n### ✅ 4. 断言验证详解\n\n#### 基础断言\n```yaml\nassert:\n  # 状态码断言\n  status_code: 200                    # 期望状态码为200\n  status_code_in: [200, 201, 202]     # 状态码在指定范围内\n\n  # 响应内容断言\n  response_contains: [\"success\", \"data\"]      # 响应包含指定文本\n  response_not_contains: [\"error\", \"fail\"]    # 响应不包含指定文本\n  response_regex: \"user_id.*\\d+\"             # 响应匹配正则表达式\n```\n\n#### JSON断言\n```yaml\nassert:\n  # JSON路径断言\n  json_path:\n    \"$.code\": 0                       # 返回码为0\n    \"$.message\": \"success\"            # 消息为success\n    \"$.data.user.name\": \"not_empty\"   # 用户名不为空\n    \"$.data.list\": \"is_list\"          # 数据是列表类型\n    \"$.data.count\": \"is_number\"       # 计数是数字类型\n\n  # JSON Schema验证\n  json_schema:\n    type: \"object\"\n    properties:\n      code: { type: \"integer\" }\n      data: { type: \"object\" }\n    required: [\"code\", \"data\"]\n```\n\n#### 性能断言\n```yaml\nassert:\n  # 响应时间断言\n  response_time_ms: 3000              # 响应时间小于3秒\n  response_time_range: [100, 5000]    # 响应时间在100ms-5s之间\n\n  # 响应大小断言\n  response_size_bytes: 10240          # 响应大小小于10KB\n  response_size_range: [100, 1048576] # 响应大小在100B-1MB之间\n```\n\n### ⚡ 5. 并发测试配置\n\n#### 基础并发配置\n```yaml\nconcurrent:\n  threads: 10        # 并发线程数\n  duration: 60       # 持续时间(秒)\n  ramp_up: 10        # 启动时间(秒)\n  think_time: 1      # 思考时间(秒)\n\ntest_cases:\n  - name: \"并发登录测试\"\n    concurrent: true\n    repeat: 100      # 重复执行次数\n    method: \"POST\"\n    url: \"${base_url}/login\"\n    json_data:\n      username: \"user_${thread_id}\"  # 使用线程ID区分用户\n      password: \"123456\"\n```\n\n#### 压力测试配置\n```yaml\n# 阶梯式压力测试\nload_test:\n  stages:\n    - duration: 60    # 第一阶段：60秒\n      threads: 5      # 5个并发用户\n    - duration: 120   # 第二阶段：120秒\n      threads: 10     # 10个并发用户\n    - duration: 60    # 第三阶段：60秒\n      threads: 20     # 20个并发用户\n\n# 峰值测试配置\nspike_test:\n  normal_load: 5     # 正常负载\n  spike_load: 50     # 峰值负载\n  spike_duration: 30 # 峰值持续时间\n```\n\n### 📊 6. 报告生成与推送\n\n#### Allure报告配置\n```yaml\nreport:\n  allure:\n    enabled: true\n    output_dir: \"./reports/allure\"     # 报告输出目录\n    auto_open: true                    # 自动打开报告\n    clean_history: false               # 保留历史记录\n    categories:                        # 自定义分类\n      - name: \"API错误\"\n        matchedStatuses: [\"failed\"]\n        messageRegex: \".*API.*\"\n      - name: \"超时错误\"\n        matchedStatuses: [\"broken\"]\n        messageRegex: \".*timeout.*\"\n\n    # 环境信息\n    environment:\n      测试环境: \"${env}\"\n      API版本: \"${api_version}\"\n      测试人员: \"YH团队\"\n      测试时间: \"${timestamp}\"\n```\n\n#### 企业微信通知配置\n```yaml\nnotification:\n  wechat:\n    webhook: \"https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxx\"\n    enabled: true\n\n    # 成功通知模板\n    success_template: |\n      ✅ **API测试完成**\n      📊 **测试结果**: ${total_tests}个用例，成功${success_count}个\n      📈 **成功率**: ${success_rate}%\n      ⏱️ **执行时间**: ${duration}秒\n      🔗 **报告链接**: ${report_url}\n\n    # 失败通知模板\n    failure_template: |\n      ❌ **API测试失败**\n      📊 **测试结果**: ${total_tests}个用例，失败${failure_count}个\n      📉 **成功率**: ${success_rate}%\n      🔍 **失败原因**: ${failure_summary}\n      🔗 **报告链接**: ${report_url}\n```\n\n### 🤖 7. AI智能测试功能\n\n#### AI测试用例生成\n```yaml\nai_config:\n  enabled: true\n  model: \"gpt-3.5-turbo\"\n  api_key: \"${openai_api_key}\"\n\n  features:\n    # 自动生成测试用例\n    auto_generate_cases:\n      enabled: true\n      based_on: \"swagger_spec\"    # 基于Swagger规范生成\n      coverage: \"full\"            # 覆盖度：basic/full/custom\n\n    # 智能断言生成\n    smart_assertions:\n      enabled: true\n      types: [\"status\", \"schema\", \"business\"]  # 断言类型\n\n    # 数据验证建议\n    data_validation:\n      enabled: true\n      auto_boundary_test: true    # 自动边界值测试\n      invalid_data_test: true     # 无效数据测试\n\n    # 性能分析\n    performance_analysis:\n      enabled: true\n      auto_baseline: true         # 自动建立性能基线\n      anomaly_detection: true     # 异常检测\n```\n\n#### AI辅助调试\n```yaml\nai_debug:\n  # 错误分析\n  error_analysis:\n    enabled: true\n    analyze_logs: true          # 分析日志\n    suggest_solutions: true     # 建议解决方案\n\n  # 测试优化建议\n  optimization:\n    enabled: true\n    suggest_improvements: true  # 建议改进\n    code_review: true          # 代码审查\n```\n\n## 📋 支持的HTTP方法\n- **GET**: 获取数据，支持URL参数和查询字符串\n- **POST**: 提交数据，支持JSON、表单和文件上传\n- **PUT**: 更新数据，完整资源替换\n- **DELETE**: 删除数据，支持批量删除\n- **PATCH**: 部分更新，增量修改\n- **HEAD**: 获取响应头信息\n- **OPTIONS**: 获取支持的方法\n\n## 🖥️ Shell命令模式\n\n### 基础命令\n```bash\n# 启动框架\npython run.py\n\n# 启动Web界面\npython run.py --web --port 8083\n\n# 执行测试用例\npython run.py --config test_config.yaml\n\n# 生成测试项目\npython run.py --generate-project --output ./my_test_project\n```\n\n### 高级命令\n```bash\n# 并发测试\npython run.py --config test_config.yaml --concurrent --threads 10\n\n# 生成Allure报告\npython run.py --config test_config.yaml --allure --auto-open\n\n# AI辅助测试\npython run.py --config test_config.yaml --ai --auto-generate\n\n# 企业微信通知\npython run.py --config test_config.yaml --notify wechat\n\n# 完整测试流程\npython run.py --config test_config.yaml --concurrent --allure --notify wechat --ai\n```\n\n## 🛠️ 高级功能特性\n- 🤖 **AI智能测试**: 自动生成测试用例、断言和数据验证\n- 📊 **Allure报告**: 专业的HTML测试报告，支持历史趋势和自动打开\n- 🔔 **企业微信通知**: 测试结果实时推送到企业微信群，支持自定义模板\n- ⚡ **并发测试**: 多线程性能测试，支持压力测试和负载测试\n- 🛠️ **Shell接口**: 完整的命令行界面，支持一键启动和CI/CD集成\n- 🔗 **参数关联**: 上下文参数传递，支持复杂业务流程测试\n- 📝 **数据驱动**: YAML配置文件，支持参数化和模板化测试\n- 🔍 **实时监控**: 测试执行状态实时监控和详细日志记录\n- 🌐 **多协议支持**: HTTP/HTTPS、WebSocket、自定义协议\n- 📱 **Web界面**: 美观的Web管理界面，支持在线测试和文档查看\n\n## 💡 最佳实践建议\n\n### 测试策略\n- **环境隔离**: 为不同环境配置独立的测试用例\n- **参数化测试**: 使用全局变量和参数引用提高用例复用性\n- **断言策略**: 结合状态码、响应内容和性能断言确保全面验证\n- **并发测试**: 根据系统承载能力合理设置并发参数\n- **持续集成**: 集成到CI/CD流水线，实现自动化测试\n\n### 项目结构建议\n```\nmy_api_test/\n├── configs/          # 配置文件目录\n│   ├── dev.yaml     # 开发环境\n│   ├── test.yaml    # 测试环境\n│   └── prod.yaml    # 生产环境\n├── data/            # 测试数据目录\n├── reports/         # 报告输出目录\n└── run.py          # 启动脚本\n```\n\n## 📞 技术支持与联系方式\n\n### 🆘 获取帮助\n- **QQ技术支持**: 2677989813\n- **GitHub仓库**: https://github.com/YH-API-Test/api-test-framework\n- **在线文档**: 本API文档提供完整的接口说明和使用示例\n- **问题反馈**: 通过GitHub Issues提交问题和建议\n\n### 🎯 快速体验\n```bash\n# 1分钟快速开始\ngit clone https://github.com/YH-API-Test/api-test-framework.git\npip install -r requirements.txt\npython run.py --web\n# 访问 http://localhost:8083 开始测试\n\n# 5分钟完整体验\npython run.py --generate-project --output ./demo_test\ncd demo_test\npython run.py --config demo.yaml --concurrent --allure --ai\n```\n\n---\n\n**🚀 YH API测试框架 - 让API测试更简单、更智能、更高效！**\n\n*专业的企业级API测试解决方案，助力团队提升测试效率和质量*\n            ",
+    "version": "2.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8084",
+      "description": "YH API测试框架服务器"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Home",
+        "description": "主页",
+        "operationId": "home__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/docs": {
+      "get": {
+        "summary": "Custom Swagger Ui Html",
+        "description": "自定义Swagger UI文档页面",
+        "operationId": "custom_swagger_ui_html_docs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/redoc": {
+      "get": {
+        "summary": "Custom Redoc Html",
+        "description": "自定义ReDoc文档页面",
+        "operationId": "custom_redoc_html_redoc_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/execute": {
+      "post": {
+        "tags": [
+          "🔥 核心功能"
+        ],
+        "summary": "🚀 执行API测试",
+        "description": "# 执行HTTP API测试请求\n\n## 🎯 功能说明\n支持所有HTTP方法的API请求测试，是YH API测试框架的核心功能。\n\n### 支持的HTTP方法\n- **GET**: 获取数据，支持URL参数和查询字符串\n- **POST**: 提交数据，支持JSON、表单和文件上传\n- **PUT**: 更新数据，完整资源替换\n- **DELETE**: 删除数据，支持批量删除\n- **PATCH**: 部分更新，增量修改\n- **HEAD**: 获取响应头信息\n- **OPTIONS**: 获取支持的方法\n\n## 📋 使用示例\n\n### GET请求示例\n```json\n{\n  \"method\": \"GET\",\n  \"url\": \"https://httpbin.org/get\",\n  \"headers\": {\n    \"User-Agent\": \"YH-API-Test/2.0\",\n    \"Authorization\": \"Bearer your-token\"\n  },\n  \"params\": {\n    \"page\": \"1\",\n    \"size\": \"10\",\n    \"filter\": \"active\"\n  }\n}\n```\n\n### POST请求示例（JSON数据）\n```json\n{\n  \"method\": \"POST\",\n  \"url\": \"https://api.example.com/users\",\n  \"headers\": {\n    \"Content-Type\": \"application/json\",\n    \"Authorization\": \"Bearer your-token\"\n  },\n  \"json_data\": {\n    \"username\": \"testuser\",\n    \"email\": \"test@example.com\",\n    \"password\": \"123456\",\n    \"profile\": {\n      \"name\": \"测试用户\",\n      \"age\": 25\n    }\n  }\n}\n```\n\n### POST请求示例（表单数据）\n```json\n{\n  \"method\": \"POST\",\n  \"url\": \"https://httpbin.org/post\",\n  \"headers\": {\n    \"Content-Type\": \"application/x-www-form-urlencoded\"\n  },\n  \"form_data\": {\n    \"username\": \"testuser\",\n    \"password\": \"123456\",\n    \"remember\": \"true\"\n  }\n}\n```\n\n### PUT请求示例（更新数据）\n```json\n{\n  \"method\": \"PUT\",\n  \"url\": \"https://api.example.com/users/123\",\n  \"headers\": {\n    \"Content-Type\": \"application/json\",\n    \"Authorization\": \"Bearer your-token\"\n  },\n  \"json_data\": {\n    \"name\": \"更新后的用户名\",\n    \"email\": \"newemail@example.com\"\n  }\n}\n```\n\n### DELETE请求示例\n```json\n{\n  \"method\": \"DELETE\",\n  \"url\": \"https://api.example.com/users/123\",\n  \"headers\": {\n    \"Authorization\": \"Bearer your-token\"\n  }\n}\n```\n\n## 📊 响应格式说明\n```json\n{\n  \"success\": true,\n  \"status_code\": 200,\n  \"headers\": {\n    \"content-type\": \"application/json\",\n    \"server\": \"nginx/1.18.0\"\n  },\n  \"response_time_ms\": 1234.56,\n  \"content\": \"原始响应内容\",\n  \"json\": {\n    \"code\": 0,\n    \"message\": \"success\",\n    \"data\": {\n      \"user_id\": 123,\n      \"username\": \"testuser\"\n    }\n  },\n  \"error\": null\n}\n```\n\n## ⚡ 性能指标\n- **响应时间**: 精确到毫秒的请求耗时\n- **状态码**: HTTP响应状态码\n- **响应大小**: 响应内容的字节大小\n- **错误信息**: 详细的错误描述（如果有）\n\n## 🔧 高级功能\n- **自动JSON解析**: 自动解析JSON响应内容\n- **错误处理**: 详细的错误信息和异常处理\n- **性能监控**: 精确的响应时间测量\n- **头部处理**: 完整的请求头和响应头支持\n- **编码支持**: 自动处理各种字符编码\n\n## 💡 使用建议\n1. **认证**: 对于需要认证的API，在headers中添加Authorization字段\n2. **内容类型**: 根据请求数据类型设置正确的Content-Type\n3. **参数格式**: GET请求使用params，POST请求根据需要使用json_data或form_data\n4. **错误处理**: 检查响应中的success字段和error信息\n5. **性能监控**: 关注response_time_ms字段进行性能分析",
+        "operationId": "execute_api_test_api_execute_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APITestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "详细的API测试执行结果，包含状态码、响应头、响应时间、内容和错误信息",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options": {
+        "summary": "Options Api Execute",
+        "description": "处理预检请求",
+        "operationId": "options_api_execute_api_execute_options",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/examples": {
+      "get": {
+        "tags": [
+          "测试示例"
+        ],
+        "summary": "获取测试示例",
+        "description": "获取预置的API测试示例，帮助用户快速了解如何使用框架。\n\n## 返回示例\n```json\n[\n  {\n    \"name\": \"GET请求示例\",\n    \"method\": \"GET\",\n    \"url\": \"https://httpbin.org/get\",\n    \"headers\": {\"User-Agent\": \"YH-API-Test\"},\n    \"params\": {\"test\": \"example\"}\n  },\n  {\n    \"name\": \"POST请求示例\",\n    \"method\": \"POST\",\n    \"url\": \"https://httpbin.org/post\",\n    \"headers\": {\"Content-Type\": \"application/json\"},\n    \"json_data\": {\"name\": \"YH\", \"email\": \"test@example.com\"}\n  }\n]\n```\n\n## 使用方法\n1. 调用此端点获取示例数据\n2. 选择合适的示例\n3. 修改URL和参数为实际值\n4. 使用 `/api/execute` 端点执行测试",
+        "operationId": "get_examples_api_examples_get",
+        "responses": {
+          "200": {
+            "description": "测试示例列表",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "🔧 系统监控"
+        ],
+        "summary": "💚 服务健康检查",
+        "description": "# 检查YH API测试框架服务状态\n\n## 🎯 功能说明\n提供服务健康状态检查，用于监控和运维管理。\n\n## 📋 使用场景\n- **服务监控**: 定期检查服务运行状态\n- **负载均衡**: 负载均衡器健康检查端点\n- **部署验证**: 部署后验证服务可用性\n- **运维监控**: 集成到监控系统中\n- **CI/CD**: 持续集成流水线中的服务验证\n\n## 📊 响应示例\n```json\n{\n  \"status\": \"healthy\",\n  \"framework\": \"YH API测试框架\",\n  \"version\": \"2.0.0\",\n  \"timestamp\": \"2024-01-01T12:00:00Z\",\n  \"server_info\": {\n    \"host\": \"127.0.0.1\",\n    \"port\": 8083\n  }\n}\n```\n\n## 🔍 状态说明\n- **healthy**: 服务正常运行，所有功能可用\n- **degraded**: 服务部分功能受限，但核心功能正常\n- **unhealthy**: 服务异常，需要立即处理\n\n## 💡 使用建议\n1. **监控频率**: 建议每30秒检查一次\n2. **超时设置**: 设置5秒超时时间\n3. **告警策略**: 连续3次失败时触发告警\n\n## 🔧 集成示例\n```bash\n# curl命令\ncurl -X GET \"http://localhost:8083/health\"\n\n# 监控脚本\n#!/bin/bash\nRESPONSE=$(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8083/health)\nif [ $RESPONSE -eq 200 ]; then\n    echo \"Service is healthy\"\nelse\n    echo \"Service is unhealthy\"\nfi\n```",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "详细的服务健康状态信息，包含版本和服务器信息",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "APITestRequest": {
+        "properties": {
+          "method": {
+            "type": "string",
+            "title": "Method"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "headers": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Headers",
+            "default": {}
+          },
+          "params": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Params",
+            "default": {}
+          },
+          "json_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Json Data",
+            "default": {}
+          },
+          "form_data": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Form Data",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "method",
+          "url"
+        ],
+        "title": "APITestRequest",
+        "description": "API测试请求模型"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

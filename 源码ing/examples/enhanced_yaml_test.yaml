@@ -1,0 +1,317 @@
+# 增强功能YAML测试示例
+# 展示如何在YAML测试用例中使用新的增强功能
+
+config:
+  name: "增强功能API测试套件"
+  description: "展示数据驱动、参数化和增强验证功能"
+  base_url: "https://jsonplaceholder.typicode.com"
+  
+  # 全局变量
+  variables:
+    api_version: "v1"
+    timeout: 30
+    retry_count: 3
+  
+  # 数据源配置
+  data_sources:
+    - name: "users_data"
+      type: "inline"
+      data:
+        - user_id: 1
+          expected_name: "Leanne Graham"
+          expected_email: "Sincere@april.biz"
+        - user_id: 2
+          expected_name: "Ervin Howell"
+          expected_email: "Shanna@melissa.tv"
+        - user_id: 3
+          expected_name: "Clementine Bauch"
+          expected_email: "Nathan@yesenia.net"
+  
+  # 参数化配置
+  parameters:
+    post_ids: [1, 2, 3, 4, 5]
+    comment_limits: [5, 10, 20]
+
+# 基础API测试
+test_get_users:
+  name: "获取用户列表"
+  description: "测试获取所有用户的API"
+  request:
+    method: GET
+    url: "/users"
+    headers:
+      Accept: "application/json"
+  
+  # 使用增强验证
+  enhanced_validate:
+    - name: "状态码检查"
+      expression: "status_code"
+      expected: 200
+      operator: "eq"
+    
+    - name: "响应类型检查"
+      expression: "headers.content-type"
+      expected: "application/json"
+      operator: "contains"
+    
+    - name: "用户数量检查"
+      expression: "json"
+      expected: 5
+      operator: "ge"
+      message: "用户数量应该大于等于5"
+    
+    - name: "第一个用户ID检查"
+      expression: "json.0.id"
+      expected: 1
+      operator: "eq"
+    
+    - name: "用户名存在检查"
+      expression: "json.0.name"
+      expected: null
+      operator: "not_exists"
+      severity: "warning"
+  
+  # 使用增强提取
+  enhanced_extract:
+    - name: "total_users"
+      expression: "json"
+      type: "jsonpath"
+      post_processor: "len"
+    
+    - name: "first_user_id"
+      expression: "json.0.id"
+      type: "jsonpath"
+    
+    - name: "all_user_names"
+      expression: "json[*].name"
+      type: "jsonpath"
+    
+    - name: "user_emails"
+      expression: "json[*].email"
+      type: "jsonpath"
+
+# 数据驱动测试
+test_get_user_by_id:
+  name: "根据ID获取用户信息"
+  description: "使用数据驱动测试不同用户ID"
+  data_driven: true
+  data_source: "users_data"
+  
+  request:
+    method: GET
+    url: "/users/{{ user_id }}"
+    headers:
+      Accept: "application/json"
+  
+  enhanced_validate:
+    - name: "状态码检查"
+      expression: "status_code"
+      expected: 200
+      operator: "eq"
+    
+    - name: "用户ID匹配"
+      expression: "json.id"
+      expected: "{{ user_id }}"
+      operator: "eq"
+    
+    - name: "用户名匹配"
+      expression: "json.name"
+      expected: "{{ expected_name }}"
+      operator: "eq"
+    
+    - name: "邮箱匹配"
+      expression: "json.email"
+      expected: "{{ expected_email }}"
+      operator: "eq"
+  
+  enhanced_extract:
+    - name: "user_info"
+      expression: "json"
+      type: "jsonpath"
+    
+    - name: "user_address"
+      expression: "json.address"
+      type: "jsonpath"
+
+# 参数化测试
+test_get_posts:
+  name: "获取文章列表"
+  description: "参数化测试不同的文章ID"
+  parametrize:
+    parameters:
+      post_id: "{{ post_ids }}"
+  
+  request:
+    method: GET
+    url: "/posts/{{ post_id }}"
+    headers:
+      Accept: "application/json"
+  
+  enhanced_validate:
+    - name: "状态码检查"
+      expression: "status_code"
+      expected: 200
+      operator: "eq"
+    
+    - name: "文章ID匹配"
+      expression: "json.id"
+      expected: "{{ post_id }}"
+      operator: "eq"
+    
+    - name: "标题存在检查"
+      expression: "json.title"
+      expected: null
+      operator: "exists"
+    
+    - name: "内容长度检查"
+      expression: "json.body"
+      expected: 10
+      operator: "length"
+      severity: "warning"
+
+# 复杂验证测试
+test_get_comments:
+  name: "获取评论列表"
+  description: "测试复杂的验证规则"
+  request:
+    method: GET
+    url: "/comments"
+    params:
+      _limit: 10
+    headers:
+      Accept: "application/json"
+  
+  enhanced_validate:
+    - name: "状态码检查"
+      expression: "status_code"
+      expected: 200
+      operator: "eq"
+    
+    - name: "评论数量限制检查"
+      expression: "json"
+      expected: 10
+      operator: "length"
+    
+    - name: "第一条评论邮箱格式检查"
+      expression: "json.0.email"
+      expected: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+      operator: "regex"
+    
+    - name: "所有评论都有ID"
+      expression: "json[*].id"
+      expected: null
+      operator: "exists"
+      custom_validator: "all_have_id"
+  
+  enhanced_extract:
+    - name: "comment_count"
+      expression: "json"
+      type: "jsonpath"
+      post_processor: "len"
+    
+    - name: "comment_emails"
+      expression: "json[*].email"
+      type: "jsonpath"
+    
+    - name: "first_comment_post_id"
+      expression: "json.0.postId"
+      type: "jsonpath"
+
+# 创建资源测试
+test_create_post:
+  name: "创建新文章"
+  description: "测试POST请求和响应验证"
+  request:
+    method: POST
+    url: "/posts"
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+    json:
+      title: "测试文章标题"
+      body: "这是一篇测试文章的内容"
+      userId: 1
+  
+  enhanced_validate:
+    - name: "创建成功状态码"
+      expression: "status_code"
+      expected: 201
+      operator: "eq"
+    
+    - name: "返回ID存在"
+      expression: "json.id"
+      expected: null
+      operator: "exists"
+    
+    - name: "标题匹配"
+      expression: "json.title"
+      expected: "测试文章标题"
+      operator: "eq"
+    
+    - name: "用户ID匹配"
+      expression: "json.userId"
+      expected: 1
+      operator: "eq"
+  
+  enhanced_extract:
+    - name: "created_post_id"
+      expression: "json.id"
+      type: "jsonpath"
+    
+    - name: "created_post_title"
+      expression: "json.title"
+      type: "jsonpath"
+
+# 错误处理测试
+test_get_nonexistent_user:
+  name: "获取不存在的用户"
+  description: "测试错误处理和404响应"
+  request:
+    method: GET
+    url: "/users/999999"
+    headers:
+      Accept: "application/json"
+  
+  enhanced_validate:
+    - name: "404状态码检查"
+      expression: "status_code"
+      expected: 404
+      operator: "eq"
+    
+    - name: "响应为空对象"
+      expression: "json"
+      expected: {}
+      operator: "eq"
+
+# 性能测试
+test_performance_check:
+  name: "性能检查"
+  description: "测试API响应时间"
+  request:
+    method: GET
+    url: "/users"
+    headers:
+      Accept: "application/json"
+  
+  enhanced_validate:
+    - name: "响应时间检查"
+      expression: "elapsed.total_seconds()"
+      expected: 2.0
+      operator: "lt"
+      message: "API响应时间应该小于2秒"
+    
+    - name: "状态码检查"
+      expression: "status_code"
+      expected: 200
+      operator: "eq"
+
+# 并发测试配置
+concurrent_tests:
+  enabled: true
+  max_workers: 4
+  timeout: 30
+  tests:
+    - test_get_users
+    - test_get_user_by_id
+    - test_get_posts
+    - test_get_comments

@@ -1,0 +1,44 @@
+# 包含额外文件到分发包中
+include README.md
+include LICENSE
+include CHANGELOG.md
+include requirements*.txt
+include pyproject.toml
+include setup.py
+
+# 包含核心文件
+include *.py
+include yh_shell.py
+include quick_start.py
+include ai_tester.py
+include swagger_docs.py
+include allure_reporter.py
+include default_test.yaml
+
+# 包含配置文件
+include *.ini
+include *.cfg
+include *.yaml
+include *.yml
+include *.json
+
+# 包含模板和静态文件
+recursive-include api_test_framework/templates *.yaml *.json *.html
+recursive-include api_test_framework/static *.css *.js *.html *.png *.jpg *.gif
+recursive-include api_test_framework/docs *.html *.css *.js
+recursive-include api_test_framework/examples *.py *.yaml *.json
+
+# 包含测试文件
+recursive-include tests *.py *.yaml *.json
+
+# 排除不需要的文件
+exclude .gitignore
+exclude .flake8
+exclude .pre-commit-config.yaml
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * *.orig
+recursive-exclude * *.rej
+recursive-exclude * .DS_Store
+recursive-exclude * .coverage
+recursive-exclude * .pytest_cache

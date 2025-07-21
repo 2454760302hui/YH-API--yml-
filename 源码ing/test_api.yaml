@@ -1,0 +1,59 @@
+# YH API测试示例配置
+config:
+  name: "YH API测试示例"
+  base_url: "https://httpbin.org"
+  timeout: 30
+  headers:
+    User-Agent: "YH-API-Test/1.0"
+
+# 全局变量
+variables:
+  username: "testuser"
+  password: "testpass123"
+
+# 测试用例
+tests:
+  - name: "GET请求测试"
+    description: "测试基本GET请求"
+    request:
+      method: GET
+      url: "/get"
+      params:
+        test_param: "hello"
+        user: "${username}"
+    validate:
+      - check: status_code
+        expected: 200
+      - check: json.args.test_param
+        expected: "hello"
+      - check: json.args.user
+        expected: "${username}"
+
+  - name: "POST请求测试"
+    description: "测试POST请求和JSON数据"
+    request:
+      method: POST
+      url: "/post"
+      headers:
+        Content-Type: "application/json"
+      json:
+        username: "${username}"
+        password: "${password}"
+        timestamp: "2024-01-01T00:00:00Z"
+    validate:
+      - check: status_code
+        expected: 200
+      - check: json.json.username
+        expected: "${username}"
+      - check: response_time
+        expected: less_than
+        value: 3000
+
+  - name: "状态码测试"
+    description: "测试不同状态码"
+    request:
+      method: GET
+      url: "/status/404"
+    validate:
+      - check: status_code
+        expected: 404

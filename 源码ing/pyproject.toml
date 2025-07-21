@@ -1,0 +1,184 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "api-test-kb-pro"
+version = "3.0.0"
+authors = [
+    {name = "API Test Framework Pro Team", email = "support@api-test-framework.com"},
+]
+maintainers = [
+    {name = "API Test Framework Pro Team", email = "support@api-test-framework.com"},
+]
+description = "专业级API接口测试框架 - 支持Socket/企业微信/Allure报告/并发测试/数据驱动"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Testing",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+keywords = [
+    "api", "testing", "automation", "pytest", "yaml",
+    "http", "rest", "json", "concurrent", "data-driven",
+    "socket", "websocket", "enterprise", "wechat", "allure",
+    "接口测试", "自动化测试", "API测试框架"
+]
+dependencies = [
+    "pytest>=7.0.0",
+    "requests>=2.28.0",
+    "PyYAML>=6.0",
+    "jsonpath-ng>=1.5.3",
+    "allure-pytest>=2.12.0",
+    "faker>=19.0.0",
+    "lxml>=4.9.0",
+    "redis>=4.5.0",
+    "pymysql>=1.0.2",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "jinja2>=3.1.0",
+    "colorama>=0.4.6",
+    "rich>=13.0.0",
+    "click>=8.1.0",
+    "websockets>=11.0.0",
+    "httpx>=0.24.0",
+    "pydantic>=2.0.0",
+    "aiohttp>=3.8.0",
+    "paramiko>=3.0.0",
+    "cryptography>=41.0.0",
+    "schedule>=1.2.0",
+    "python-dotenv>=1.0.0",
+    "openpyxl>=3.1.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+full = [
+    "selenium>=4.0.0",
+    "playwright>=1.30.0",
+    "grpcio>=1.50.0",
+    "websocket-client>=1.5.0",
+]
+enterprise = [
+    "pymongo>=4.4.0",
+    "sqlalchemy>=2.0.0",
+    "celery>=5.3.0",
+    "rabbitmq>=0.2.0",
+]
+socket = [
+    "websockets>=11.0.0",
+    "paramiko>=3.0.0",
+    "scapy>=2.5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/api-test-framework/api-test-framework"
+Documentation = "https://api-test-framework.readthedocs.io/"
+Repository = "https://github.com/api-test-framework/api-test-framework.git"
+"Bug Tracker" = "https://github.com/api-test-framework/api-test-framework/issues"
+
+[project.scripts]
+api-test = "api_test_framework.cli:main"
+atf = "api_test_framework.cli:main"
+api-test-shell = "api_test_framework.shell:main"
+api-test-server = "api_test_framework.server:main"
+api-test-kobe = "api_test_framework.kobe_shell:main"
+
+[project.entry-points.pytest11]
+api_test_framework = "plugin"
+
+[tool.setuptools]
+packages = ["api_test_framework"]
+
+[tool.setuptools.package-data]
+api_test_framework = [
+    "templates/*.yaml",
+    "templates/*.json", 
+    "static/*.css",
+    "static/*.js",
+    "static/*.html",
+    "docs/*.html",
+    "examples/*.py",
+    "examples/*.yaml",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers"
+testpaths = [
+    "tests",
+    "examples",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+[tool.coverage.run]
+source = ["api_test_framework"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
