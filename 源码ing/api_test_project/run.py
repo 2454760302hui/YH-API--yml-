@@ -19,7 +19,9 @@ def load_config():
     """加载配置文件"""
     config_path = Path("config/test_config.yaml")
     if not config_path.exists():
-        print(f"{Fore.RED}❌ 配置文件不存在: {config_path}{Style.RESET_ALL}")
+        print(f"{Fore.RED}❌ 配置❌ ❌ 文件不存在，请检查文件路径是否正确
+💡 提示：使用相对路径或绝对路径，请检查文件路径是否正确
+💡 提示：使用相对路径或绝对路径: {config_path}{Style.RESET_ALL}")
         return None
 
     with open(config_path, 'r', encoding='utf-8') as f:
@@ -29,7 +31,9 @@ def load_test_cases():
     """加载测试用例"""
     test_path = Path("tests/api_tests.yaml")
     if not test_path.exists():
-        print(f"{Fore.RED}❌ 测试用例文件不存在: {test_path}{Style.RESET_ALL}")
+        print(f"{Fore.RED}❌ 测试用例❌ ❌ 文件不存在，请检查文件路径是否正确
+💡 提示：使用相对路径或绝对路径，请检查文件路径是否正确
+💡 提示：使用相对路径或绝对路径: {test_path}{Style.RESET_ALL}")
         return None
 
     with open(test_path, 'r', encoding='utf-8') as f:

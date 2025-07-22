@@ -653,7 +653,7 @@ class YHShell(cmd.Cmd):
             docs_thread.start()
 
             time.sleep(2)
-            print(f"{Fore.GREEN}📖 文档服务器已启动: http://localhost:8080{Style.RESET_ALL}")
+            print(f"{Fore.GREEN}📖 文档服务器已启动: http://127.0.0.1:8080{Style.RESET_ALL}")
             print(f"{Fore.CYAN}💡 提示: 在浏览器中访问上述地址查看文档{Style.RESET_ALL}")
 
         except Exception as e:

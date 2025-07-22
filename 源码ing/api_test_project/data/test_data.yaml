@@ -161,7 +161,8 @@ error_scenarios:
 
   client_errors:
     - status_code: 400
-      message: "请求参数错误"
+      message: "请求❌ 参数格式错误
+💡 提示：请使用 help <命令> 查看正确用法"
     - status_code: 401
       message: "未授权访问"
     - status_code: 404

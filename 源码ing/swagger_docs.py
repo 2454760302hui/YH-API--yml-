@@ -444,7 +444,7 @@ my_api_test/
 git clone https://github.com/YH-API-Test/api-test-framework.git
 pip install -r requirements.txt
 python run.py --web
-# 访问 http://localhost:8083 开始测试
+# 访问 http://127.0.0.1:8083 开始测试
 
 # 5分钟完整体验
 python run.py --generate-project --output ./demo_test
@@ -1363,7 +1363,7 @@ Allow: /health
             ### [MOBILE] Web界面
             ```bash
             python run.py --web
-            # 访问 http://localhost:8083
+            # 访问 http://127.0.0.1:8083
             ```
 
             ### [REFRESH] 持续集成
@@ -3729,7 +3729,7 @@ test_cases:
                     <pre>from yh_api_test import YHAPIClient
 
 # 创建客户端
-client = YHAPIClient(base_url="http://localhost:8080")
+client = YHAPIClient(base_url="http://127.0.0.1:8080")
 
 # 运行测试
 result = client.run_test(
@@ -4775,12 +4775,24 @@ else:
             const detailsElement = document.getElementById(`details-${{testId}}`);
             const expandIcon = document.getElementById(`expand-${{testId}}`);
 
-            if (detailsElement.style.display === 'none') {{
-                detailsElement.style.display = 'block';
-                expandIcon.classList.add('expanded');
+            console.log('Toggling test details for:', testId);
+            console.log('Details element:', detailsElement);
+            console.log('Expand icon:', expandIcon);
+
+            if (detailsElement && expandIcon) {{
+                if (detailsElement.style.display === 'none' || detailsElement.style.display === '') {{
+                    detailsElement.style.display = 'block';
+                    expandIcon.textContent = '▲';
+                    expandIcon.classList.add('expanded');
+                    console.log('Expanded details for:', testId);
+                }} else {{
+                    detailsElement.style.display = 'none';
+                    expandIcon.textContent = '▼';
+                    expandIcon.classList.remove('expanded');
+                    console.log('Collapsed details for:', testId);
+                }}
             }} else {{
-                detailsElement.style.display = 'none';
-                expandIcon.classList.remove('expanded');
+                console.error('Could not find elements for test:', testId);
             }}
         }}
 
@@ -7503,6 +7515,32 @@ Read timed out. (read timeout=1.0)
     </div>
 
     <script>
+        // 展开/折叠测试详情
+        function toggleTestDetails(testId) {{
+            const detailsElement = document.getElementById(`details-${{testId}}`);
+            const expandIcon = document.getElementById(`expand-${{testId}}`);
+
+            console.log('Toggling test details for:', testId);
+            console.log('Details element:', detailsElement);
+            console.log('Expand icon:', expandIcon);
+
+            if (detailsElement && expandIcon) {{
+                if (detailsElement.style.display === 'none' || detailsElement.style.display === '') {{
+                    detailsElement.style.display = 'block';
+                    expandIcon.textContent = '▲';
+                    expandIcon.classList.add('expanded');
+                    console.log('Expanded details for:', testId);
+                }} else {{
+                    detailsElement.style.display = 'none';
+                    expandIcon.textContent = '▼';
+                    expandIcon.classList.remove('expanded');
+                    console.log('Collapsed details for:', testId);
+                }}
+            }} else {{
+                console.error('Could not find elements for test:', testId);
+            }}
+        }}
+
         // 模拟实时数据更新
         function updateReportData() {{
             const timestamp = new Date().toLocaleString();
@@ -7510,7 +7548,10 @@ Read timed out. (read timeout=1.0)
         }}
 
         // 页面加载完成后更新数据
-        document.addEventListener('DOMContentLoaded', updateReportData);
+        document.addEventListener('DOMContentLoaded', function() {{
+            updateReportData();
+            console.log('Allure报告页面加载完成，测试详情展开功能已就绪');
+        }});
     </script>
 </body>
 </html>

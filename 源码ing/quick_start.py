@@ -89,9 +89,9 @@ def start_docs_server(port: int = 8080):
         time.sleep(2)
         
         # 自动打开浏览器
-        url = f"http://localhost:{port}"
+        url = f"http://127.0.0.1:{port}"
         print(f"📖 文档服务器已启动: {url}")
-        
+
         try:
             webbrowser.open(url)
             print("🌐 已自动打开浏览器")
@@ -231,13 +231,9 @@ def show_menu():
 
 1. 🚀 YH Shell (交互式命令行界面)
 2. 📚 文档服务器 (在线文档和API测试)
-3. 🤖 AI智能测试 (智能API测试生成和执行)
-4. 🚀 全部启动 (Shell + 文档服务器)
-5. 🏗️ 生成测试项目 (创建完整的测试项目模板)
-6. ❓ 帮助信息
 0. 🚪 退出
 
-请输入选项 (0-6): """
+请输入选项 (0-2): """
 
     return input(menu).strip()
 
@@ -349,7 +345,7 @@ def main():
     while True:
         try:
             choice = show_menu()
-            
+
             if choice == "0":
                 print("👋 再见！感谢使用！")
                 break
@@ -364,21 +360,6 @@ def main():
                             time.sleep(1)
                     except KeyboardInterrupt:
                         print("\n🛑 服务器已停止，返回菜单")
-            elif choice == "3":
-                target_url = input("请输入目标API地址 (例: https://httpbin.org): ").strip()
-                if target_url:
-                    run_ai_test(target_url)
-                else:
-                    print("❌ 请输入有效的URL")
-            elif choice == "4":
-                print("🚀 启动全部功能...")
-                server_thread = start_docs_server(args.port)
-                time.sleep(1)
-                start_yh_shell()
-            elif choice == "5":
-                generate_test_project()
-            elif choice == "6":
-                show_help()
             else:
                 print("❌ 无效选项，请重新选择")
                 
