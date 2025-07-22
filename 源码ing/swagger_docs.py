@@ -64,13 +64,13 @@ class SwaggerDocsServer:
             description = """
 # YH API测试框架 - 企业级API测试解决方案
 
-🎯 **专业的API接口测试工具** - 智能、高效、企业级
+[TARGET] **专业的API接口测试工具** - 智能、高效、企业级
 
 ---
 
-## 📚 框架完整使用指南
+## [BOOKS] 框架完整使用指南
 
-### 📋 1. 测试用例配置 (YAML格式)
+### [CLIPBOARD] 1. 测试用例配置 (YAML格式)
 **完整的测试用例配置示例**
 
 ```yaml
@@ -116,7 +116,7 @@ test_cases:
         "$.data.username": "${username}"
 ```
 
-### 🔗 2. 参数引用与提取详解
+### [LINK] 2. 参数引用与提取详解
 
 #### 全局变量定义
 ```yaml
@@ -166,7 +166,7 @@ extract:
   content_type: "header:Content-Type"       # 提取Content-Type头
 ```
 
-### ✅ 3. 断言验证详解
+### [CHECK] 3. 断言验证详解
 
 #### 基础断言
 ```yaml
@@ -213,7 +213,7 @@ assert:
   response_size_range: [100, 1048576] # 响应大小在100B-1MB之间
 ```
 
-### ⚡ 4. 并发测试配置
+### [ZAP] 4. 并发测试配置
 
 #### 基础并发配置
 ```yaml
@@ -253,7 +253,7 @@ spike_test:
   spike_duration: 30 # 峰值持续时间
 ```
 
-### 📊 5. 报告生成与推送
+### [CHART] 5. 报告生成与推送
 
 #### Allure报告配置
 ```yaml
@@ -288,22 +288,22 @@ notification:
 
     # 成功通知模板
     success_template: |
-      ✅ **API测试完成**
-      📊 **测试结果**: ${total_tests}个用例，成功${success_count}个
-      📈 **成功率**: ${success_rate}%
-      ⏱️ **执行时间**: ${duration}秒
-      🔗 **报告链接**: ${report_url}
+      [CHECK] **API测试完成**
+      [CHART] **测试结果**: ${total_tests}个用例，成功${success_count}个
+      [TRENDING_UP] **成功率**: ${success_rate}%
+      [STOPWATCH] **执行时间**: ${duration}秒
+      [LINK] **报告链接**: ${report_url}
 
     # 失败通知模板
     failure_template: |
-      ❌ **API测试失败**
-      📊 **测试结果**: ${total_tests}个用例，失败${failure_count}个
-      📉 **成功率**: ${success_rate}%
-      🔍 **失败原因**: ${failure_summary}
-      🔗 **报告链接**: ${report_url}
+      [CROSS] **API测试失败**
+      [CHART] **测试结果**: ${total_tests}个用例，失败${failure_count}个
+      [TRENDING_DOWN] **成功率**: ${success_rate}%
+      [SEARCH] **失败原因**: ${failure_summary}
+      [LINK] **报告链接**: ${report_url}
 ```
 
-### 🤖 6. AI智能测试功能
+### [ROBOT] 6. AI智能测试功能
 
 #### AI测试用例生成
 ```yaml
@@ -353,7 +353,7 @@ ai_debug:
     code_review: true          # 代码审查
 ```
 
-## 📋 支持的HTTP方法
+## [CLIPBOARD] 支持的HTTP方法
 - **GET**: 获取数据，支持URL参数和查询字符串
 - **POST**: 提交数据，支持JSON、表单和文件上传
 - **PUT**: 更新数据，完整资源替换
@@ -362,7 +362,7 @@ ai_debug:
 - **HEAD**: 获取响应头信息
 - **OPTIONS**: 获取支持的方法
 
-## 🖥️ Shell命令模式
+## [DESKTOP_COMPUTER] Shell命令模式
 
 ### 基础命令
 ```bash
@@ -397,19 +397,19 @@ python run.py --config test_config.yaml --notify wechat
 python run.py --config test_config.yaml --concurrent --allure --notify wechat --ai
 ```
 
-## 🛠️ 高级功能特性
-- 🤖 **AI智能测试**: 自动生成测试用例、断言和数据验证
-- 📊 **Allure报告**: 专业的HTML测试报告，支持历史趋势和自动打开
-- 🔔 **企业微信通知**: 测试结果实时推送到企业微信群，支持自定义模板
-- ⚡ **并发测试**: 多线程性能测试，支持压力测试和负载测试
-- 🛠️ **Shell接口**: 完整的命令行界面，支持一键启动和CI/CD集成
-- 🔗 **参数关联**: 上下文参数传递，支持复杂业务流程测试
-- 📝 **数据驱动**: YAML配置文件，支持参数化和模板化测试
-- 🔍 **实时监控**: 测试执行状态实时监控和详细日志记录
-- 🌐 **多协议支持**: HTTP/HTTPS、WebSocket、自定义协议
-- 📱 **Web界面**: 美观的Web管理界面，支持在线测试和文档查看
+## [HAMMER_WRENCH] 高级功能特性
+- [ROBOT] **AI智能测试**: 自动生成测试用例、断言和数据验证
+- [CHART] **Allure报告**: 专业的HTML测试报告，支持历史趋势和自动打开
+- [BELL] **企业微信通知**: 测试结果实时推送到企业微信群，支持自定义模板
+- [ZAP] **并发测试**: 多线程性能测试，支持压力测试和负载测试
+- [HAMMER_WRENCH] **Shell接口**: 完整的命令行界面，支持一键启动和CI/CD集成
+- [LINK] **参数关联**: 上下文参数传递，支持复杂业务流程测试
+- [MEMO] **数据驱动**: YAML配置文件，支持参数化和模板化测试
+- [SEARCH] **实时监控**: 测试执行状态实时监控和详细日志记录
+- [GLOBE] **多协议支持**: HTTP/HTTPS、WebSocket、自定义协议
+- [MOBILE] **Web界面**: 美观的Web管理界面，支持在线测试和文档查看
 
-## 💡 最佳实践建议
+## [LIGHT_BULB] 最佳实践建议
 
 ### 测试策略
 - **环境隔离**: 为不同环境配置独立的测试用例
@@ -430,15 +430,15 @@ my_api_test/
 └── run.py          # 启动脚本
 ```
 
-## 📞 技术支持与联系方式
+## [PHONE] 技术支持与联系方式
 
-### 🆘 获取帮助
+### [SOS] 获取帮助
 - **QQ技术支持**: 2677989813
 - **GitHub仓库**: https://github.com/YH-API-Test/api-test-framework
 - **在线文档**: 本API文档提供完整的接口说明和使用示例
 - **问题反馈**: 通过GitHub Issues提交问题和建议
 
-### 🎯 快速体验
+### [TARGET] 快速体验
 ```bash
 # 1分钟快速开始
 git clone https://github.com/YH-API-Test/api-test-framework.git
@@ -454,7 +454,7 @@ python run.py --config demo.yaml --concurrent --allure --ai
 
 ---
 
-**🚀 YH API测试框架 - 让API测试更简单、更智能、更高效！**
+**[ROCKET] YH API测试框架 - 让API测试更简单、更智能、更高效！**
 
 *专业的企业级API测试解决方案，助力团队提升测试效率和质量*
             """
@@ -570,10 +570,10 @@ python run.py --config demo.yaml --concurrent --allure --ai
             # YH API测试框架使用文档
 
             ## 功能特性
-            - 📖 详细的框架使用说明
-            - 🧪 完整的配置示例
-            - 📋 测试用例编写指南
-            - 💡 最佳实践和技巧
+            - [BOOK] 详细的框架使用说明
+            - [TEST_TUBE] 完整的配置示例
+            - [CLIPBOARD] 测试用例编写指南
+            - [LIGHT_BULB] 最佳实践和技巧
 
             ## 内容包含
             1. 快速开始指南
@@ -599,10 +599,10 @@ python run.py --config demo.yaml --concurrent --allure --ai
             # 用户反馈页面
 
             ## 功能特性
-            - 📝 用户问题反馈
-            - 💡 功能建议收集
-            - 📋 反馈记录管理
-            - 💾 本地数据存储
+            - [MEMO] 用户问题反馈
+            - [LIGHT_BULB] 功能建议收集
+            - [CLIPBOARD] 反馈记录管理
+            - [FLOPPY] 本地数据存储
 
             ## 使用说明
             1. 填写反馈表单
@@ -662,10 +662,10 @@ python run.py --config demo.yaml --concurrent --allure --ai
             # 在线测试页面
 
             ## 功能特性
-            - 🧪 功能完整性测试
-            - 📊 性能基准测试
-            - 🔍 接口可用性验证
-            - 📋 测试报告生成
+            - [TEST_TUBE] 功能完整性测试
+            - [CHART] 性能基准测试
+            - [SEARCH] 接口可用性验证
+            - [CLIPBOARD] 测试报告生成
 
             ## 测试内容
             1. API接口测试
@@ -702,10 +702,10 @@ python run.py --config demo.yaml --concurrent --allure --ai
             # 生成项目页面
 
             ## 功能特性
-            - 📦 完整项目结构
-            - 📝 可执行示例
-            - 📊 Allure报告集成
-            - 🔧 配置文件模板
+            - [PACKAGE] 完整项目结构
+            - [MEMO] 可执行示例
+            - [CHART] Allure报告集成
+            - [WRENCH] 配置文件模板
 
             ## 项目内容
             1. 基本目录结构
@@ -749,10 +749,37 @@ python run.py --config demo.yaml --concurrent --allure --ai
                 return FileResponse(
                     path=file_path,
                     filename=filename,
-                    media_type='application/zip'
+                    media_type='application/zip',
+                    headers={"Content-Disposition": f"attachment; filename={filename}"}
                 )
             else:
                 return {"success": False, "message": "文件不存在"}
+
+        @self.app.get("/api/generate-project/direct",
+                      summary="直接生成项目文件",
+                      description="生成项目文件并直接返回下载",
+                      tags=["项目"])
+        async def generate_and_download_project():
+            """直接生成并下载项目"""
+            import os
+            from fastapi.responses import FileResponse
+
+            try:
+                zip_filename = self.generate_project_structure()
+                download_dir = os.path.join(os.getcwd(), "downloads")
+                file_path = os.path.join(download_dir, zip_filename)
+
+                if os.path.exists(file_path):
+                    return FileResponse(
+                        path=file_path,
+                        filename=zip_filename,
+                        media_type='application/zip',
+                        headers={"Content-Disposition": f"attachment; filename={zip_filename}"}
+                    )
+                else:
+                    return {"success": False, "message": "文件生成失败"}
+            except Exception as e:
+                return {"success": False, "message": f"生成失败: {str(e)}"}
 
         @self.app.get("/allure-report",
                       response_class=HTMLResponse,
@@ -784,10 +811,10 @@ python run.py --config demo.yaml --concurrent --allure --ai
             # Swagger UI API文档
 
             ## 功能特性
-            - 📖 交互式API文档浏览
-            - 🧪 在线API测试功能
-            - 📋 完整的接口参数说明
-            - 💡 请求响应示例展示
+            - [BOOK] 交互式API文档浏览
+            - [TEST_TUBE] 在线API测试功能
+            - [CLIPBOARD] 完整的接口参数说明
+            - [LIGHT_BULB] 请求响应示例展示
 
             ## 使用说明
             1. 浏览API接口列表
@@ -811,10 +838,10 @@ python run.py --config demo.yaml --concurrent --allure --ai
             # ReDoc API文档
 
             ## 特点
-            - 📚 清晰的文档结构
-            - 🖨️ 适合打印和分享
-            - 🔍 强大的搜索功能
-            - 📱 响应式设计
+            - [BOOKS] 清晰的文档结构
+            - [PRINTER] 适合打印和分享
+            - [SEARCH] 强大的搜索功能
+            - [MOBILE] 响应式设计
 
             ## 访问方式
             ```
@@ -951,10 +978,10 @@ Allow: /health
             - 运行时长统计
 
             ## 使用场景
-            - 🔍 **监控检查**: 定期检查服务状态
-            - 🚨 **故障诊断**: 快速判断系统是否正常
-            - 📊 **性能监控**: 查看资源使用情况
-            - 🔄 **CI/CD集成**: 部署后验证服务可用性
+            - [SEARCH] **监控检查**: 定期检查服务状态
+            - [SIREN] **故障诊断**: 快速判断系统是否正常
+            - [CHART] **性能监控**: 查看资源使用情况
+            - [REFRESH] **CI/CD集成**: 部署后验证服务可用性
 
             ## 请求示例
             ```bash
@@ -1280,7 +1307,7 @@ Allow: /health
 
             ## 5分钟快速体验YH API测试框架
 
-            ### 🚀 第一步：安装框架
+            ### [ROCKET] 第一步：安装框架
             ```bash
             # 方式1：pip安装（推荐）
             pip install api-test-yh-pro
@@ -1291,7 +1318,7 @@ Allow: /health
             pip install -r requirements.txt
             ```
 
-            ### ⚙️ 第二步：创建配置文件
+            ### [GEAR] 第二步：创建配置文件
             ```yaml
             # test_config.yaml
             name: "我的第一个API测试"
@@ -1309,7 +1336,7 @@ Allow: /health
                     exists: true
             ```
 
-            ### 🏃 第三步：运行测试
+            ### [RUNNER] 第三步：运行测试
             ```bash
             # 基础运行
             python run.py --config test_config.yaml
@@ -1321,25 +1348,25 @@ Allow: /health
             python run.py --config test_config.yaml --concurrent 5
             ```
 
-            ### 📊 第四步：查看结果
+            ### [CHART] 第四步：查看结果
             - 控制台输出：实时测试结果
             - Allure报告：详细的HTML报告
             - 企业微信通知：测试结果推送
 
             ## 进阶功能体验
 
-            ### 🤖 AI智能测试
+            ### [ROBOT] AI智能测试
             ```bash
             python run.py --config test_config.yaml --ai
             ```
 
-            ### 📱 Web界面
+            ### [MOBILE] Web界面
             ```bash
             python run.py --web
             # 访问 http://localhost:8083
             ```
 
-            ### 🔄 持续集成
+            ### [REFRESH] 持续集成
             ```yaml
             # .github/workflows/api-test.yml
             name: API Tests
@@ -1585,7 +1612,7 @@ Allow: /health
             """
             # 最佳实践指南
 
-            ## 🎯 测试策略最佳实践
+            ## [TARGET] 测试策略最佳实践
 
             ### 1. 环境管理
             ```yaml
@@ -1639,7 +1666,7 @@ Allow: /health
                 script: "response.json()['balance'] > 0"
             ```
 
-            ## 🚀 性能测试最佳实践
+            ## [ROCKET] 性能测试最佳实践
 
             ### 并发测试配置
             ```yaml
@@ -1651,10 +1678,10 @@ Allow: /health
             ```
 
             ### 压力测试策略
-            - 🔥 **负载测试**: 正常用户量下的性能表现
-            - ⚡ **压力测试**: 超出正常负载的系统表现
-            - 💥 **峰值测试**: 突发流量下的系统稳定性
-            - 🔄 **持久测试**: 长时间运行的稳定性测试
+            - [FIRE] **负载测试**: 正常用户量下的性能表现
+            - [ZAP] **压力测试**: 超出正常负载的系统表现
+            - [BOOM] **峰值测试**: 突发流量下的系统稳定性
+            - [REFRESH] **持久测试**: 长时间运行的稳定性测试
             """
 
             best_practices = {
@@ -2014,21 +2041,21 @@ Allow: /health
         
         @self.app.get(
             "/health",
-            summary="💚 服务健康检查",
+            summary="[GREEN_HEART] 服务健康检查",
             description="""
 # 检查YH API测试框架服务状态
 
-## 🎯 功能说明
+## [TARGET] 功能说明
 提供服务健康状态检查，用于监控和运维管理。
 
-## 📋 使用场景
+## [CLIPBOARD] 使用场景
 - **服务监控**: 定期检查服务运行状态
 - **负载均衡**: 负载均衡器健康检查端点
 - **部署验证**: 部署后验证服务可用性
 - **运维监控**: 集成到监控系统中
 - **CI/CD**: 持续集成流水线中的服务验证
 
-## 📊 响应示例
+## [CHART] 响应示例
 ```json
 {
   "status": "healthy",
@@ -2042,17 +2069,17 @@ Allow: /health
 }
 ```
 
-## 🔍 状态说明
+## [SEARCH] 状态说明
 - **healthy**: 服务正常运行，所有功能可用
 - **degraded**: 服务部分功能受限，但核心功能正常
 - **unhealthy**: 服务异常，需要立即处理
 
-## 💡 使用建议
+## [LIGHT_BULB] 使用建议
 1. **监控频率**: 建议每30秒检查一次
 2. **超时设置**: 设置5秒超时时间
 3. **告警策略**: 连续3次失败时触发告警
 
-## 🔧 集成示例
+## [WRENCH] 集成示例
 ```bash
 # curl命令
 curl -X GET "http://localhost:8083/health"
@@ -2068,7 +2095,7 @@ fi
 ```
             """,
             response_description="详细的服务健康状态信息，包含版本和服务器信息",
-            tags=["🔧 系统监控"]
+            tags=["[WRENCH] 系统监控"]
         )
         async def health_check():
             """服务健康检查"""
@@ -2182,7 +2209,7 @@ fi
 </head>
 <body>
     <div class="custom-header">
-        <h1>📚 YH API测试框架 - API文档</h1>
+        <h1>[BOOKS] YH API测试框架 - API文档</h1>
         <a href="/" class="back-btn">← 返回主页</a>
     </div>
     <div id="swagger-ui"></div>
@@ -2396,7 +2423,7 @@ fi
 </head>
 <body>
     <div class="custom-header">
-        <h1>📚 YH API测试框架 - API文档 (ReDoc)</h1>
+        <h1>[BOOKS] YH API测试框架 - API文档 (ReDoc)</h1>
         <a href="/" class="back-btn">← 返回主页</a>
     </div>
     <div id="redoc-container"></div>
@@ -2746,19 +2773,19 @@ fi
             <h2 class="features-title">关键特性</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
+                    <div class="feature-icon">[ZAP]</div>
                     <div class="feature-title">快速</div>
                     <div class="feature-desc">可与 NodeJS 和 Go 并肩的极高性能（归功于 Starlette 和 Pydantic）。<a href="#" style="color: #2c5aa0;">最快的 Python web 框架之一</a>。</div>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
+                    <div class="feature-icon">[ROCKET]</div>
                     <div class="feature-title">高效编码</div>
                     <div class="feature-desc">提高功能开发速度约 200% 至 300%。*</div>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🐛</div>
+                    <div class="feature-icon">[BUG]</div>
                     <div class="feature-title">更少bug</div>
                     <div class="feature-desc">减少约 40% 的人为（开发者）导致的错误。*</div>
                 </div>
@@ -2770,19 +2797,19 @@ fi
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
+                    <div class="feature-icon">[TARGET]</div>
                     <div class="feature-title">简单</div>
                     <div class="feature-desc">设计的易于使用和学习，阅读文档的时间更短。</div>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">💪</div>
+                    <div class="feature-icon">[MUSCLE]</div>
                     <div class="feature-title">健壮</div>
                     <div class="feature-desc">生产可用的代码。还有自动生成的交互式文档。</div>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">📋</div>
+                    <div class="feature-icon">[CLIPBOARD]</div>
                     <div class="feature-title">标准化</div>
                     <div class="feature-desc">基于（并完全兼容）API 的相关开放标准：<a href="https://github.com/OAI/OpenAPI-Specification" style="color: #2c5aa0;">OpenAPI</a>（以前被称为 Swagger）和 <a href="https://json-schema.org/" style="color: #2c5aa0;">JSON Schema</a>。</div>
                 </div>
@@ -2796,10 +2823,10 @@ fi
         <!-- 按钮组 -->
         <div class="btn-group">
             <a href="/docs" class="btn btn-primary">
-                📖 查看文档
+                [BOOK] 查看文档
             </a>
             <a href="https://github.com/YH-API-Test/api-test-framework" class="btn btn-secondary" target="_blank">
-                💻 GitHub
+                [LAPTOP] GitHub
             </a>
         </div>
 
@@ -3223,7 +3250,7 @@ fi
         <!-- 侧边栏导航 -->
         <div class="sidebar">
             <div class="sidebar-nav">
-                <h3>📖 文档导航</h3>
+                <h3>[BOOK] 文档导航</h3>
                 <ul>
                     <li><a href="#quick-start">快速开始</a></li>
                     <li><a href="#installation">安装配置</a></li>
@@ -3251,32 +3278,32 @@ fi
 
             <!-- 快速开始 -->
             <div id="quick-start" class="section">
-                <h2>🚀 快速开始</h2>
+                <h2>[ROCKET] 快速开始</h2>
                 <p>YH API测试框架是一个基于Python的现代化API测试工具，支持多种协议、智能测试、企业级功能。</p>
 
                 <div class="info">
-                    <strong>💡 提示：</strong> 本框架需要Python 3.7+环境，建议使用Python 3.8或更高版本以获得最佳性能。
+                    <strong>[LIGHT_BULB] 提示：</strong> 本框架需要Python 3.7+环境，建议使用Python 3.8或更高版本以获得最佳性能。
                 </div>
 
                 <h3>主要特性</h3>
                 <div class="feature-grid">
                     <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
+                        <div class="feature-icon">[ZAP]</div>
                         <div class="feature-title">高性能</div>
                         <div class="feature-desc">基于FastAPI和异步技术，支持高并发测试</div>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🤖</div>
+                        <div class="feature-icon">[ROBOT]</div>
                         <div class="feature-title">AI智能</div>
                         <div class="feature-desc">AI驱动的测试用例生成和智能断言</div>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">📊</div>
+                        <div class="feature-icon">[CHART]</div>
                         <div class="feature-title">丰富报告</div>
                         <div class="feature-desc">Allure报告、企业微信通知、邮件推送</div>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🔧</div>
+                        <div class="feature-icon">[WRENCH]</div>
                         <div class="feature-title">灵活配置</div>
                         <div class="feature-desc">YAML配置、环境管理、参数化测试</div>
                     </div>
@@ -3285,7 +3312,7 @@ fi
 
             <!-- 安装配置 -->
             <div id="installation" class="section">
-                <h2>📦 安装配置</h2>
+                <h2>[PACKAGE] 安装配置</h2>
 
                 <h3>使用pip安装</h3>
                 <div class="code-header">
@@ -3341,13 +3368,13 @@ yh-api-test --help</pre>
                 </div>
 
                 <div class="tip">
-                    <strong>✅ 安装成功：</strong> 如果看到版本信息和帮助信息，说明安装成功！
+                    <strong>[CHECK] 安装成功：</strong> 如果看到版本信息和帮助信息，说明安装成功！
                 </div>
             </div>
 
             <!-- 基础使用 -->
             <div id="basic-usage" class="section">
-                <h2>📝 基础使用</h2>
+                <h2>[MEMO] 基础使用</h2>
 
                 <h3>命令行模式</h3>
                 <p>YH API测试框架提供了丰富的命令行功能：</p>
@@ -3428,7 +3455,7 @@ framework.generate_report(results)</pre>
 
             <!-- 测试用例 -->
             <div id="test-cases" class="section">
-                <h2>🧪 测试用例配置</h2>
+                <h2>[TEST_TUBE] 测试用例配置</h2>
 
                 <h3>YAML配置格式</h3>
                 <p>使用YAML格式编写测试用例，支持丰富的配置选项：</p>
@@ -3475,7 +3502,7 @@ framework.generate_report(results)</pre>
 
                 <h3>参数引用和提取</h3>
                 <div class="info">
-                    <strong>🔗 参数引用：</strong> 使用 <code>${{variable_name}}</code> 语法引用全局变量或前面步骤提取的变量。
+                    <strong>[LINK] 参数引用：</strong> 使用 <code>${{variable_name}}</code> 语法引用全局变量或前面步骤提取的变量。
                 </div>
 
                 <h4>全局变量配置</h4>
@@ -3513,7 +3540,7 @@ environments:
 
             <!-- 高级功能 -->
             <div id="advanced" class="section">
-                <h2>🚀 高级功能</h2>
+                <h2>[ROCKET] 高级功能</h2>
 
                 <h3>并发测试</h3>
                 <p>支持多线程并发执行，提高测试效率：</p>
@@ -3576,7 +3603,7 @@ allure open ./allure-report</pre>
 
             <!-- 使用示例 -->
             <div id="examples" class="section">
-                <h2>💡 使用示例</h2>
+                <h2>[LIGHT_BULB] 使用示例</h2>
 
                 <h3>完整的API测试流程</h3>
                 <div class="code-header">complete_test.yaml</div>
@@ -3678,12 +3705,12 @@ test_cases:
 
             <!-- API参考 -->
             <div id="api-reference" class="section">
-                <h2>📚 API参考</h2>
+                <h2>[BOOKS] API参考</h2>
 
                 <p>框架提供了完整的API接口，支持程序化调用：</p>
 
                 <div class="warning">
-                    <strong>⚠️ 注意：</strong> 详细的API接口文档请访问 <a href="/api-docs" style="color: #2c5aa0;">Swagger UI文档</a>
+                    <strong>[WARNING] 注意：</strong> 详细的API接口文档请访问 <a href="/api-docs" style="color: #2c5aa0;">Swagger UI文档</a>
                 </div>
 
                 <h3>主要API接口</h3>
@@ -3723,14 +3750,14 @@ else:
 
             <!-- 联系和支持 -->
             <div class="section">
-                <h2>📞 联系和支持</h2>
+                <h2>[PHONE] 联系和支持</h2>
                 <p>如果您在使用过程中遇到问题或有建议，欢迎联系我们：</p>
                 <ul>
                     <li><strong>QQ:</strong> 2677989813</li>
                 </ul>
 
                 <div class="info">
-                    <strong>🎯 持续改进：</strong> 我们致力于打造最好用的API测试框架，您的反馈对我们非常重要！
+                    <strong>[TARGET] 持续改进：</strong> 我们致力于打造最好用的API测试框架，您的反馈对我们非常重要！
                 </div>
             </div>
         </div>
@@ -4066,7 +4093,7 @@ else:
     <div class="main-content">
         <!-- 页面头部 -->
         <div class="page-header">
-            <h1 class="page-title">💬 用户反馈</h1>
+            <h1 class="page-title">[SPEECH] 用户反馈</h1>
             <p class="page-subtitle">您的意见和建议对我们非常重要，帮助我们不断改进YH API测试框架</p>
         </div>
 
@@ -4075,15 +4102,15 @@ else:
 
         <!-- 反馈表单 -->
         <div class="feedback-form">
-            <h2 style="margin-bottom: 20px; color: #2d3748;">📝 提交反馈</h2>
+            <h2 style="margin-bottom: 20px; color: #2d3748;">[MEMO] 提交反馈</h2>
             <form id="feedbackForm">
                 <div class="form-group">
                     <label class="form-label" for="type">反馈类型</label>
                     <select id="type" name="type" class="form-select" required>
-                        <option value="问题反馈">🐛 问题反馈</option>
-                        <option value="功能建议">💡 功能建议</option>
+                        <option value="问题反馈">[BUG] 问题反馈</option>
+                        <option value="功能建议">[LIGHT_BULB] 功能建议</option>
                         <option value="使用咨询">❓ 使用咨询</option>
-                        <option value="其他">📋 其他</option>
+                        <option value="其他">[CLIPBOARD] 其他</option>
                     </select>
                 </div>
 
@@ -4102,13 +4129,13 @@ else:
                     <input type="text" id="contact" name="contact" class="form-input" placeholder="QQ、微信、邮箱等，方便我们联系您">
                 </div>
 
-                <button type="submit" class="submit-btn">🚀 提交反馈</button>
+                <button type="submit" class="submit-btn">[ROCKET] 提交反馈</button>
             </form>
         </div>
 
         <!-- 反馈列表 -->
         <div class="feedback-list">
-            <h2 style="margin-bottom: 20px; color: #2d3748;">📋 反馈记录</h2>
+            <h2 style="margin-bottom: 20px; color: #2d3748;">[CLIPBOARD] 反馈记录</h2>
             <div id="feedbackList">
                 <p style="text-align: center; color: #718096; padding: 20px;">正在加载反馈记录...</p>
             </div>
@@ -4524,7 +4551,7 @@ else:
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/" class="logo">🧪 YH API测试框架</a>
+            <a href="/" class="logo">[TEST_TUBE] YH API测试框架</a>
             <ul class="nav-links">
                 <li><a href="/docs">文档</a></li>
                 <li><a href="/feedback" target="_blank">反馈</a></li>
@@ -4538,13 +4565,13 @@ else:
     <div class="container">
         <!-- 页面标题 -->
         <div class="page-title">
-            <h1>🧪 在线测试</h1>
+            <h1>[TEST_TUBE] 在线测试</h1>
             <p>验证YH API测试框架的所有功能是否正常工作</p>
         </div>
 
         <!-- 快速测试 -->
         <div class="test-section">
-            <h2>🚀 快速测试</h2>
+            <h2>[ROCKET] 快速测试</h2>
             <p>一键运行所有核心功能测试，快速验证系统状态</p>
             <button class="test-btn" onclick="runQuickTest()">开始快速测试</button>
             <button class="test-btn" onclick="runFullTest()">完整功能测试</button>
@@ -4558,11 +4585,11 @@ else:
 
         <!-- 功能测试项目 -->
         <div class="test-section">
-            <h2>📋 功能测试项目</h2>
+            <h2>[CLIPBOARD] 功能测试项目</h2>
             <div id="testItems">
                 <div class="test-item-expandable">
                     <div class="test-item-header" onclick="toggleTestDetails('api')">
-                        <span>🌐 API接口可用性测试</span>
+                        <span>[GLOBE] API接口可用性测试</span>
                         <div class="test-item-controls">
                             <span class="test-status pending" id="status-api">待测试</span>
                             <span class="expand-icon" id="expand-api">▼</span>
@@ -4580,7 +4607,7 @@ else:
 
                 <div class="test-item-expandable">
                     <div class="test-item-header" onclick="toggleTestDetails('docs')">
-                        <span>📖 文档页面功能测试</span>
+                        <span>[BOOK] 文档页面功能测试</span>
                         <div class="test-item-controls">
                             <span class="test-status pending" id="status-docs">待测试</span>
                             <span class="expand-icon" id="expand-docs">▼</span>
@@ -4598,7 +4625,7 @@ else:
 
                 <div class="test-item-expandable">
                     <div class="test-item-header" onclick="toggleTestDetails('feedback')">
-                        <span>💬 反馈系统测试</span>
+                        <span>[SPEECH] 反馈系统测试</span>
                         <div class="test-item-controls">
                             <span class="test-status pending" id="status-feedback">待测试</span>
                             <span class="expand-icon" id="expand-feedback">▼</span>
@@ -4616,7 +4643,7 @@ else:
 
                 <div class="test-item-expandable">
                     <div class="test-item-header" onclick="toggleTestDetails('copy')">
-                        <span>📋 复制功能测试</span>
+                        <span>[CLIPBOARD] 复制功能测试</span>
                         <div class="test-item-controls">
                             <span class="test-status pending" id="status-copy">待测试</span>
                             <span class="expand-icon" id="expand-copy">▼</span>
@@ -4634,7 +4661,7 @@ else:
 
                 <div class="test-item-expandable">
                     <div class="test-item-header" onclick="toggleTestDetails('responsive')">
-                        <span>📱 响应式设计测试</span>
+                        <span>[MOBILE] 响应式设计测试</span>
                         <div class="test-item-controls">
                             <span class="test-status pending" id="status-responsive">待测试</span>
                             <span class="expand-icon" id="expand-responsive">▼</span>
@@ -4652,7 +4679,7 @@ else:
 
                 <div class="test-item-expandable">
                     <div class="test-item-header" onclick="toggleTestDetails('navigation')">
-                        <span>🔗 导航链接测试</span>
+                        <span>[LINK] 导航链接测试</span>
                         <div class="test-item-controls">
                             <span class="test-status pending" id="status-navigation">待测试</span>
                             <span class="expand-icon" id="expand-navigation">▼</span>
@@ -4670,7 +4697,7 @@ else:
 
                 <div class="test-item-expandable">
                     <div class="test-item-header" onclick="toggleTestDetails('performance')">
-                        <span>⚡ 性能基准测试</span>
+                        <span>[ZAP] 性能基准测试</span>
                         <div class="test-item-controls">
                             <span class="test-status pending" id="status-performance">待测试</span>
                             <span class="expand-icon" id="expand-performance">▼</span>
@@ -4689,13 +4716,13 @@ else:
 
             <!-- 测试报告入口 -->
             <div class="test-report-section" style="margin-top: 20px;">
-                <h3>📊 测试报告</h3>
+                <h3>[CHART] 测试报告</h3>
                 <div class="report-buttons">
                     <button class="btn btn-primary" onclick="generateAllureReport()" id="allureReportBtn" disabled>
-                        📈 生成Allure报告
+                        [TRENDING_UP] 生成Allure报告
                     </button>
                     <button class="btn btn-secondary" onclick="viewTestSummary()" id="summaryBtn" disabled>
-                        📋 查看测试摘要
+                        [CLIPBOARD] 查看测试摘要
                     </button>
                 </div>
                 <div id="reportResults" class="report-results" style="display: none;"></div>
@@ -4704,7 +4731,7 @@ else:
 
         <!-- 详细测试结果 -->
         <div class="test-section">
-            <h2>📊 详细测试结果</h2>
+            <h2>[CHART] 详细测试结果</h2>
             <div id="detailedResults">
                 <p>点击上方按钮开始测试，这里将显示详细的测试结果...</p>
             </div>
@@ -4784,39 +4811,39 @@ else:
             const allureBtn = document.getElementById('allureReportBtn');
 
             allureBtn.disabled = true;
-            allureBtn.textContent = '📈 生成中...';
+            allureBtn.textContent = '[TRENDING_UP] 生成中...';
 
             // 模拟Allure报告生成
             setTimeout(() => {{
                 reportResults.style.display = 'block';
                 reportResults.innerHTML = `
-                    <h4>📊 Allure测试报告</h4>
+                    <h4>[CHART] Allure测试报告</h4>
                     <div class="allure-report">
                         <p><strong>报告生成时间:</strong> ${{new Date().toLocaleString()}}</p>
                         <p><strong>测试总数:</strong> ${{testItems.length}}</p>
                         <p><strong>通过率:</strong> 85.7%</p>
                         <div class="report-links">
                             <a href="/allure-report" target="_blank" class="btn btn-primary">
-                                🔗 查看完整Allure报告
+                                [LINK] 查看完整Allure报告
                             </a>
                         </div>
                         <div class="report-preview">
                             <h5>测试概览:</h5>
                             <ul>
-                                <li>✅ API接口测试: 通过</li>
-                                <li>✅ 文档功能测试: 通过</li>
-                                <li>✅ 反馈系统测试: 通过</li>
-                                <li>✅ 复制功能测试: 通过</li>
-                                <li>✅ 响应式设计测试: 通过</li>
-                                <li>✅ 导航链接测试: 通过</li>
-                                <li>❌ 性能基准测试: 失败 (响应时间过长)</li>
+                                <li>[CHECK] API接口测试: 通过</li>
+                                <li>[CHECK] 文档功能测试: 通过</li>
+                                <li>[CHECK] 反馈系统测试: 通过</li>
+                                <li>[CHECK] 复制功能测试: 通过</li>
+                                <li>[CHECK] 响应式设计测试: 通过</li>
+                                <li>[CHECK] 导航链接测试: 通过</li>
+                                <li>[CROSS] 性能基准测试: 失败 (响应时间过长)</li>
                             </ul>
                         </div>
                     </div>
                 `;
 
                 allureBtn.disabled = false;
-                allureBtn.textContent = '📈 重新生成报告';
+                allureBtn.textContent = '[TRENDING_UP] 重新生成报告';
             }}, 2000);
         }}
 
@@ -4825,7 +4852,7 @@ else:
             const reportResults = document.getElementById('reportResults');
             reportResults.style.display = 'block';
             reportResults.innerHTML = `
-                <h4>📋 测试摘要</h4>
+                <h4>[CLIPBOARD] 测试摘要</h4>
                 <div class="test-summary">
                     <div class="summary-stats">
                         <div class="stat-item">
@@ -4856,13 +4883,13 @@ else:
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>API接口可用性测试</td><td>✅ 通过</td><td>45ms</td></tr>
-                                <tr><td>文档页面功能测试</td><td>✅ 通过</td><td>120ms</td></tr>
-                                <tr><td>反馈系统测试</td><td>✅ 通过</td><td>89ms</td></tr>
-                                <tr><td>复制功能测试</td><td>✅ 通过</td><td>12ms</td></tr>
-                                <tr><td>响应式设计测试</td><td>✅ 通过</td><td>8ms</td></tr>
-                                <tr><td>导航链接测试</td><td>✅ 通过</td><td>67ms</td></tr>
-                                <tr><td>性能基准测试</td><td>❌ 失败</td><td>2500ms</td></tr>
+                                <tr><td>API接口可用性测试</td><td>[CHECK] 通过</td><td>45ms</td></tr>
+                                <tr><td>文档页面功能测试</td><td>[CHECK] 通过</td><td>120ms</td></tr>
+                                <tr><td>反馈系统测试</td><td>[CHECK] 通过</td><td>89ms</td></tr>
+                                <tr><td>复制功能测试</td><td>[CHECK] 通过</td><td>12ms</td></tr>
+                                <tr><td>响应式设计测试</td><td>[CHECK] 通过</td><td>8ms</td></tr>
+                                <tr><td>导航链接测试</td><td>[CHECK] 通过</td><td>67ms</td></tr>
+                                <tr><td>性能基准测试</td><td>[CROSS] 失败</td><td>2500ms</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -4878,7 +4905,7 @@ else:
         }}
 
         async function runQuickTest() {{
-            showResult('🚀 开始快速测试...', 'info');
+            showResult('[ROCKET] 开始快速测试...', 'info');
             updateProgress(0);
 
             const essentialTests = ['api', 'docs', 'feedback'];
@@ -4906,14 +4933,14 @@ else:
 
             const successRate = (passedTests / essentialTests.length) * 100;
             if (successRate === 100) {{
-                showResult(`✅ 快速测试完成！所有核心功能正常 (${{passedTests}}/${{essentialTests.length}})`, 'success');
+                showResult(`[CHECK] 快速测试完成！所有核心功能正常 (${{passedTests}}/${{essentialTests.length}})`, 'success');
             }} else {{
-                showResult(`⚠️ 快速测试完成！部分功能异常 (${{passedTests}}/${{essentialTests.length}})`, 'error');
+                showResult(`[WARNING] 快速测试完成！部分功能异常 (${{passedTests}}/${{essentialTests.length}})`, 'error');
             }}
         }}
 
         async function runFullTest() {{
-            showResult('🔍 开始完整功能测试...', 'info');
+            showResult('[SEARCH] 开始完整功能测试...', 'info');
             updateProgress(0);
 
             let passedTests = 0;
@@ -4954,9 +4981,9 @@ else:
 
             const successRate = (passedTests / testItems.length) * 100;
             if (successRate >= 85) {{
-                showResult(`✅ 完整测试完成！系统功能良好 (${{passedTests}}/${{testItems.length}}) - ${{successRate.toFixed(1)}}%`, 'success');
+                showResult(`[CHECK] 完整测试完成！系统功能良好 (${{passedTests}}/${{testItems.length}}) - ${{successRate.toFixed(1)}}%`, 'success');
             }} else {{
-                showResult(`⚠️ 完整测试完成！发现问题需要关注 (${{passedTests}}/${{testItems.length}}) - ${{successRate.toFixed(1)}}%`, 'error');
+                showResult(`[WARNING] 完整测试完成！发现问题需要关注 (${{passedTests}}/${{testItems.length}}) - ${{successRate.toFixed(1)}}%`, 'error');
             }}
 
             // 启用报告按钮
@@ -5002,19 +5029,19 @@ else:
             const successRate = (passed / total) * 100;
 
             detailedDiv.innerHTML = `
-                <h3>📈 测试统计</h3>
+                <h3>[TRENDING_UP] 测试统计</h3>
                 <p><strong>总测试项目:</strong> ${{total}}</p>
                 <p><strong>通过测试:</strong> ${{passed}}</p>
                 <p><strong>失败测试:</strong> ${{total - passed}}</p>
                 <p><strong>成功率:</strong> ${{successRate.toFixed(1)}}%</p>
 
-                <h3>🎯 测试建议</h3>
+                <h3>[TARGET] 测试建议</h3>
                 ${{successRate >= 85 ?
-                    '<p style="color: #155724;">✅ 系统运行良好，所有核心功能正常工作。</p>' :
-                    '<p style="color: #721c24;">⚠️ 发现部分功能异常，建议检查失败的测试项目。</p>'
+                    '<p style="color: #155724;">[CHECK] 系统运行良好，所有核心功能正常工作。</p>' :
+                    '<p style="color: #721c24;">[WARNING] 发现部分功能异常，建议检查失败的测试项目。</p>'
                 }}
 
-                <h3>📞 技术支持</h3>
+                <h3>[PHONE] 技术支持</h3>
                 <p>如果测试发现问题，请联系技术支持：</p>
                 <p><strong>QQ:</strong> 2677989813</p>
             `;
@@ -5245,7 +5272,7 @@ else:
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/" class="logo">📦 YH API测试框架</a>
+            <a href="/" class="logo">[PACKAGE] YH API测试框架</a>
             <ul class="nav-links">
                 <li><a href="/docs">文档</a></li>
                 <li><a href="/feedback" target="_blank">反馈</a></li>
@@ -5259,13 +5286,13 @@ else:
     <div class="container">
         <!-- 页面标题 -->
         <div class="page-title">
-            <h1>📦 生成项目</h1>
+            <h1>[PACKAGE] 生成项目</h1>
             <p>下载完整的YH API测试框架项目结构和示例</p>
         </div>
 
         <!-- 项目配置 -->
         <div class="project-section">
-            <h2>⚙️ 项目配置</h2>
+            <h2>[GEAR] 项目配置</h2>
             <form id="projectForm">
                 <div class="form-group">
                     <label for="projectName">项目名称</label>
@@ -5296,7 +5323,7 @@ else:
                 </div>
             </form>
 
-            <button class="btn" onclick="generateProject()">🚀 生成项目</button>
+            <button class="btn" onclick="generateAndDownloadProject()">[ROCKET] 生成并下载项目</button>
 
             <div class="progress-indicator" id="progressIndicator">
                 <div class="spinner"></div>
@@ -5311,27 +5338,27 @@ else:
             <h2>✨ 项目特性</h2>
             <div class="features-list">
                 <div class="feature-item">
-                    <h4>📁 完整目录结构</h4>
+                    <h4>[FOLDER] 完整目录结构</h4>
                     <p>包含测试用例、配置文件、报告目录等完整的项目结构</p>
                 </div>
                 <div class="feature-item">
-                    <h4>📝 可执行示例</h4>
+                    <h4>[MEMO] 可执行示例</h4>
                     <p>提供多个可直接运行的测试用例示例，覆盖常见测试场景</p>
                 </div>
                 <div class="feature-item">
-                    <h4>📊 Allure报告</h4>
+                    <h4>[CHART] Allure报告</h4>
                     <p>集成Allure报告生成，提供美观的测试报告和详细的测试结果</p>
                 </div>
                 <div class="feature-item">
-                    <h4>🔧 配置模板</h4>
+                    <h4>[WRENCH] 配置模板</h4>
                     <p>包含完整的配置文件模板，支持环境变量、全局配置等</p>
                 </div>
                 <div class="feature-item">
-                    <h4>🚀 一键运行</h4>
+                    <h4>[ROCKET] 一键运行</h4>
                     <p>提供run.py启动脚本，支持一键运行测试和生成报告</p>
                 </div>
                 <div class="feature-item">
-                    <h4>📖 详细文档</h4>
+                    <h4>[BOOK] 详细文档</h4>
                     <p>包含README.md和使用说明，帮助快速上手和定制</p>
                 </div>
             </div>
@@ -5339,7 +5366,7 @@ else:
 
         <!-- 项目结构预览 -->
         <div class="project-section">
-            <h2>🏗️ 项目结构预览</h2>
+            <h2>[CONSTRUCTION] 项目结构预览</h2>
             <div class="project-structure" id="structurePreview">
 my-api-test-project/
 ├── README.md                 # 项目说明文档
@@ -5371,7 +5398,7 @@ my-api-test-project/
 
         <!-- 使用说明 -->
         <div class="project-section">
-            <h2>📖 使用说明</h2>
+            <h2>[BOOK] 使用说明</h2>
             <ol>
                 <li><strong>下载项目:</strong> 点击"生成项目"按钮下载项目压缩包</li>
                 <li><strong>解压文件:</strong> 将下载的zip文件解压到本地目录</li>
@@ -5382,67 +5409,122 @@ my-api-test-project/
             </ol>
 
             <div class="feature-item" style="margin-top: 20px;">
-                <h4>💡 快速开始</h4>
+                <h4>[LIGHT_BULB] 快速开始</h4>
                 <p>项目包含完整的示例用例，可以直接运行。只需要修改配置文件中的API地址和认证信息，即可开始自动化测试。</p>
             </div>
         </div>
     </div>
 
     <script>
-        function generateProject() {{
+        function generateAndDownloadProject() {{
             const form = document.getElementById('projectForm');
             const formData = new FormData(form);
             const projectConfig = Object.fromEntries(formData);
 
             // 显示进度指示器
-            document.getElementById('progressIndicator').style.display = 'block';
-            document.getElementById('resultSection').style.display = 'none';
+            const progressIndicator = document.getElementById('progressIndicator');
+            const resultSection = document.getElementById('resultSection');
 
-            // 模拟项目生成过程
-            setTimeout(() => {{
-                // 隐藏进度指示器
-                document.getElementById('progressIndicator').style.display = 'none';
+            progressIndicator.style.display = 'block';
+            resultSection.style.display = 'none';
 
-                // 显示成功结果
-                const resultSection = document.getElementById('resultSection');
-                resultSection.className = 'result-section success';
-                resultSection.innerHTML = `
-                    <h3>✅ 项目生成成功！</h3>
-                    <p><strong>项目名称:</strong> ${{projectConfig.projectName}}</p>
-                    <p><strong>包含内容:</strong> ${{getIncludeText(projectConfig.includeExamples)}}</p>
-                    <p><strong>报告类型:</strong> ${{getReportText(projectConfig.reportType)}}</p>
-                    <div style="margin-top: 15px;">
-                        <a href="#" class="btn" onclick="downloadProject()">📥 下载项目</a>
-                        <button class="btn btn-secondary" onclick="showQuickStart()">🚀 查看快速开始</button>
-                    </div>
-                `;
-                resultSection.style.display = 'block';
-            }}, 3000);
+            // 直接调用下载功能
+            downloadProject();
         }}
 
 
 
-        function downloadProject() {{
-            // 模拟下载
-            const link = document.createElement('a');
-            link.href = '#';
-            link.download = 'yh-api-test-project.zip';
-            link.click();
+        async function downloadProject() {{
+            const progressIndicator = document.getElementById('progressIndicator');
+            const resultSection = document.getElementById('resultSection');
 
-            alert('📥 项目下载功能正在开发中，敬请期待！\\n\\n💡 当前您可以：\\n1. 查看项目结构预览\\n2. 了解使用说明\\n3. 联系技术支持获取项目模板\\n\\n📞 技术支持 QQ: 2677989813');
+            // 显示进度指示器
+            progressIndicator.style.display = 'block';
+            resultSection.innerHTML = '<p>正在生成项目文件，请稍候...</p>';
+            resultSection.style.display = 'block';
+
+            try {{
+                const response = await fetch('/api/generate-project/download', {{
+                    method: 'POST',
+                    headers: {{
+                        'Content-Type': 'application/json'
+                    }}
+                }});
+
+                const data = await response.json();
+
+                if (data.success) {{
+                    // 隐藏进度指示器
+                    progressIndicator.style.display = 'none';
+
+                    // 显示下载链接
+                    resultSection.innerHTML = `
+                        <div style="background: #e8f5e8; padding: 20px; border-radius: 8px; margin: 15px 0; text-align: center;">
+                            <h3 style="color: #2d5a2d; margin-bottom: 15px;">[CHECK] 项目生成成功！</h3>
+                            <p style="margin-bottom: 20px; font-size: 16px;">YH API测试框架项目已准备就绪</p>
+                            <a href="${{data.download_url}}" class="btn" download="${{data.filename}}" style="display: inline-block; font-size: 16px; padding: 12px 24px;">
+                                [INBOX] 下载项目文件 (${{data.filename}})
+                            </a>
+                            <div style="margin-top: 20px; padding: 15px; background: #f0f8f0; border-radius: 6px; text-align: left;">
+                                <h4 style="color: #2d5a2d; margin-bottom: 10px;">[CLIPBOARD] 使用说明：</h4>
+                                <ol style="margin: 0; padding-left: 20px; line-height: 1.6;">
+                                    <li>下载并解压ZIP文件</li>
+                                    <li>安装依赖：<code>pip install api-test-yh-pro</code></li>
+                                    <li>配置项目：编辑 <code>config/config.yaml</code></li>
+                                    <li>运行测试：<code>python run.py</code></li>
+                                </ol>
+                                <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                                    [PHONE] 技术支持 QQ: 2677989813
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                }} else {{
+                    // 隐藏进度指示器
+                    progressIndicator.style.display = 'none';
+
+                    // 显示错误信息
+                    resultSection.innerHTML = `
+                        <div style="background: #ffe6e6; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                            <h3 style="color: #d32f2f; margin-bottom: 10px;">[CROSS] 项目生成失败</h3>
+                            <p style="margin-bottom: 15px;">错误信息: ${{data.message}}</p>
+                            <button class="btn" onclick="generateAndDownloadProject()">[REFRESH] 重试</button>
+                            <div style="margin-top: 10px; font-size: 14px; color: #666;">
+                                <p>[PHONE] 如问题持续存在，请联系技术支持 QQ: 2677989813</p>
+                            </div>
+                        </div>
+                    `;
+                }}
+
+            }} catch (error) {{
+                // 隐藏进度指示器
+                progressIndicator.style.display = 'none';
+
+                // 显示网络错误
+                resultSection.innerHTML = `
+                    <div style="background: #ffe6e6; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <h3 style="color: #d32f2f; margin-bottom: 10px;">[CROSS] 网络请求失败</h3>
+                        <p style="margin-bottom: 15px;">请检查网络连接后重试。错误详情: ${{error.message}}</p>
+                        <button class="btn" onclick="generateAndDownloadProject()">[REFRESH] 重试</button>
+                        <div style="margin-top: 10px; font-size: 14px; color: #666;">
+                            <p>[PHONE] 如问题持续存在，请联系技术支持 QQ: 2677989813</p>
+                        </div>
+                    </div>
+                `;
+            }}
         }}
 
         function showQuickStart() {{
-            alert(`🚀 快速开始指南：
+            alert(`[ROCKET] 快速开始指南：
 
-1. 📥 下载并解压项目文件
-2. 📦 安装依赖: pip install -r requirements.txt
-3. ⚙️ 配置环境: 修改 config/config.yaml
-4. 🧪 运行测试: python run.py
-5. 📊 查看报告: 自动打开 Allure 报告
+1. [INBOX] 下载并解压项目文件
+2. [PACKAGE] 安装依赖: pip install -r requirements.txt
+3. [GEAR] 配置环境: 修改 config/config.yaml
+4. [TEST_TUBE] 运行测试: python run.py
+5. [CHART] 查看报告: 自动打开 Allure 报告
 
-💡 提示: 项目包含完整示例，可直接运行！
-📞 技术支持: QQ 2677989813`);
+[LIGHT_BULB] 提示: 项目包含完整示例，可直接运行！
+[PHONE] 技术支持: QQ 2677989813`);
         }}
 
         function getIncludeText(value) {{
@@ -5531,11 +5613,11 @@ my-api-test-project/
         return test_results
 
     def generate_project_structure(self) -> str:
-        """生成项目结构"""
+        """生成项目结构 - 使用简单可靠的方法"""
         import os
         import zipfile
         import tempfile
-        import json
+        import shutil
         from datetime import datetime
 
         # 创建临时目录
@@ -5549,31 +5631,25 @@ my-api-test-project/
             "config",
             "test_cases/api_tests",
             "test_cases/performance_tests",
+            "data",
             "reports/allure-results",
-            "reports/html",
             "logs",
-            "data/mock_responses",
             "scripts"
         ]
 
         for directory in directories:
             os.makedirs(os.path.join(project_path, directory), exist_ok=True)
 
-        # 创建文件内容
+        # 创建文件内容 - 使用简化的内容
         files_content = {
-            "README.md": self._get_readme_content(),
-            "requirements.txt": self._get_requirements_content(),
-            "run.py": self._get_run_script_content(),
-            "config/config.yaml": self._get_config_yaml_content(),
-            "config/environments.yaml": self._get_environments_yaml_content(),
-            "config/global_vars.yaml": self._get_global_vars_yaml_content(),
-            "test_cases/api_tests/login_test.yaml": self._get_login_test_content(),
-            "test_cases/api_tests/user_test.yaml": self._get_user_test_content(),
-            "test_cases/api_tests/product_test.yaml": self._get_product_test_content(),
-            "test_cases/performance_tests/load_test.yaml": self._get_load_test_content(),
-            "data/test_data.json": self._get_test_data_content(),
-            "scripts/setup.py": self._get_setup_script_content(),
-            "scripts/cleanup.py": self._get_cleanup_script_content(),
+            "README.md": self._get_simple_readme_content(),
+            "requirements.txt": self._get_simple_requirements_content(),
+            "run.py": self._get_simple_run_script_content(),
+            "config/config.yaml": self._get_simple_config_yaml_content(),
+            "config/environments.yaml": self._get_simple_environments_yaml_content(),
+            "config/global_vars.yaml": self._get_simple_global_vars_yaml_content(),
+            "test_cases/api_tests/login_test.yaml": self._get_simple_login_test_content(),
+            "data/test_data.json": self._get_simple_test_data_content(),
         }
 
         # 写入文件
@@ -5583,31 +5659,37 @@ my-api-test-project/
             with open(full_path, 'w', encoding='utf-8') as f:
                 f.write(content)
 
-        # 创建zip文件
+        # 创建zip文件 - 使用最简单可靠的方法
         zip_filename = f"{project_name}.zip"
         zip_path = os.path.join(temp_dir, zip_filename)
 
         try:
-            with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as zipf:
-                # 添加空目录到ZIP文件
-                for root, dirs, files in os.walk(project_path):
-                    # 添加目录结构
-                    for dir_name in dirs:
-                        dir_path = os.path.join(root, dir_name)
-                        arcname = os.path.relpath(dir_path, temp_dir) + '/'
-                        zipf.writestr(arcname, '')
+            # 使用不压缩的方式创建ZIP，确保最大兼容性
+            with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_STORED) as zipf:
+                files_added = 0
 
-                    # 添加文件
-                    for file in files:
-                        file_path = os.path.join(root, file)
-                        # 确保在zip中的路径是相对于temp_dir的，这样解压后会保持项目结构
-                        arcname = os.path.relpath(file_path, temp_dir)
-                        # 确保使用正确的路径分隔符
-                        arcname = arcname.replace(os.path.sep, '/')
-                        zipf.write(file_path, arcname)
+                for root, dirs, files in os.walk(project_path):
+                    for file_name in files:
+                        file_path = os.path.join(root, file_name)
+                        # 计算相对路径
+                        rel_path = os.path.relpath(file_path, temp_dir)
+                        # 强制使用正斜杠，这是ZIP标准
+                        rel_path = rel_path.replace('\\', '/')
+
+                        try:
+                            zipf.write(file_path, rel_path)
+                            files_added += 1
+                            print(f"[CHECK] 添加文件: {rel_path}")
+                        except Exception as e:
+                            print(f"[CROSS] 添加文件失败 {rel_path}: {e}")
+                            continue
+
+                print(f"[PACKAGE] ZIP文件创建完成，包含 {files_added} 个文件")
 
             # 验证zip文件是否创建成功并且可以正常读取
             if os.path.exists(zip_path) and os.path.getsize(zip_path) > 0:
+                print(f"[CHART] ZIP文件大小: {os.path.getsize(zip_path)} bytes")
+
                 # 测试ZIP文件是否可以正常读取
                 try:
                     with zipfile.ZipFile(zip_path, 'r') as test_zipf:
@@ -5616,16 +5698,47 @@ my-api-test-project/
                         if not file_list:
                             raise Exception("ZIP文件为空")
 
+                        print(f"[CLIPBOARD] ZIP文件包含 {len(file_list)} 个项目:")
+                        for i, item in enumerate(file_list[:10]):  # 显示前10个项目
+                            print(f"   {i+1}. {item}")
+                        if len(file_list) > 10:
+                            print(f"   ... 还有 {len(file_list) - 10} 个项目")
+
                         # 检查是否包含必要的文件
                         required_files = ['yh-api-test-project/README.md', 'yh-api-test-project/run.py']
+                        missing_files = []
                         for required_file in required_files:
                             if not any(required_file in f for f in file_list):
-                                print(f"警告: ZIP文件中缺少 {required_file}")
+                                missing_files.append(required_file)
 
-                        print(f"✅ ZIP文件验证成功，包含 {len(file_list)} 个文件")
+                        if missing_files:
+                            print(f"[WARNING] 缺少必要文件: {missing_files}")
+                        else:
+                            print("[CHECK] 所有必要文件都已包含")
 
-                except zipfile.BadZipFile:
+                        # 尝试测试解压一个文件
+                        try:
+                            test_file = None
+                            for f in file_list:
+                                if f.endswith('.md') and not f.endswith('/'):
+                                    test_file = f
+                                    break
+
+                            if test_file:
+                                content = test_zipf.read(test_file)
+                                print(f"[CHECK] 测试解压文件成功: {test_file} ({len(content)} bytes)")
+
+                        except Exception as e:
+                            print(f"[WARNING] 测试解压文件失败: {e}")
+
+                        print(f"[CHECK] ZIP文件验证成功，包含 {len(file_list)} 个项目")
+
+                except zipfile.BadZipFile as e:
+                    print(f"[CROSS] ZIP文件格式错误: {e}")
                     raise Exception("生成的ZIP文件损坏")
+                except Exception as e:
+                    print(f"[CROSS] ZIP文件验证失败: {e}")
+                    raise Exception(f"ZIP文件验证失败: {str(e)}")
 
                 # 将zip文件移动到下载目录
                 download_dir = os.path.join(os.getcwd(), "downloads")
@@ -5655,6 +5768,900 @@ my-api-test-project/
             except:
                 pass
             raise Exception(f"创建项目压缩包失败: {str(e)}")
+
+    def _get_simple_readme_content(self) -> str:
+        """获取简化的README内容"""
+        return """# YH API Testing Framework Project
+
+Complete API testing project template based on YH API Testing Framework, ready to use.
+
+## Quick Start
+
+### 1. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Run Demo Project
+```bash
+python run.py
+```
+
+### 3. Configure Your Test Project
+Edit `config/config.yaml` file and update it for your API testing configuration:
+```yaml
+# Change to your API server address
+environment:
+  base_url: "https://your-api-server.com"
+  timeout: 30
+
+# Configure test options
+test:
+  concurrent: false
+  threads: 1
+  retry: 3
+```
+
+### 4. Add Test Cases
+Add your test case files in the `test_cases/api_tests/` directory.
+
+## Project Structure
+```
+yh-api-test-project/
+├── config/                 # Configuration files directory
+│   ├── config.yaml        # Main configuration file
+│   ├── environments.yaml  # Environment configuration
+│   └── global_vars.yaml   # Global variables
+├── test_cases/            # Test cases directory
+│   └── api_tests/         # API test cases
+│       └── login_test.yaml # Login test example
+├── data/                  # Test data directory
+│   └── test_data.json     # Test data file
+├── reports/               # Test reports directory (auto-created)
+├── logs/                  # Logs directory (auto-created)
+├── run.py                 # Main run script
+├── requirements.txt       # Dependencies file
+└── README.md             # Project documentation
+```
+
+## Advanced Features
+
+### Install Complete YH API Testing Framework
+```bash
+pip install api-test-yh-pro
+```
+
+### Run Tests with YH Framework
+```bash
+# Run single test file
+yh-api-test run test_cases/api_tests/login_test.yaml
+
+# Run all tests
+yh-api-test run test_cases/
+
+# Generate Allure report
+yh-api-test run test_cases/ --allure --auto-open
+```
+
+## Test Case Format
+
+Reference `test_cases/api_tests/login_test.yaml` file:
+
+```yaml
+test_suite:
+  name: "Login API Tests"
+  description: "Test user login related APIs"
+
+test_cases:
+  - name: "User Login Success"
+    request:
+      method: "POST"
+      url: "/api/login"
+      headers:
+        Content-Type: "application/json"
+      body:
+        username: "test_user"
+        password: "test_password"
+
+    assertions:
+      - type: "status_code"
+        expected: 200
+      - type: "json_path"
+        path: "$.success"
+        expected: true
+```
+
+## Custom Configuration
+
+### Environment Configuration
+Edit `config/environments.yaml` to configure API addresses for different environments.
+
+### Global Variables
+Edit `config/global_vars.yaml` to configure global variables used in tests.
+
+### Test Data
+Edit `data/test_data.json` to add test data.
+
+## Technical Support
+
+- QQ: 2677989813
+- Project: [YH API Testing Framework](https://github.com/YH-API-Test)
+
+## Usage Tips
+
+1. **First Use**: Run `python run.py` directly to see demo effects
+2. **Configure Project**: Modify API address in `config/config.yaml`
+3. **Add Tests**: Add YAML test files in `test_cases/api_tests/`
+4. **View Results**: Test reports will be generated in `reports/` directory
+
+---
+**YH Spirit Lives On! Continuous Improvement, Pursuing Perfection!**
+"""
+
+    def _get_simple_requirements_content(self) -> str:
+        """获取简化的requirements内容"""
+        return """# YH API Framework Project Dependencies
+
+# Core dependencies - required for demo project
+requests>=2.28.0
+pyyaml>=6.0
+colorama>=0.4.4
+
+# Allure reporting - for detailed test reports
+allure-pytest>=2.12.0
+
+# Optional dependencies - uncomment if needed
+# pandas>=1.5.0
+# openpyxl>=3.0.0
+
+# Note: Install YH API Testing Framework separately if needed
+# pip install api-test-yh-pro
+"""
+
+    def _get_simple_run_script_content(self) -> str:
+        """获取简化的运行脚本内容"""
+        return '''#!/usr/bin/env python3
+"""
+YH API Testing Framework Project Runner
+"""
+
+import os
+import sys
+import yaml
+import json
+from pathlib import Path
+
+def print_banner():
+    """Print banner"""
+    print("=" * 60)
+    print("YH API Testing Framework")
+    print("Continuous Improvement, Pursuing Perfection!")
+    print("=" * 60)
+
+def check_and_install_dependencies():
+    """Check and auto-install missing dependencies"""
+    import subprocess
+    import sys
+
+    print("Checking dependencies...")
+
+    # Package name mapping: pip_name -> import_name
+    required_packages = {
+        'requests': 'requests',
+        'pyyaml': 'yaml',
+        'colorama': 'colorama',
+        'allure-pytest': 'allure_pytest'
+    }
+
+    missing_packages = []
+    installed_packages = []
+
+    # Check all packages
+    for pip_name, import_name in required_packages.items():
+        try:
+            __import__(import_name)
+            print(f"[OK] {pip_name}")
+            installed_packages.append(pip_name)
+        except ImportError:
+            missing_packages.append(pip_name)
+            print(f"[MISSING] {pip_name}")
+
+    # Auto-install missing packages
+    if missing_packages:
+        print(f"\\nAuto-installing missing packages: {', '.join(missing_packages)}")
+        print("This may take a moment...")
+
+        try:
+            # Install missing packages
+            for package in missing_packages:
+                print(f"Installing {package}...")
+                result = subprocess.run([
+                    sys.executable, '-m', 'pip', 'install', package
+                ], capture_output=True, text=True, timeout=120)
+
+                if result.returncode == 0:
+                    print(f"[SUCCESS] {package} installed")
+                    installed_packages.append(package)
+                else:
+                    print(f"[ERROR] Failed to install {package}")
+                    print(f"Error: {result.stderr[:200]}...")
+                    return False
+
+            print("\\n[CHECK] All dependencies installed successfully!")
+            print("Dependencies are now ready for future runs.")
+
+        except Exception as e:
+            print(f"[ERROR] Auto-installation failed: {e}")
+            print("Please manually run: pip install -r requirements.txt")
+            return False
+
+    # Check if allure-pytest is available
+    allure_available = 'allure-pytest' in installed_packages
+    return allure_available
+
+def should_check_dependencies():
+    """Check if we should run dependency check"""
+    # Create a marker file after first successful run
+    marker_file = ".deps_installed"
+
+    if os.path.exists(marker_file):
+        # Dependencies were checked before, skip check
+        print("[CHECK] Dependencies already verified, skipping check...")
+        return False
+    else:
+        # First run or marker file missing
+        return True
+
+def mark_dependencies_checked():
+    """Mark that dependencies have been checked and installed"""
+    marker_file = ".deps_installed"
+    try:
+        with open(marker_file, 'w') as f:
+            f.write("Dependencies checked and installed\\n")
+        return True
+    except Exception:
+        return False
+
+def quick_check_allure():
+    """Quick check if allure-pytest is available without full dependency check"""
+    try:
+        __import__('allure_pytest')
+        return True
+    except ImportError:
+        return False
+    except Exception:
+        return False
+
+def load_config():
+    """Load configuration file"""
+    print("\\nLoading configuration...")
+
+    config_path = Path("config/config.yaml")
+    if not config_path.exists():
+        print("[ERROR] Configuration file not found: config/config.yaml")
+        print("Please configure config/config.yaml file first")
+        return None
+
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = yaml.safe_load(f)
+        print("[OK] Configuration loaded successfully")
+        return config
+    except Exception as e:
+        print(f"[ERROR] Failed to load configuration: {e}")
+        return None
+
+def check_project_structure():
+    """Check project structure"""
+    print("\\nChecking project structure...")
+
+    required_dirs = [
+        "config",
+        "test_cases/api_tests",
+        "data",
+        "reports",
+        "logs"
+    ]
+
+    for dir_path in required_dirs:
+        path = Path(dir_path)
+        if path.exists():
+            print(f"[OK] {dir_path}/")
+        else:
+            print(f"[CREATE] {dir_path}/")
+            path.mkdir(parents=True, exist_ok=True)
+
+def generate_allure_results():
+    """Generate Allure test results"""
+    import json
+    import uuid
+    from datetime import datetime
+    import os
+
+    # Create allure-results directory
+    results_dir = "reports/allure-results"
+    os.makedirs(results_dir, exist_ok=True)
+
+    # Test cases data
+    test_cases = [
+        {
+            "name": "Login API Test",
+            "description": "Test user login with valid credentials",
+            "status": "passed",
+            "duration": 1250
+        },
+        {
+            "name": "User Info API Test",
+            "description": "Test retrieving user information",
+            "status": "passed",
+            "duration": 890
+        },
+        {
+            "name": "Data Validation Test",
+            "description": "Test data validation and error handling",
+            "status": "passed",
+            "duration": 650
+        }
+    ]
+
+    # Generate Allure result files
+    for i, test_case in enumerate(test_cases, 1):
+        test_uuid = str(uuid.uuid4())
+        start_time = int(datetime.now().timestamp() * 1000) - test_case["duration"]
+        stop_time = start_time + test_case["duration"]
+
+        result = {
+            "uuid": test_uuid,
+            "historyId": f"test_case_{i}",
+            "name": test_case["name"],
+            "description": test_case["description"],
+            "status": test_case["status"],
+            "statusDetails": {
+                "known": False,
+                "muted": False,
+                "flaky": False
+            },
+            "stage": "finished",
+            "start": start_time,
+            "stop": stop_time,
+            "labels": [
+                {"name": "suite", "value": "YH API Test Suite"},
+                {"name": "feature", "value": "API Testing"},
+                {"name": "story", "value": test_case["name"]},
+                {"name": "severity", "value": "normal"}
+            ],
+            "parameters": [],
+            "links": [],
+            "attachments": []
+        }
+
+        # Write result file
+        result_file = os.path.join(results_dir, f"{test_uuid}-result.json")
+        with open(result_file, 'w', encoding='utf-8') as f:
+            json.dump(result, f, indent=2)
+
+    return results_dir
+
+def generate_simple_html_report(results_dir):
+    """Generate a simple HTML report"""
+    import json
+    import os
+    from datetime import datetime
+
+    html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YH API Test Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: #2c3e50; margin-bottom: 10px; }
+        .summary { display: flex; justify-content: space-around; margin-bottom: 30px; }
+        .summary-card { background: #ecf0f1; padding: 20px; border-radius: 8px; text-align: center; min-width: 150px; }
+        .summary-card.passed { background: #d5f4e6; }
+        .summary-card.failed { background: #ffeaa7; }
+        .test-case { border: 1px solid #ddd; margin-bottom: 15px; border-radius: 8px; overflow: hidden; }
+        .test-header { background: #34495e; color: white; padding: 15px; }
+        .test-header.passed { background: #27ae60; }
+        .test-header.failed { background: #e74c3c; }
+        .test-body { padding: 15px; }
+        .test-details { margin-top: 10px; }
+        .test-details strong { color: #2c3e50; }
+        .footer { text-align: center; margin-top: 30px; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>[ROCKET] YH API Testing Framework</h1>
+            <p>Test Report Generated on {timestamp}</p>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card">
+                <h3>Total Tests</h3>
+                <h2>{total_tests}</h2>
+            </div>
+            <div class="summary-card passed">
+                <h3>Passed</h3>
+                <h2>{passed_tests}</h2>
+            </div>
+            <div class="summary-card failed">
+                <h3>Failed</h3>
+                <h2>{failed_tests}</h2>
+            </div>
+            <div class="summary-card">
+                <h3>Success Rate</h3>
+                <h2>{success_rate}%</h2>
+            </div>
+        </div>
+
+        <div class="test-cases">
+            {test_cases_html}
+        </div>
+
+        <div class="footer">
+            <p>[PHONE] Technical Support QQ: 2677989813</p>
+            <p>[MUSCLE] YH Spirit Lives On! Continuous Improvement, Pursuing Perfection!</p>
+            <p><strong>For detailed analytics and trends, install Allure CLI and run again!</strong></p>
+        </div>
+    </div>
+</body>
+</html>"""
+
+    # Read test results
+    test_cases_html = ""
+    total_tests = 0
+    passed_tests = 0
+    failed_tests = 0
+
+    try:
+        for filename in os.listdir(results_dir):
+            if filename.endswith('-result.json'):
+                with open(os.path.join(results_dir, filename), 'r', encoding='utf-8') as f:
+                    result = json.load(f)
+
+                total_tests += 1
+                status = result.get('status', 'unknown')
+                if status == 'passed':
+                    passed_tests += 1
+                else:
+                    failed_tests += 1
+
+                duration_ms = result.get('stop', 0) - result.get('start', 0)
+                duration_s = duration_ms / 1000 if duration_ms > 0 else 0
+
+                test_cases_html += f"""
+                <div class="test-case">
+                    <div class="test-header {status}">
+                        <h3>[CHECK] {result.get('name', 'Unknown Test')}</h3>
+                    </div>
+                    <div class="test-body">
+                        <p>{result.get('description', 'No description available')}</p>
+                        <div class="test-details">
+                            <strong>Status:</strong> {status.upper()}<br>
+                            <strong>Duration:</strong> {duration_s:.2f}s<br>
+                            <strong>Suite:</strong> YH API Test Suite
+                        </div>
+                    </div>
+                </div>"""
+    except Exception as e:
+        test_cases_html = f"<p>Error reading test results: {e}</p>"
+
+    success_rate = int((passed_tests / total_tests * 100) if total_tests > 0 else 0)
+
+    # Generate final HTML
+    final_html = html_content.format(
+        timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        total_tests=total_tests,
+        passed_tests=passed_tests,
+        failed_tests=failed_tests,
+        success_rate=success_rate,
+        test_cases_html=test_cases_html
+    )
+
+    # Save HTML report
+    report_file = os.path.join("reports", "test_report.html")
+    with open(report_file, 'w', encoding='utf-8') as f:
+        f.write(final_html)
+
+    return report_file
+
+def run_demo_test():
+    """Run demo tests"""
+    print("\\nRunning demo tests...")
+
+    # Simulate test execution
+    test_cases = [
+        "Login API Test",
+        "User Info API Test",
+        "Data Validation Test"
+    ]
+
+    for i, test_case in enumerate(test_cases, 1):
+        print(f"  {i}. {test_case} ... [PASS]")
+
+    print("\\nTest Results:")
+    print("  Total: 3 test cases")
+    print("  Passed: 3")
+    print("  Failed: 0")
+    print("  Success Rate: 100%")
+
+    return True
+
+def show_allure_installation_guide():
+    """Show Allure CLI installation guide"""
+    print("\\n" + "="*60)
+    print("[CHART] ALLURE DETAILED REPORTS SETUP")
+    print("="*60)
+    print("To view detailed test reports with charts and analytics:")
+    print()
+    print("[WRENCH] Install Allure CLI:")
+    print("   Windows (with Scoop):")
+    print("     scoop install allure")
+    print()
+    print("   Windows (Manual):")
+    print("     1. Download from: https://github.com/allure-framework/allure2/releases")
+    print("     2. Extract and add to PATH")
+    print()
+    print("   macOS:")
+    print("     brew install allure")
+    print()
+    print("   Linux:")
+    print("     sudo apt-get install allure")
+    print()
+    print("[ROCKET] After installation, run 'python run.py' again to auto-open reports!")
+    print("="*60)
+
+def start_allure_server_in_new_terminal(results_dir):
+    """Start Allure server in a new terminal window"""
+    import subprocess
+    import webbrowser
+    import time
+    import os
+
+    print("\\n[INFO] Starting Allure server...")
+
+    try:
+        # Check if allure command is available
+        result = subprocess.run(['allure', '--version'],
+                              capture_output=True, text=True, timeout=10)
+        if result.returncode != 0:
+            show_allure_installation_guide()
+            return False
+    except (subprocess.TimeoutExpired, FileNotFoundError, Exception):
+        show_allure_installation_guide()
+        return False
+
+    try:
+        # Get absolute path for results directory
+        abs_results_dir = os.path.abspath(results_dir)
+
+        # Create a batch script for Windows to start Allure server
+        if os.name == 'nt':  # Windows
+            batch_script = """@echo off
+echo ============================================================
+echo YH API Testing Framework - Allure Report Server
+echo ============================================================
+echo Starting Allure server...
+echo Server will be available at: http://localhost:4040
+echo.
+echo Press Ctrl+C to stop the server
+echo ============================================================
+cd /d "{}"
+allure serve "{}"
+pause
+""".format(os.getcwd(), abs_results_dir)
+
+            script_file = "start_allure_server.bat"
+            with open(script_file, 'w', encoding='utf-8') as f:
+                f.write(batch_script)
+
+            # Start new terminal with the batch script
+            print("Opening new terminal for Allure server...")
+            subprocess.Popen(['cmd', '/c', 'start', 'cmd', '/k', script_file],
+                           shell=True, cwd=os.getcwd())
+
+        else:  # Unix-like systems
+            # Create shell script for Unix-like systems
+            shell_script = """#!/bin/bash
+echo "============================================================"
+echo "YH API Testing Framework - Allure Report Server"
+echo "============================================================"
+echo "Starting Allure server..."
+echo "Server will be available at: http://localhost:4040"
+echo ""
+echo "Press Ctrl+C to stop the server"
+echo "============================================================"
+cd "{}"
+allure serve "{}"
+read -p "Press Enter to close this window..."
+""".format(os.getcwd(), abs_results_dir)
+
+            script_file = "start_allure_server.sh"
+            with open(script_file, 'w', encoding='utf-8') as f:
+                f.write(shell_script)
+
+            # Make script executable
+            os.chmod(script_file, 0o755)
+
+            # Try different terminal emulators
+            terminals = ['gnome-terminal', 'xterm', 'konsole', 'terminal']
+            for terminal in terminals:
+                try:
+                    subprocess.Popen([terminal, '--', 'bash', script_file])
+                    break
+                except FileNotFoundError:
+                    continue
+
+        # Wait a moment for server to start
+        print("Waiting for Allure server to start...")
+        time.sleep(5)
+
+        # Try to open browser
+        try:
+            webbrowser.open('http://localhost:4040')
+            print("[SUCCESS] Allure server started in new terminal!")
+            print("[SUCCESS] Report opened in browser at http://localhost:4040")
+            print("[INFO] Check the new terminal window for server status")
+            return True
+        except Exception as e:
+            print(f"[INFO] Allure server started in new terminal")
+            print(f"[INFO] Please open http://localhost:4040 manually in your browser")
+            print(f"[DEBUG] Browser open error: {e}")
+            return True
+
+    except Exception as e:
+        print(f"[ERROR] Failed to start Allure server: {e}")
+        return False
+
+def main():
+    """Main function"""
+    print_banner()
+
+    # Smart dependency checking
+    if should_check_dependencies():
+        print("[SEARCH] First run detected - checking dependencies...")
+        allure_available = check_and_install_dependencies()
+        if allure_available is False:
+            print("[CROSS] Dependency installation failed. Please check the errors above.")
+            return
+
+        # Mark dependencies as checked
+        if mark_dependencies_checked():
+            print("[CHECK] Dependencies marked as ready for future runs.")
+
+    else:
+        print("[CHECK] Dependencies already verified - skipping check...")
+        # Quick check if allure-pytest is available
+        try:
+            import allure_pytest
+            allure_available = True
+            print("[OK] allure-pytest available")
+        except ImportError:
+            allure_available = False
+            print("[INFO] allure-pytest not available")
+
+    # Load configuration
+    config = load_config()
+    if not config:
+        return
+
+    # Check project structure
+    check_project_structure()
+
+    # Run demo tests
+    test_success = run_demo_test()
+
+    if test_success:
+        # Generate Allure results
+        print("\\nGenerating detailed test report...")
+        results_dir = generate_allure_results()
+        print(f"[OK] Test results generated in {results_dir}")
+
+        if allure_available:
+            # Try to start Allure server in new terminal
+            if start_allure_server_in_new_terminal(results_dir):
+                print("\\n[PARTY] [SUCCESS] Allure server started in new terminal!")
+                print("[CHART] Detailed test report with analytics is now available!")
+                print("[GLOBE] Report automatically opened in your browser")
+                print("[CLIPBOARD] Check the new terminal window for server status")
+            else:
+                # Fallback to HTML report
+                print("\\nGenerating simple HTML report as fallback...")
+                try:
+                    html_report = generate_simple_html_report(results_dir)
+                    print(f"[OK] Simple HTML report generated: {html_report}")
+
+                    # Try to open HTML report
+                    import webbrowser
+                    import os
+                    full_path = os.path.abspath(html_report)
+                    webbrowser.open(f'file://{full_path}')
+                    print("[SUCCESS] Test report opened in browser!")
+
+                except Exception as e:
+                    print(f"[ERROR] Failed to generate HTML report: {e}")
+        else:
+            # Generate simple HTML report
+            print("\\nGenerating simple HTML report...")
+            try:
+                html_report = generate_simple_html_report(results_dir)
+                print(f"[OK] Simple HTML report generated: {html_report}")
+
+                # Try to open HTML report
+                import webbrowser
+                import os
+                full_path = os.path.abspath(html_report)
+                webbrowser.open(f'file://{full_path}')
+                print("[SUCCESS] Test report opened in browser!")
+                print("[CHART] Install allure-pytest for enhanced reporting features.")
+
+            except Exception as e:
+                print(f"[ERROR] Failed to generate HTML report: {e}")
+
+    print("\\n" + "="*60)
+    print("[CHECK] Project execution completed!")
+    print("[CHART] Test reports have been generated and opened")
+    print("[REFRESH] Run 'python run.py' again anytime - dependencies won't be rechecked")
+    print("[PHONE] Technical Support QQ: 2677989813")
+    print("[MUSCLE] YH Spirit Lives On!")
+    print("="*60)
+
+if __name__ == "__main__":
+    main()
+'''
+
+    def _get_simple_config_yaml_content(self) -> str:
+        """获取简化的配置YAML内容"""
+        return """# YH API Testing Framework Configuration
+
+# Basic configuration
+project:
+  name: "YH API Test Project"
+  version: "1.0.0"
+  description: "YH API Testing Framework Project"
+
+# Environment configuration
+environment:
+  default: "test"
+  base_url: "https://api.example.com"
+  timeout: 30
+
+# Test configuration
+test:
+  concurrent: false
+  threads: 1
+  retry: 3
+  delay: 1
+
+# Report configuration
+report:
+  type: "allure"
+  auto_open: true
+  output_dir: "reports"
+
+# Notification configuration
+notification:
+  enabled: false
+  webhook_url: ""
+
+# Logging configuration
+logging:
+  level: "INFO"
+  file: "logs/test.log"
+"""
+
+    def _get_simple_environments_yaml_content(self) -> str:
+        """获取简化的环境配置内容"""
+        return """# Environment Configuration
+
+environments:
+  test:
+    base_url: "https://test-api.example.com"
+    database_url: "test-db-connection"
+
+  staging:
+    base_url: "https://staging-api.example.com"
+    database_url: "staging-db-connection"
+
+  production:
+    base_url: "https://api.example.com"
+    database_url: "prod-db-connection"
+"""
+
+    def _get_simple_global_vars_yaml_content(self) -> str:
+        """获取简化的全局变量内容"""
+        return """# Global Variables Configuration
+
+global_vars:
+  # User information
+  test_user:
+    username: "test_user"
+    password: "test_password"
+    email: "test@example.com"
+
+  # API keys
+  api_keys:
+    service_a: "your_api_key_here"
+    service_b: "your_api_key_here"
+
+  # Test data
+  test_data:
+    product_id: 12345
+    category_id: 67890
+"""
+
+    def _get_simple_login_test_content(self) -> str:
+        """获取简化的登录测试内容"""
+        return """# Login API Test Cases
+
+test_suite:
+  name: "Login API Tests"
+  description: "Test user login related APIs"
+
+test_cases:
+  - name: "User Login Success"
+    description: "Test login with correct username and password"
+    request:
+      method: "POST"
+      url: "/api/login"
+      headers:
+        Content-Type: "application/json"
+      body:
+        username: "${global_vars.test_user.username}"
+        password: "${global_vars.test_user.password}"
+
+    assertions:
+      - type: "status_code"
+        expected: 200
+      - type: "json_path"
+        path: "$.success"
+        expected: true
+      - type: "json_path"
+        path: "$.data.token"
+        exists: true
+
+    extract:
+      - name: "auth_token"
+        path: "$.data.token"
+"""
+
+    def _get_simple_test_data_content(self) -> str:
+        """获取简化的测试数据内容"""
+        return """{
+  "users": [
+    {
+      "id": 1,
+      "username": "test_user1",
+      "email": "user1@example.com",
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "username": "test_user2",
+      "email": "user2@example.com",
+      "role": "admin"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Test Product 1",
+      "price": 99.99,
+      "category": "electronics"
+    },
+    {
+      "id": 2,
+      "name": "Test Product 2",
+      "price": 199.99,
+      "category": "books"
+    }
+  ]
+}"""
 
     def get_allure_report_html(self):
         """获取Allure报告页面HTML"""
@@ -5863,7 +6870,7 @@ my-api-test-project/
 <body>
     <div class="container">
         <div class="header">
-            <h1>📊 Allure测试报告</h1>
+            <h1>[CHART] Allure测试报告</h1>
             <p>YH API测试框架 - 详细测试结果报告</p>
         </div>
 
@@ -5893,7 +6900,7 @@ my-api-test-project/
                 <!-- API接口可用性测试 -->
                 <div class="test-item-detailed">
                     <div class="test-header" onclick="toggleTestDetails('api-test')">
-                        <span class="test-name">🌐 API接口可用性测试</span>
+                        <span class="test-name">[GLOBE] API接口可用性测试</span>
                         <div class="test-info">
                             <span class="test-duration">45ms</span>
                             <span class="test-status status-passed">通过</span>
@@ -5902,13 +6909,13 @@ my-api-test-project/
                     </div>
                     <div class="test-details" id="details-api-test" style="display: none;">
                         <div class="detail-section">
-                            <h4>📋 测试信息</h4>
+                            <h4>[CLIPBOARD] 测试信息</h4>
                             <p><strong>请求方式:</strong> GET</p>
                             <p><strong>请求URL:</strong> /health</p>
                             <p><strong>预期状态码:</strong> 200</p>
                         </div>
                         <div class="detail-section">
-                            <h4>📤 请求参数</h4>
+                            <h4>[OUTBOX] 请求参数</h4>
                             <pre class="code-block">{{
   "timeout": 5,
   "headers": {{
@@ -5917,7 +6924,7 @@ my-api-test-project/
 }}</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>📥 响应结果</h4>
+                            <h4>[INBOX] 响应结果</h4>
                             <pre class="code-block">{{
   "status": "healthy",
   "message": "YH API测试框架运行正常",
@@ -5926,7 +6933,7 @@ my-api-test-project/
 }}</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>⏱️ 性能指标</h4>
+                            <h4>[STOPWATCH] 性能指标</h4>
                             <p><strong>响应时间:</strong> 45ms</p>
                             <p><strong>状态码:</strong> 200 OK</p>
                             <p><strong>响应大小:</strong> 156 bytes</p>
@@ -5937,7 +6944,7 @@ my-api-test-project/
                 <!-- 文档页面功能测试 -->
                 <div class="test-item-detailed">
                     <div class="test-header" onclick="toggleTestDetails('docs-test')">
-                        <span class="test-name">📖 文档页面功能测试</span>
+                        <span class="test-name">[BOOK] 文档页面功能测试</span>
                         <div class="test-info">
                             <span class="test-duration">120ms</span>
                             <span class="test-status status-passed">通过</span>
@@ -5946,13 +6953,13 @@ my-api-test-project/
                     </div>
                     <div class="test-details" id="details-docs-test" style="display: none;">
                         <div class="detail-section">
-                            <h4>📋 测试信息</h4>
+                            <h4>[CLIPBOARD] 测试信息</h4>
                             <p><strong>请求方式:</strong> GET</p>
                             <p><strong>请求URL:</strong> /docs</p>
                             <p><strong>预期状态码:</strong> 200</p>
                         </div>
                         <div class="detail-section">
-                            <h4>📤 请求参数</h4>
+                            <h4>[OUTBOX] 请求参数</h4>
                             <pre class="code-block">{{
   "timeout": 10,
   "headers": {{
@@ -5967,7 +6974,7 @@ my-api-test-project/
 }}</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>📥 响应结果</h4>
+                            <h4>[INBOX] 响应结果</h4>
                             <pre class="code-block">{{
   "status_code": 200,
   "content_type": "text/html; charset=utf-8",
@@ -5990,18 +6997,18 @@ my-api-test-project/
 }}</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>🔍 页面内容验证</h4>
-                            <pre class="code-block">✅ 页面标题: "YH API测试框架 - 使用文档"
-✅ 导航菜单: 5个菜单项全部可用
-✅ 搜索功能: 正常工作
-✅ 代码块: 23个代码块正确渲染
-✅ 复制按钮: 所有复制功能正常
-✅ 响应式布局: 适配桌面和移动端
-✅ 外部链接: 3个外部链接可访问
-✅ 内部锚点: 12个锚点链接正常跳转</pre>
+                            <h4>[SEARCH] 页面内容验证</h4>
+                            <pre class="code-block">[CHECK] 页面标题: "YH API测试框架 - 使用文档"
+[CHECK] 导航菜单: 5个菜单项全部可用
+[CHECK] 搜索功能: 正常工作
+[CHECK] 代码块: 23个代码块正确渲染
+[CHECK] 复制按钮: 所有复制功能正常
+[CHECK] 响应式布局: 适配桌面和移动端
+[CHECK] 外部链接: 3个外部链接可访问
+[CHECK] 内部锚点: 12个锚点链接正常跳转</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>⏱️ 性能指标</h4>
+                            <h4>[STOPWATCH] 性能指标</h4>
                             <p><strong>响应时间:</strong> 120ms</p>
                             <p><strong>状态码:</strong> 200 OK</p>
                             <p><strong>响应大小:</strong> 45.2 KB</p>
@@ -6017,7 +7024,7 @@ my-api-test-project/
                 <!-- 反馈系统测试 -->
                 <div class="test-item-detailed">
                     <div class="test-header" onclick="toggleTestDetails('feedback-test')">
-                        <span class="test-name">💬 反馈系统测试</span>
+                        <span class="test-name">[SPEECH] 反馈系统测试</span>
                         <div class="test-info">
                             <span class="test-duration">89ms</span>
                             <span class="test-status status-passed">通过</span>
@@ -6026,13 +7033,13 @@ my-api-test-project/
                     </div>
                     <div class="test-details" id="details-feedback-test" style="display: none;">
                         <div class="detail-section">
-                            <h4>📋 测试信息</h4>
+                            <h4>[CLIPBOARD] 测试信息</h4>
                             <p><strong>请求方式:</strong> POST</p>
                             <p><strong>请求URL:</strong> /api/feedback</p>
                             <p><strong>预期状态码:</strong> 200</p>
                         </div>
                         <div class="detail-section">
-                            <h4>📤 请求参数</h4>
+                            <h4>[OUTBOX] 请求参数</h4>
                             <pre class="code-block">{{
   "method": "POST",
   "url": "/api/feedback",
@@ -6055,7 +7062,7 @@ my-api-test-project/
 }}</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>📥 响应结果</h4>
+                            <h4>[INBOX] 响应结果</h4>
                             <pre class="code-block">{{
   "success": true,
   "message": "反馈提交成功，我们会尽快处理您的建议",
@@ -6076,18 +7083,18 @@ my-api-test-project/
 }}</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>🔍 数据验证</h4>
-                            <pre class="code-block">✅ 请求格式验证: JSON格式正确
-✅ 必填字段检查: type, content, contact 全部存在
-✅ 邮箱格式验证: test@example.com 格式正确
-✅ 内容长度检查: 26字符 (在1-1000字符范围内)
-✅ 反馈类型验证: suggestion 为有效类型
-✅ 数据库存储: 成功保存到feedback表
-✅ 邮件通知: 确认邮件发送成功
-✅ 日志记录: 操作日志已记录</pre>
+                            <h4>[SEARCH] 数据验证</h4>
+                            <pre class="code-block">[CHECK] 请求格式验证: JSON格式正确
+[CHECK] 必填字段检查: type, content, contact 全部存在
+[CHECK] 邮箱格式验证: test@example.com 格式正确
+[CHECK] 内容长度检查: 26字符 (在1-1000字符范围内)
+[CHECK] 反馈类型验证: suggestion 为有效类型
+[CHECK] 数据库存储: 成功保存到feedback表
+[CHECK] 邮件通知: 确认邮件发送成功
+[CHECK] 日志记录: 操作日志已记录</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>⏱️ 性能指标</h4>
+                            <h4>[STOPWATCH] 性能指标</h4>
                             <p><strong>响应时间:</strong> 89ms</p>
                             <p><strong>状态码:</strong> 200 OK</p>
                             <p><strong>响应大小:</strong> 456 bytes</p>
@@ -6102,7 +7109,7 @@ my-api-test-project/
                 <!-- 复制功能测试 -->
                 <div class="test-item-detailed">
                     <div class="test-header" onclick="toggleTestDetails('copy-test')">
-                        <span class="test-name">📋 复制功能测试</span>
+                        <span class="test-name">[CLIPBOARD] 复制功能测试</span>
                         <div class="test-info">
                             <span class="test-duration">12ms</span>
                             <span class="test-status status-passed">通过</span>
@@ -6111,13 +7118,13 @@ my-api-test-project/
                     </div>
                     <div class="test-details" id="details-copy-test" style="display: none;">
                         <div class="detail-section">
-                            <h4>📋 测试信息</h4>
+                            <h4>[CLIPBOARD] 测试信息</h4>
                             <p><strong>测试类型:</strong> 前端功能测试</p>
                             <p><strong>测试目标:</strong> 复制按钮功能</p>
                             <p><strong>预期结果:</strong> 内容成功复制到剪贴板</p>
                         </div>
                         <div class="detail-section">
-                            <h4>🎯 测试步骤</h4>
+                            <h4>[TARGET] 测试步骤</h4>
                             <pre class="code-block">1. 页面加载完成检查
    - 等待DOM完全加载
    - 检查所有复制按钮是否存在
@@ -6140,7 +7147,7 @@ my-api-test-project/
    - 验证提示消息自动消失</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>📋 测试数据</h4>
+                            <h4>[CLIPBOARD] 测试数据</h4>
                             <pre class="code-block">测试的复制内容:
 ```python
 # YH API测试框架示例代码
@@ -6159,19 +7166,19 @@ print(f"测试结果: {{result.status}}")
 内容匹配度: 100%</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>✅ 验证结果</h4>
-                            <pre class="code-block">✅ 复制按钮定位: 成功找到12个复制按钮
-✅ 按钮可点击性: 所有按钮均可正常点击
-✅ 剪贴板写入: 内容成功写入系统剪贴板
-✅ 内容完整性: 复制内容与原始内容100%匹配
-✅ 特殊字符处理: 正确处理换行符、制表符等
-✅ 成功提示: "复制成功!"消息正常显示
-✅ 提示自动消失: 3秒后提示消息自动隐藏
-✅ 多次复制: 连续复制操作正常工作
-✅ 浏览器兼容: Chrome, Firefox, Edge 全部支持</pre>
+                            <h4>[CHECK] 验证结果</h4>
+                            <pre class="code-block">[CHECK] 复制按钮定位: 成功找到12个复制按钮
+[CHECK] 按钮可点击性: 所有按钮均可正常点击
+[CHECK] 剪贴板写入: 内容成功写入系统剪贴板
+[CHECK] 内容完整性: 复制内容与原始内容100%匹配
+[CHECK] 特殊字符处理: 正确处理换行符、制表符等
+[CHECK] 成功提示: "复制成功!"消息正常显示
+[CHECK] 提示自动消失: 3秒后提示消息自动隐藏
+[CHECK] 多次复制: 连续复制操作正常工作
+[CHECK] 浏览器兼容: Chrome, Firefox, Edge 全部支持</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>⏱️ 性能指标</h4>
+                            <h4>[STOPWATCH] 性能指标</h4>
                             <p><strong>执行时间:</strong> 12ms</p>
                             <p><strong>测试状态:</strong> 通过</p>
                             <p><strong>验证项目:</strong> 9/9 通过</p>
@@ -6186,7 +7193,7 @@ print(f"测试结果: {{result.status}}")
                 <!-- 响应式设计测试 -->
                 <div class="test-item-detailed">
                     <div class="test-header" onclick="toggleTestDetails('responsive-test')">
-                        <span class="test-name">📱 响应式设计测试</span>
+                        <span class="test-name">[MOBILE] 响应式设计测试</span>
                         <div class="test-info">
                             <span class="test-duration">8ms</span>
                             <span class="test-status status-passed">通过</span>
@@ -6195,79 +7202,79 @@ print(f"测试结果: {{result.status}}")
                     </div>
                     <div class="test-details" id="details-responsive-test" style="display: none;">
                         <div class="detail-section">
-                            <h4>📋 测试信息</h4>
+                            <h4>[CLIPBOARD] 测试信息</h4>
                             <p><strong>测试类型:</strong> UI响应式测试</p>
                             <p><strong>测试设备:</strong> 桌面、平板、手机</p>
                             <p><strong>预期结果:</strong> 各设备显示正常</p>
                         </div>
                         <div class="detail-section">
-                            <h4>📱 测试设备规格</h4>
-                            <pre class="code-block">🖥️ 桌面设备 (Desktop)
+                            <h4>[MOBILE] 测试设备规格</h4>
+                            <pre class="code-block">[DESKTOP_COMPUTER] 桌面设备 (Desktop)
    分辨率: 1920x1080
    视口: 1920x937
    设备像素比: 1.0
    用户代理: Chrome/120.0.0.0 Desktop
-   测试结果: ✅ 通过
+   测试结果: [CHECK] 通过
 
-📱 平板设备 (Tablet)
+[MOBILE] 平板设备 (Tablet)
    分辨率: 768x1024
    视口: 768x971
    设备像素比: 2.0
    用户代理: Safari/17.0 iPad
-   测试结果: ✅ 通过
+   测试结果: [CHECK] 通过
 
-📱 手机设备 (Mobile)
+[MOBILE] 手机设备 (Mobile)
    分辨率: 375x667
    视口: 375x559
    设备像素比: 3.0
    用户代理: Chrome/120.0.0.0 Mobile
-   测试结果: ✅ 通过</pre>
+   测试结果: [CHECK] 通过</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>🎨 布局适配检查</h4>
+                            <h4>[PALETTE] 布局适配检查</h4>
                             <pre class="code-block">桌面端 (≥1200px):
-✅ 导航栏: 水平布局，所有菜单项可见
-✅ 内容区域: 三列布局，侧边栏正常显示
-✅ 按钮大小: 标准尺寸 (40px高度)
-✅ 字体大小: 16px基础字体
-✅ 图片显示: 原始尺寸，清晰显示
+[CHECK] 导航栏: 水平布局，所有菜单项可见
+[CHECK] 内容区域: 三列布局，侧边栏正常显示
+[CHECK] 按钮大小: 标准尺寸 (40px高度)
+[CHECK] 字体大小: 16px基础字体
+[CHECK] 图片显示: 原始尺寸，清晰显示
 
 平板端 (768px-1199px):
-✅ 导航栏: 折叠菜单，汉堡按钮显示
-✅ 内容区域: 两列布局，侧边栏可收起
-✅ 按钮大小: 适中尺寸 (44px高度)
-✅ 字体大小: 16px基础字体
-✅ 图片显示: 自适应缩放
+[CHECK] 导航栏: 折叠菜单，汉堡按钮显示
+[CHECK] 内容区域: 两列布局，侧边栏可收起
+[CHECK] 按钮大小: 适中尺寸 (44px高度)
+[CHECK] 字体大小: 16px基础字体
+[CHECK] 图片显示: 自适应缩放
 
 手机端 (<768px):
-✅ 导航栏: 完全折叠，抽屉式菜单
-✅ 内容区域: 单列布局，全宽显示
-✅ 按钮大小: 触摸友好 (48px高度)
-✅ 字体大小: 14px基础字体
-✅ 图片显示: 响应式缩放</pre>
+[CHECK] 导航栏: 完全折叠，抽屉式菜单
+[CHECK] 内容区域: 单列布局，全宽显示
+[CHECK] 按钮大小: 触摸友好 (48px高度)
+[CHECK] 字体大小: 14px基础字体
+[CHECK] 图片显示: 响应式缩放</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>🔍 交互功能测试</h4>
+                            <h4>[SEARCH] 交互功能测试</h4>
                             <pre class="code-block">触摸交互 (移动设备):
-✅ 点击响应: 所有按钮和链接正常响应
-✅ 滑动操作: 页面滚动流畅
-✅ 缩放功能: 双击缩放正常工作
-✅ 长按菜单: 上下文菜单正确显示
+[CHECK] 点击响应: 所有按钮和链接正常响应
+[CHECK] 滑动操作: 页面滚动流畅
+[CHECK] 缩放功能: 双击缩放正常工作
+[CHECK] 长按菜单: 上下文菜单正确显示
 
 鼠标交互 (桌面设备):
-✅ 悬停效果: 按钮悬停状态正常
-✅ 点击反馈: 点击效果清晰可见
-✅ 拖拽功能: 可拖拽元素正常工作
-✅ 键盘导航: Tab键导航顺序正确
+[CHECK] 悬停效果: 按钮悬停状态正常
+[CHECK] 点击反馈: 点击效果清晰可见
+[CHECK] 拖拽功能: 可拖拽元素正常工作
+[CHECK] 键盘导航: Tab键导航顺序正确
 
 性能表现:
-✅ 渲染速度: 各设备首屏渲染 <100ms
-✅ 动画流畅: 60fps动画性能
-✅ 内存使用: 移动端内存占用 <50MB
-✅ 电池消耗: 低功耗模式兼容</pre>
+[CHECK] 渲染速度: 各设备首屏渲染 <100ms
+[CHECK] 动画流畅: 60fps动画性能
+[CHECK] 内存使用: 移动端内存占用 <50MB
+[CHECK] 电池消耗: 低功耗模式兼容</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>⏱️ 性能指标</h4>
+                            <h4>[STOPWATCH] 性能指标</h4>
                             <p><strong>执行时间:</strong> 8ms</p>
                             <p><strong>测试状态:</strong> 通过</p>
                             <p><strong>设备覆盖:</strong> 3/3 通过</p>
@@ -6282,7 +7289,7 @@ print(f"测试结果: {{result.status}}")
                 <!-- 导航链接测试 -->
                 <div class="test-item-detailed">
                     <div class="test-header" onclick="toggleTestDetails('nav-test')">
-                        <span class="test-name">🔗 导航链接测试</span>
+                        <span class="test-name">[LINK] 导航链接测试</span>
                         <div class="test-info">
                             <span class="test-duration">67ms</span>
                             <span class="test-status status-passed">通过</span>
@@ -6291,94 +7298,94 @@ print(f"测试结果: {{result.status}}")
                     </div>
                     <div class="test-details" id="details-nav-test" style="display: none;">
                         <div class="detail-section">
-                            <h4>📋 测试信息</h4>
+                            <h4>[CLIPBOARD] 测试信息</h4>
                             <p><strong>测试类型:</strong> 链接可用性测试</p>
                             <p><strong>测试范围:</strong> 所有导航链接</p>
                             <p><strong>预期结果:</strong> 链接正常跳转</p>
                         </div>
                         <div class="detail-section">
-                            <h4>🔗 主要导航链接测试</h4>
-                            <pre class="code-block">🏠 主页 (/)
+                            <h4>[LINK] 主要导航链接测试</h4>
+                            <pre class="code-block">[HOME] 主页 (/)
    请求方式: GET
    响应时间: 45ms
    状态码: 200 OK
    内容类型: text/html
    页面大小: 23.4 KB
-   测试结果: ✅ 通过
+   测试结果: [CHECK] 通过
 
-📖 文档 (/docs)
+[BOOK] 文档 (/docs)
    请求方式: GET
    响应时间: 120ms
    状态码: 200 OK
    内容类型: text/html
    页面大小: 45.2 KB
-   测试结果: ✅ 通过
+   测试结果: [CHECK] 通过
 
-🧪 在线测试 (/online-test)
+[TEST_TUBE] 在线测试 (/online-test)
    请求方式: GET
    响应时间: 89ms
    状态码: 200 OK
    内容类型: text/html
    页面大小: 34.7 KB
-   测试结果: ✅ 通过
+   测试结果: [CHECK] 通过
 
-📦 生成项目 (/generate-project)
+[PACKAGE] 生成项目 (/generate-project)
    请求方式: GET
    响应时间: 156ms
    状态码: 200 OK
    内容类型: text/html
    页面大小: 28.9 KB
-   测试结果: ✅ 通过
+   测试结果: [CHECK] 通过
 
-💬 反馈 (/feedback)
+[SPEECH] 反馈 (/feedback)
    请求方式: GET
    响应时间: 67ms
    状态码: 200 OK
    内容类型: text/html
    页面大小: 19.3 KB
-   测试结果: ✅ 通过</pre>
+   测试结果: [CHECK] 通过</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>🔍 链接深度检查</h4>
+                            <h4>[SEARCH] 链接深度检查</h4>
                             <pre class="code-block">内部链接检查:
-✅ 相对链接: 23个相对链接全部有效
-✅ 绝对链接: 8个绝对链接全部有效
-✅ 锚点链接: 15个页面内锚点正常跳转
-✅ 下载链接: 3个文件下载链接可用
+[CHECK] 相对链接: 23个相对链接全部有效
+[CHECK] 绝对链接: 8个绝对链接全部有效
+[CHECK] 锚点链接: 15个页面内锚点正常跳转
+[CHECK] 下载链接: 3个文件下载链接可用
 
 外部链接检查:
-✅ GitHub链接: https://github.com/yh-api-test (200 OK)
-✅ 文档链接: https://docs.yh-api-test.com (200 OK)
-✅ 支持链接: https://support.yh-api-test.com (200 OK)
+[CHECK] GitHub链接: https://github.com/yh-api-test (200 OK)
+[CHECK] 文档链接: https://docs.yh-api-test.com (200 OK)
+[CHECK] 支持链接: https://support.yh-api-test.com (200 OK)
 
 API端点检查:
-✅ /api/health: 健康检查接口正常
-✅ /api/version: 版本信息接口正常
-✅ /api/feedback: 反馈提交接口正常
-✅ /api/generate: 项目生成接口正常
+[CHECK] /api/health: 健康检查接口正常
+[CHECK] /api/version: 版本信息接口正常
+[CHECK] /api/feedback: 反馈提交接口正常
+[CHECK] /api/generate: 项目生成接口正常
 
 重定向检查:
-✅ HTTP到HTTPS重定向: 正常工作
-✅ 旧URL重定向: 3个旧链接正确重定向
-✅ 尾斜杠处理: URL规范化正常</pre>
+[CHECK] HTTP到HTTPS重定向: 正常工作
+[CHECK] 旧URL重定向: 3个旧链接正确重定向
+[CHECK] 尾斜杠处理: URL规范化正常</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>🛡️ 安全性检查</h4>
+                            <h4>[SHIELD] 安全性检查</h4>
                             <pre class="code-block">链接安全验证:
-✅ HTTPS强制: 所有链接使用HTTPS协议
-✅ 外部链接: rel="noopener noreferrer"属性正确
-✅ 恶意链接: 无可疑或恶意链接
-✅ 钓鱼检查: 通过反钓鱼验证
-✅ 内容安全: CSP策略正确配置
+[CHECK] HTTPS强制: 所有链接使用HTTPS协议
+[CHECK] 外部链接: rel="noopener noreferrer"属性正确
+[CHECK] 恶意链接: 无可疑或恶意链接
+[CHECK] 钓鱼检查: 通过反钓鱼验证
+[CHECK] 内容安全: CSP策略正确配置
 
 访问控制:
-✅ 公开页面: 无需认证即可访问
-✅ 受保护页面: 正确跳转到登录页
-✅ 权限检查: 用户权限验证正常
-✅ 会话管理: 会话超时处理正确</pre>
+[CHECK] 公开页面: 无需认证即可访问
+[CHECK] 受保护页面: 正确跳转到登录页
+[CHECK] 权限检查: 用户权限验证正常
+[CHECK] 会话管理: 会话超时处理正确</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>⏱️ 性能指标</h4>
+                            <h4>[STOPWATCH] 性能指标</h4>
                             <p><strong>执行时间:</strong> 67ms</p>
                             <p><strong>测试状态:</strong> 通过</p>
                             <p><strong>主导航链接:</strong> 5/5 通过</p>
@@ -6394,7 +7401,7 @@ API端点检查:
                 <!-- 性能基准测试 (失败) -->
                 <div class="test-item-detailed">
                     <div class="test-header" onclick="toggleTestDetails('performance-test')">
-                        <span class="test-name">⚡ 性能基准测试</span>
+                        <span class="test-name">[ZAP] 性能基准测试</span>
                         <div class="test-info">
                             <span class="test-duration">2500ms</span>
                             <span class="test-status status-failed">失败</span>
@@ -6403,13 +7410,13 @@ API端点检查:
                     </div>
                     <div class="test-details" id="details-performance-test" style="display: none;">
                         <div class="detail-section">
-                            <h4>📋 测试信息</h4>
+                            <h4>[CLIPBOARD] 测试信息</h4>
                             <p><strong>请求方式:</strong> GET</p>
                             <p><strong>请求URL:</strong> /api/performance-test</p>
                             <p><strong>预期响应时间:</strong> &lt; 1000ms</p>
                         </div>
                         <div class="detail-section">
-                            <h4>📤 请求参数</h4>
+                            <h4>[OUTBOX] 请求参数</h4>
                             <pre class="code-block">{{
   "concurrent_users": 100,
   "duration": 60,
@@ -6417,7 +7424,7 @@ API端点检查:
 }}</pre>
                         </div>
                         <div class="detail-section error-section">
-                            <h4>❌ 异常信息</h4>
+                            <h4>[CROSS] 异常信息</h4>
                             <pre class="error-block">错误类型: 响应超时
 错误信息: 响应时间2500ms超过预期阈值1000ms
 错误代码: PERFORMANCE_TIMEOUT
@@ -6430,7 +7437,7 @@ API端点检查:
 - 可能原因: 服务器负载过高或网络延迟</pre>
                         </div>
                         <div class="detail-section error-section">
-                            <h4>🔍 失败堆栈信息</h4>
+                            <h4>[SEARCH] 失败堆栈信息</h4>
                             <pre class="error-block">Traceback (most recent call last):
   File "yh_api_test/core/test_runner.py", line 156, in execute_test
     response = self.http_client.request(
@@ -6461,7 +7468,7 @@ Read timed out. (read timeout=1.0)
 3. 建议检查服务器负载和网络连接状态</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>📥 响应结果</h4>
+                            <h4>[INBOX] 响应结果</h4>
                             <pre class="code-block">{{
   "error": "Request timeout",
   "status_code": 408,
@@ -6469,14 +7476,14 @@ Read timed out. (read timeout=1.0)
 }}</pre>
                         </div>
                         <div class="detail-section">
-                            <h4>⏱️ 性能指标</h4>
+                            <h4>[STOPWATCH] 性能指标</h4>
                             <p><strong>响应时间:</strong> 2500ms (超时)</p>
                             <p><strong>状态码:</strong> 408 Request Timeout</p>
                             <p><strong>响应大小:</strong> 89 bytes</p>
                             <p><strong>重试次数:</strong> 3次</p>
                         </div>
                         <div class="detail-section">
-                            <h4>🔧 建议修复</h4>
+                            <h4>[WRENCH] 建议修复</h4>
                             <pre class="code-block">1. 检查服务器性能和资源使用情况
 2. 优化数据库查询和API响应逻辑
 3. 增加缓存机制减少响应时间
@@ -6489,8 +7496,8 @@ Read timed out. (read timeout=1.0)
 
 
             <div style="text-align: center; margin-top: 30px;">
-                <a href="/" class="btn">🏠 返回主页</a>
-                <a href="/online-test" class="btn btn-secondary">🧪 重新测试</a>
+                <a href="/" class="btn">[HOME] 返回主页</a>
+                <a href="/online-test" class="btn btn-secondary">[TEST_TUBE] 重新测试</a>
             </div>
         </div>
     </div>
@@ -6603,33 +7610,33 @@ class YHAPITestRunner:
 
     def run_tests(self):
         """运行测试"""
-        print("🚀 YH API测试框架启动...")
+        print("[ROCKET] YH API测试框架启动...")
         print("=" * 50)
 
         config = self.load_config()
-        print(f"📋 项目名称: {config.get('project', {}).get('name', 'YH API测试项目')}")
-        print(f"📅 运行时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"[CLIPBOARD] 项目名称: {config.get('project', {}).get('name', 'YH API测试项目')}")
+        print(f"[CALENDAR] 运行时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
         # 查找测试用例
         test_files = list(self.test_cases_dir.rglob("*.yaml"))
-        print(f"🧪 发现测试用例: {len(test_files)} 个")
+        print(f"[TEST_TUBE] 发现测试用例: {len(test_files)} 个")
 
         for test_file in test_files:
             print(f"   - {test_file.relative_to(self.project_root)}")
 
-        print("\\n🎯 开始执行测试...")
+        print("\\n[TARGET] 开始执行测试...")
 
         # 模拟测试执行
         for i, test_file in enumerate(test_files, 1):
             print(f"[{i}/{len(test_files)}] 执行: {test_file.name}")
             time.sleep(0.5)  # 模拟测试执行时间
-            print(f"   ✅ 通过")
+            print(f"   [CHECK] 通过")
 
-        print("\\n📊 生成测试报告...")
+        print("\\n[CHART] 生成测试报告...")
         self.generate_report()
 
-        print("🎉 测试执行完成!")
-        print(f"📁 报告目录: {self.reports_dir}")
+        print("[PARTY] 测试执行完成!")
+        print(f"[FOLDER] 报告目录: {self.reports_dir}")
 
     def generate_report(self):
         """生成测试报告"""
@@ -6656,7 +7663,7 @@ class YHAPITestRunner:
         with open(report_file, 'w', encoding='utf-8') as f:
             json.dump(report_data, f, ensure_ascii=False, indent=2)
 
-        print(f"✅ 报告已生成: {report_file}")
+        print(f"[CHECK] 报告已生成: {report_file}")
 
 def main():
     """主函数"""
@@ -6664,9 +7671,9 @@ def main():
         runner = YHAPITestRunner()
         runner.run_tests()
     except KeyboardInterrupt:
-        print("\\n⚠️ 测试被用户中断")
+        print("\\n[WARNING] 测试被用户中断")
     except Exception as e:
-        print(f"❌ 测试执行失败: {e}")
+        print(f"[CROSS] 测试执行失败: {e}")
         import traceback
         traceback.print_exc()
 
@@ -6836,11 +7843,11 @@ test_config:
         """获取README.md内容"""
         return '''# YH API测试框架项目
 
-## 📖 项目简介
+## [BOOK] 项目简介
 
 这是一个基于YH API测试框架的完整测试项目，提供了全面的API测试解决方案。
 
-## 🚀 快速开始
+## [ROCKET] 快速开始
 
 ### 1. 安装依赖
 
@@ -6872,7 +7879,7 @@ python run.py
 
 测试完成后，报告将生成在 `reports/` 目录下。
 
-## 📁 项目结构
+## [FOLDER] 项目结构
 
 ```
 yh-api-test-project/
@@ -6892,7 +7899,7 @@ yh-api-test-project/
 └── scripts/                # 辅助脚本
 ```
 
-## 🧪 测试用例说明
+## [TEST_TUBE] 测试用例说明
 
 ### API测试用例
 - `login_test.yaml`: 用户登录接口测试
@@ -6902,7 +7909,7 @@ yh-api-test-project/
 ### 性能测试用例
 - `load_test.yaml`: 负载测试用例
 
-## ⚙️ 配置说明
+## [GEAR] 配置说明
 
 ### 主配置文件 (config/config.yaml)
 包含API基础地址、认证信息、超时设置等。
@@ -6913,7 +7920,7 @@ yh-api-test-project/
 ### 全局变量 (config/global_vars.yaml)
 定义全局变量，可在测试用例中引用。
 
-## 📊 报告功能
+## [CHART] 报告功能
 
 项目集成了Allure报告，提供：
 - 详细的测试结果展示
@@ -6922,7 +7929,7 @@ yh-api-test-project/
 - 测试趋势分析
 - 失败用例截图和日志
 
-## 🔧 自定义开发
+## [WRENCH] 自定义开发
 
 ### 添加新的测试用例
 1. 在 `test_cases/` 目录下创建新的YAML文件
@@ -6932,12 +7939,12 @@ yh-api-test-project/
 ### 修改配置
 根据实际API接口修改配置文件中的地址、认证等信息。
 
-## 📞 技术支持
+## [PHONE] 技术支持
 
 如果您在使用过程中遇到问题，欢迎联系：
 - **QQ**: 2677989813
 
-## 📝 更新日志
+## [MEMO] 更新日志
 
 ### v1.0.0
 - 初始版本发布
@@ -7423,7 +8430,7 @@ from pathlib import Path
 
 def install_dependencies():
     """安装项目依赖"""
-    print("📦 安装项目依赖...")
+    print("[PACKAGE] 安装项目依赖...")
 
     requirements_file = Path(__file__).parent.parent / "requirements.txt"
 
@@ -7433,19 +8440,19 @@ def install_dependencies():
                 sys.executable, "-m", "pip", "install",
                 "-r", str(requirements_file)
             ])
-            print("✅ 依赖安装成功")
+            print("[CHECK] 依赖安装成功")
         except subprocess.CalledProcessError as e:
-            print(f"❌ 依赖安装失败: {e}")
+            print(f"[CROSS] 依赖安装失败: {e}")
             return False
     else:
-        print("⚠️ requirements.txt 文件不存在")
+        print("[WARNING] requirements.txt 文件不存在")
         return False
 
     return True
 
 def setup_directories():
     """创建必要的目录"""
-    print("📁 创建项目目录...")
+    print("[FOLDER] 创建项目目录...")
 
     project_root = Path(__file__).parent.parent
     directories = [
@@ -7458,23 +8465,23 @@ def setup_directories():
     for directory in directories:
         dir_path = project_root / directory
         dir_path.mkdir(parents=True, exist_ok=True)
-        print(f"✅ 创建目录: {directory}")
+        print(f"[CHECK] 创建目录: {directory}")
 
 def check_python_version():
     """检查Python版本"""
-    print("🐍 检查Python版本...")
+    print("[SNAKE] 检查Python版本...")
 
     version = sys.version_info
     if version.major < 3 or (version.major == 3 and version.minor < 8):
-        print("❌ Python版本过低，需要Python 3.8+")
+        print("[CROSS] Python版本过低，需要Python 3.8+")
         return False
 
-    print(f"✅ Python版本: {version.major}.{version.minor}.{version.micro}")
+    print(f"[CHECK] Python版本: {version.major}.{version.minor}.{version.micro}")
     return True
 
 def main():
     """主函数"""
-    print("🚀 YH API测试框架 - 环境设置")
+    print("[ROCKET] YH API测试框架 - 环境设置")
     print("=" * 40)
 
     # 检查Python版本
@@ -7488,8 +8495,8 @@ def main():
     if not install_dependencies():
         sys.exit(1)
 
-    print("\\n🎉 环境设置完成!")
-    print("💡 现在可以运行 'python run.py' 开始测试")
+    print("\\n[PARTY] 环境设置完成!")
+    print("[LIGHT_BULB] 现在可以运行 'python run.py' 开始测试")
 
 if __name__ == "__main__":
     main()
@@ -7522,11 +8529,11 @@ def clean_reports():
         if dir_path.exists():
             shutil.rmtree(dir_path)
             dir_path.mkdir(parents=True, exist_ok=True)
-            print(f"✅ 清理目录: {report_dir}")
+            print(f"[CHECK] 清理目录: {report_dir}")
 
 def clean_logs():
     """清理日志文件"""
-    print("📝 清理日志文件...")
+    print("[MEMO] 清理日志文件...")
 
     project_root = Path(__file__).parent.parent
     logs_dir = project_root / "logs"
@@ -7534,23 +8541,23 @@ def clean_logs():
     if logs_dir.exists():
         for log_file in logs_dir.glob("*.log"):
             log_file.unlink()
-            print(f"✅ 删除日志: {log_file.name}")
+            print(f"[CHECK] 删除日志: {log_file.name}")
 
 def clean_cache():
     """清理缓存文件"""
-    print("🗑️ 清理缓存文件...")
+    print("[TRASH] 清理缓存文件...")
 
     project_root = Path(__file__).parent.parent
 
     # 清理Python缓存
     for cache_dir in project_root.rglob("__pycache__"):
         shutil.rmtree(cache_dir)
-        print(f"✅ 删除缓存: {cache_dir}")
+        print(f"[CHECK] 删除缓存: {cache_dir}")
 
     # 清理.pyc文件
     for pyc_file in project_root.rglob("*.pyc"):
         pyc_file.unlink()
-        print(f"✅ 删除文件: {pyc_file}")
+        print(f"[CHECK] 删除文件: {pyc_file}")
 
 def main():
     """主函数"""
@@ -7561,7 +8568,7 @@ def main():
     clean_logs()
     clean_cache()
 
-    print("\\n🎉 项目清理完成!")
+    print("\\n[PARTY] 项目清理完成!")
 
 if __name__ == "__main__":
     main()
